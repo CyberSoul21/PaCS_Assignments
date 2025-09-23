@@ -30,6 +30,7 @@ int main() {
         for(int j = 0; j < n; j++)
         {
             *(matrix_1 + i * n + j) = dis(gen);
+            *(matrix_2 + i * n + j) = dis(gen);
             cout<<" "<<*(matrix_1 + i * n + j);
         }
         cout<<" "<<endl;
