@@ -17,7 +17,8 @@ int main() {
 
     int n =  0; //matrix dimension
 
-    cout<<"Type N: "<<n<<endl;
+    cout<<"Type N: "<<endl;
+    cin>>n;
 
     //create array
     double* matrix_1 = new double[n * n];
