@@ -1,0 +1,9 @@
+# CMake build directories
+**/build/
+**/*.exe
+
+# IDE/editor metadata
+.vscode/
+
+# Not consider .zip
+*.zip

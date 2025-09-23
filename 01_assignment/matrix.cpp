@@ -23,17 +23,30 @@ int main() {
     //create array
     double* matrix_1 = new double[n * n];
     double* matrix_2 = new double[n * n];
+    double* matrix_r = new double[n * n];
 
 
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
-            *(matrix_1 + i * n + j) = dis(gen);
-            *(matrix_2 + i * n + j) = dis(gen);
+            *(matrix_1 + i * n + j) = i+j;
+            *(matrix_2 + i * n + j) = i+j;
+            *(matrix_r + i * n + j) = 0;
             cout<<" "<<*(matrix_1 + i * n + j);
         }
         cout<<" "<<endl;
     }
-
+    
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            for(int k = 0; k < n; k++){
+                *(matrix_r + i * n + j) += *(matrix_1 + i * n + k) * *(matrix_2 + k * n + j);
+            }
+            cout<<" "<<*(matrix_r + i * n + j);
+        }
+        cout<<" "<<endl;
+    }
 }
