@@ -1,6 +1,6 @@
 #include <iostream>
 #include "D:\eigen\eigen-master\Eigen\Dense"
-
+//#include "/home/javier/eigen/Eigen/Dense"
 using Eigen::MatrixXi;
 
 int main() {

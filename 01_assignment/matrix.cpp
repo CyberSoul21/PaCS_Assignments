@@ -15,10 +15,7 @@ int main() {
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
     //auto pseudo_random_float_value = dis(gen);
 
-    int n =  0; //matrix dimension
-
-    cout<<"Type N: "<<endl;
-    cin>>n;
+    int n =  2; //matrix dimension
 
     //create array
     double* matrix_1 = new double[n * n];
@@ -33,9 +30,7 @@ int main() {
             *(matrix_1 + i * n + j) = i+j;
             *(matrix_2 + i * n + j) = i+j;
             *(matrix_r + i * n + j) = 0;
-            cout<<" "<<*(matrix_1 + i * n + j);
         }
-        cout<<" "<<endl;
     }
     
     for(int i = 0; i < n; i++)
@@ -45,8 +40,6 @@ int main() {
             for(int k = 0; k < n; k++){
                 *(matrix_r + i * n + j) += *(matrix_1 + i * n + k) * *(matrix_2 + k * n + j);
             }
-            cout<<" "<<*(matrix_r + i * n + j);
         }
-        cout<<" "<<endl;
     }
 }
