@@ -1,7 +1,8 @@
 # CMake build directories
 **/build/
 **/*.exe
-
+matrix
+matrix_stack
 # IDE/editor metadata
 .vscode/
 
