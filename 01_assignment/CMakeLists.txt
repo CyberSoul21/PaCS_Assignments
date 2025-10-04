@@ -13,6 +13,6 @@ project(
 
 #For all executables in project 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -I")
-add_executable(matrix matrix.cpp)
-add_executable(matrix_stack matrix_stack.cpp)
+#add_executable(matrix matrix.cpp)
+#add_executable(matrix_stack matrix_stack.cpp)
 add_executable(eigen_matrix eigen_matrix.cpp)

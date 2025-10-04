@@ -15,7 +15,7 @@ int main() {
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
     //auto pseudo_random_float_value = dis(gen);
 
-    int n =  100; //matrix dimension //up to 592
+    int n =  500; //matrix dimension //up to 592
     double a[n][n];
     double b[n][n];
     double c[n][n];
@@ -28,8 +28,8 @@ int main() {
     struct rlimit limit;    
 
     //cout<<"Stack size: "<<getrlimit(RLIMIT_STACK,&limit)<<endl;
-    getrlimit(RLIMIT_STACK,&limit);
-    printf("\nStack limit: %ld and %ld max \n",limit.rlim_cur,limit.rlim_max);
+    //getrlimit(RLIMIT_STACK,&limit);
+    //printf("\nStack limit: %ld and %ld max \n",limit.rlim_cur,limit.rlim_max);
 
     for(int i = 0; i < n; i++)
     {

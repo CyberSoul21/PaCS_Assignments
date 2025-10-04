@@ -15,7 +15,7 @@ int main() {
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
     //auto pseudo_random_float_value = dis(gen);
 
-    int n =  1000; //matrix dimension
+    int n =  100; //matrix dimension
 
     //create array
     double* matrix_1 = new double[n * n];
