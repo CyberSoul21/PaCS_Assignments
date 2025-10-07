@@ -5,10 +5,15 @@
 
 #include <iostream>
 #include <random>
+#include <ctime>
+#include <iomanip>
 
 using namespace std;
 
 int main() {
+
+    clock_t time;
+    time = clock();
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -42,4 +47,7 @@ int main() {
     }
 
     delete [] matrix_r, matrix_1, matrix_2;
+    time = clock() - time;
+    cout << "Seconds: " << fixed << setprecision(4)
+        << ((float)time)/CLOCKS_PER_SEC << endl;
 }
