@@ -1,23 +1,21 @@
+/* Assignemnt 1
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
+
 #include <iostream>
 #include <random>
 
 using namespace std;
-
-//NOTES:
-//notes about assignment
-//command time to measure time
-//Report, be specific how you made the execution, number of repeats, size matrix...etc
 
 int main() {
 
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
-    //auto pseudo_random_float_value = dis(gen);
 
     int n =  100; //matrix dimension
 
-    //create array
     double* matrix_1 = new double[n * n];
     double* matrix_2 = new double[n * n];
     double* matrix_r = new double[n * n];
