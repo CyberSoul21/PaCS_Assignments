@@ -14,7 +14,7 @@ using namespace std;
 int main() {
     clock_t time;
     time = clock();
-    int n = 100; //matrix dimension
+    int n = 750; //matrix dimension
     MatrixXi matrix_1 = MatrixXi::Random(n, n);
     MatrixXi matrix_2 = MatrixXi::Random(n, n);
     MatrixXi matrix_r = matrix_1 * matrix_2;

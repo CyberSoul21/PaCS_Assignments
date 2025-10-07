@@ -1,0 +1,57 @@
+*********************************Now with 100************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.0010
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.0019
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.0012
+*********************************Now with 500************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.1676
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.1450
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.1503
+*********************************Now with 750************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.9595
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.8342
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 0.8819
+*********************************Now with 1000************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 2.2481
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 2.1620
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 2.1215
+*********************************Now with 1250************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 3.9541
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 3.8837
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 3.8252
+*********************************Now with 1500************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 6.8102
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 5.9062
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 6.1763
+*********************************Now with 1750************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 11.3100
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 11.1337
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 11.5441
+*********************************Now with 2000************************************************
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 19.2167
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 19.2526
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ /home/javier/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build/matrix
+Seconds: 21.5284
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/clock/build$ 

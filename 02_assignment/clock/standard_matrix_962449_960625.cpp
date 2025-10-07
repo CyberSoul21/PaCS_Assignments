@@ -19,7 +19,7 @@ int main() {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
 
-    int n =  100; //matrix dimension
+    int n =  2000; //matrix dimension
 
     double* matrix_1 = new double[n * n];
     double* matrix_2 = new double[n * n];
