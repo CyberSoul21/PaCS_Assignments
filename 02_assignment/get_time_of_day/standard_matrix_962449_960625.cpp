@@ -18,7 +18,7 @@ int main() {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> dis {0.0f, 1.0f};
 
-    int n =  500; //matrix dimension
+    int n =  2000; //matrix dimension
 
     double* matrix_1 = new double[n * n];
     double* matrix_2 = new double[n * n];
@@ -58,7 +58,7 @@ int main() {
     time4 = (double)timestamp.tv_sec + ((double)timestamp.tv_usec)/1000000;
     
     // We do this last substractions at the end to affect the least possible to the algorithm measures
-    cout<<"Declaration, memory allocation and delete:"<<(time2-time1)+(time4-time3)<<endl;
-    cout<<"Matrix multiplication:"<<time3-time2<<endl;
+    cout<<"Time of Declaration, memory allocation and delete: "<<(time2-time1)+(time4-time3)<<endl;
+    cout<<"Time of Matrix multiplication:                     "<<time3-time2<<endl;
 
 }
