@@ -20,6 +20,6 @@ int main() {
     MatrixXi matrix_r = matrix_1 * matrix_2;
 
     time = clock() - time;
-    cout << "Seconds: " << fixed << setprecision(4)
+    cout << "Clock: " << fixed << setprecision(4)
         << ((float)time)/CLOCKS_PER_SEC << endl;
 }

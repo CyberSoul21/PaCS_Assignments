@@ -1,0 +1,28 @@
+N = 2000
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/get_time_of_day/build$ strace -c ./matrix 
+Time of Declaration, memory allocation and delete: 0.0789459
+Time of Matrix multiplication:                     17.8587
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.002000        1000         2           munmap
+  0.00    0.000000           0         4           read
+  0.00    0.000000           0         2           write
+  0.00    0.000000           0         5           close
+  0.00    0.000000           0         6           fstat
+  0.00    0.000000           0        25           mmap
+  0.00    0.000000           0         6           mprotect
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         2           pread64
+  0.00    0.000000           0         1         1 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         1           arch_prctl
+  0.00    0.000000           0         1           futex
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0         5           openat
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+  0.00    0.000000           0         1           rseq
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.002000          28        69         1 total
+

@@ -1,0 +1,28 @@
+N = 2000
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/get_time_of_day/build$ strace -c ./eigen_matrix 
+Declaration and memory allocation: 0.153396
+Matrix multiplication:             1.50118
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 72.12    0.004647         774         6           munmap
+ 11.11    0.000716         716         1           execve
+  9.27    0.000597          22        27           mmap
+  1.78    0.000115          23         5           openat
+  1.24    0.000080          13         6           mprotect
+  1.01    0.000065          10         6           fstat
+  0.92    0.000059          11         5           close
+  0.90    0.000058          14         4           read
+  0.42    0.000027          13         2           pread64
+  0.29    0.000019          19         1         1 access
+  0.22    0.000014           4         3           brk
+  0.19    0.000012          12         1           arch_prctl
+  0.19    0.000012          12         1           set_tid_address
+  0.17    0.000011          11         1           set_robust_list
+  0.17    0.000011          11         1           rseq
+  0.00    0.000000           0         2           write
+  0.00    0.000000           0         1           futex
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.006443          85        75         1 total
+
