@@ -1,0 +1,21 @@
+javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/get_time_of_day/build$ sudo /usr/lib/linux-tools-6.8.0-85/perf stat -r 3 ./eigen_matrix 
+Declaration and memory allocation: 0.168886
+Matrix multiplication:             1.63408
+Declaration and memory allocation: 0.123843
+Matrix multiplication:             1.50246
+Declaration and memory allocation: 0.121931
+Matrix multiplication:             1.51188
+
+ Performance counter stats for './eigen_matrix' (3 runs):
+
+          1,691.47 msec task-clock                       #    0.999 CPUs utilized               ( +-  3.37% )
+                35      context-switches                 #   20.692 /sec                        ( +- 46.20% )
+                 2      cpu-migrations                   #    1.182 /sec                        ( +- 50.00% )
+            13,355      page-faults                      #    7.896 K/sec                       ( +-  0.00% )
+     6,520,723,267      cycles                           #    3.855 GHz                         ( +-  0.85% )
+    18,916,053,375      instructions                     #    2.90  insn per cycle              ( +-  0.01% )
+       180,132,522      branches                         #  106.495 M/sec                       ( +-  0.13% )
+         1,299,298      branch-misses                    #    0.72% of all branches             ( +- 25.38% )
+
+            1.6936 +- 0.0583 seconds time elapsed  ( +-  3.44% )
+
