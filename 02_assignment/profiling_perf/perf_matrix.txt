@@ -1,11 +1,4 @@
 javier@Tars:~/Documents/PaCS/labs/PaCS_Assignments/02_assignment/get_time_of_day/build$ sudo /usr/lib/linux-tools-6.8.0-85/perf stat -r 3 ./matrix 
-Time of Declaration, memory allocation and delete: 0.0816731
-Time of Matrix multiplication:                     17.094
-Time of Declaration, memory allocation and delete: 0.0819881
-Time of Matrix multiplication:                     17.2019
-Time of Declaration, memory allocation and delete: 0.0836737
-Time of Matrix multiplication:                     17.2187
-
  Performance counter stats for './matrix' (3 runs):
 
          17,255.33 msec task-clock                       #    1.000 CPUs utilized               ( +-  0.22% )
