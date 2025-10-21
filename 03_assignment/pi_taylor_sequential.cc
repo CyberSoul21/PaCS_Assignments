@@ -7,8 +7,12 @@ using my_float = long double;
 
 my_float pi_taylor(size_t steps) {
 
-    (void)steps; // ensure no warnings with unused variable
-    return 0.0f;
+    (void)steps; // ensure no warnings with unused variable 
+    my_float pi = 0.0f;
+    for(size_t i = 0; i < steps; i++){
+        pi += 4* ((pow(-1,i)) / (2*i + 1));
+    }
+    return pi;
 }
 
 int main(int argc, const char *argv[]) {
