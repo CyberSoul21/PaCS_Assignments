@@ -10,10 +10,12 @@ my_float pi_taylor(size_t steps) {
 
     (void)steps; // ensure no warnings with unused variable 
     my_float pi = 0.0f;
+    int one = 1;
     for(size_t i = 0; i < steps; i++){
-        pi += 4* ((pow(-1,i)) / (2*i + 1));
+        pi += one / (2*i + 1);
+        one = -one;
     }
-    return pi;
+    return pi*4;
 }
 
 int main(int argc, const char *argv[]) {
