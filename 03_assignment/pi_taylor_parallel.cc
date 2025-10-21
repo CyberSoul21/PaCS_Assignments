@@ -14,12 +14,7 @@ pi_taylor_chunk(std::vector<my_float> &output,
         size_t thread_id, size_t start_step, size_t stop_step) {
     
     int one;
-    if(start_step % 2){
-        one = -1;
-    }
-    else{
-        one = 1;
-    };
+    (start_step % 2)?one = -1:one = 1;
     for(size_t i = start_step; i < stop_step; i++){
         output[i] = one / (2*i + 1);
         one = -one;
