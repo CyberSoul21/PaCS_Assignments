@@ -17,6 +17,32 @@ pi_taylor_chunk(std::vector<my_float> &output,
 
 }
 
+typedef struct {
+    size_t large_chunk;
+    size_t small_chunk;
+    size_t split_item;
+} chunk_info;
+
+constexpr chunk_info
+split_evenly(size_t N, size_t threads)
+{
+    return {N / threads + 1, N / threads, N % threads};
+}
+
+std::pair<size_t, size_t>
+get_chunk_begin_end(const chunk_info& ci, size_t index)
+{
+    size_t begin = 0, end = 0;
+    if (index < ci.split_item ) {
+        begin = index*ci.large_chunk;
+        end = begin + ci.large_chunk; // (index + 1) * ci.large_chunk
+    } else {
+        begin = ci.split_item*ci.large_chunk + (index - ci.split_item) * ci.small_chunk;
+        end = begin + ci.small_chunk;
+    }
+    return std::make_pair(begin, end);
+}
+
 std::pair<size_t, size_t>
 usage(int argc, const char *argv[]) {
     // read the number of steps from the command line
@@ -44,8 +70,17 @@ int main(int argc, const char *argv[]) {
     auto threads = ret_pair.second;
 
     my_float pi;
+    std::vector<my_float> vector[steps];
 
     // please complete missing parts
+    auto chunks = split_evenly(steps, threads);
+    // ToDo : run several times and check median and deviation
+    // launch the work
+    auto start = std::chrono::steady_clock::now();
+    for(size_t i = 0; i < threads; ++i) {
+        auto begin_end = get_chunk_begin_end(chunks, i);
+    }
+
 
 
     std::cout << "For " << steps << ", pi value: "
