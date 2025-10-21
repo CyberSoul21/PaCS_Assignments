@@ -74,7 +74,11 @@ int main(int argc, const char *argv[]) {
     auto threads = ret_pair.second;
 
     my_float pi;
-    std::vector<my_float> vector[steps];
+    std::vector<my_float> partial_results(threads, 0.0f);
+
+    std::vector<std::thread> myThreads;
+
+    myThreads.reserve(threads);
 
     // please complete missing parts
     auto chunks = split_evenly(steps, threads);
@@ -83,7 +87,20 @@ int main(int argc, const char *argv[]) {
     auto start = std::chrono::steady_clock::now();
     for(size_t i = 0; i < threads; ++i) {
         auto begin_end = get_chunk_begin_end(chunks, i);
+        myThreads.push_back(std::thread(pi_taylor_chunk, partial_results, i, begin_end.first,begin_end.second));
     }
+
+    for(auto& t: myThreads) {
+        t.join();
+    }
+
+    my_float pi=0.0f;
+    for(auto r: partial_results) {
+        pi+=r;
+    }
+
+    pi*=4.0f;
+
 
 
 
