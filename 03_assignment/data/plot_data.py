@@ -23,6 +23,11 @@ steps = np.log(steps)
 threads, time2 = np.loadtxt("pi_taylor_parallel_threads_means.csv", comments="#", unpack=True)
 
 
+
+# Import data async
+threads2, time3 = np.loadtxt("pi_taylor_parallel_async_means.csv", comments="#", unpack=True)
+
+
 ###################################################
 #-------------------Plot sequential.--------------------
 plt.title("Execution time: PI Sequential") 
