@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Import data sequential
-steps, pi_value, time = np.loadtxt("sequential_mean_pi_timing.csv", comments="#", unpack=True)
+steps, pi_value, time = np.loadtxt("Question2_sequential_mean_pi_timing.csv", comments="#", unpack=True)
 
 
 time = np.log(time/1000)
@@ -20,12 +20,12 @@ steps = np.log(steps)
 
 
 # Import data parallel
-threads, time2 = np.loadtxt("pi_taylor_parallel_threads_means.csv", comments="#", unpack=True)
+threads, time2 = np.loadtxt("Question4_pi_taylor_parallel_threads_means.csv", comments="#", unpack=True)
 
 
 
 # Import data async
-threads2, time3 = np.loadtxt("pi_taylor_parallel_async_means.csv", comments="#", unpack=True)
+threads2, time3 = np.loadtxt("Question6_pi_taylor_parallel_async_means.csv", comments="#", unpack=True)
 
 
 ###################################################
@@ -42,6 +42,18 @@ time2 = time2/1000
 ###################################################
 #-------------------Plot parallel.--------------------
 plt.title("Execution time: PI Parallized") 
+plt.plot(threads,time2, label="Pi",marker="8")
+plt.xlabel('Number of Threads')
+plt.ylabel('Time (s) log scale')
+plt.legend(loc="upper right")
+plt.grid()
+plt.show()
+
+
+time3 = time3/1000
+###################################################
+#-------------------Plot parallel.--------------------
+plt.title("Execution time: PI Parallized Async") 
 plt.plot(threads,time2, label="Pi",marker="8")
 plt.xlabel('Number of Threads')
 plt.ylabel('Time (s) log scale')
