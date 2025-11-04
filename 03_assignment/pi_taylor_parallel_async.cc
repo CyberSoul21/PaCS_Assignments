@@ -6,26 +6,33 @@
 #include <thread>
 #include <utility>
 #include <vector>
+#include <future>
 
 using my_float = long double;
-
-void
-pi_taylor_chunk(std::vector<my_float> &output,
-        size_t thread_id, size_t start_step, size_t stop_step) {
-    
-    int one;
-    (start_step % 2)?one = -1:one = 1;
-    for(size_t i = start_step; i < stop_step; i++){
-        output[i] = one / (2*i + 1);
-        one = -one;
-    };
-}
 
 typedef struct {
     size_t large_chunk;
     size_t small_chunk;
     size_t split_item;
 } chunk_info;
+
+my_float
+pi_taylor_chunk(size_t start_step, size_t stop_step) {
+
+    my_float one=-1;
+    my_float sum = 0.0f;
+    
+    (start_step % 2 == 0)?one = -1:one = 1;
+
+    for(size_t i = start_step; i < stop_step; i++){
+        one *= -1;
+        sum += one / (2*i + 1);
+        //std::cout<<"r: "<<one / (2*i + 1)<<std::endl;
+        //std::cout<<"one: "<<one<<std::endl;
+    };
+    return sum;
+}
+
 
 constexpr chunk_info
 split_evenly(size_t N, size_t threads)
@@ -46,6 +53,7 @@ get_chunk_begin_end(const chunk_info& ci, size_t index)
     }
     return std::make_pair(begin, end);
 }
+
 
 std::pair<size_t, size_t>
 usage(int argc, const char *argv[]) {
@@ -73,36 +81,33 @@ int main(int argc, const char *argv[]) {
     auto steps = ret_pair.first;
     auto threads = ret_pair.second;
 
-    my_float pi;
-    std::vector<my_float> partial_results(threads, 0.0f);
-
-    std::vector<std::thread> myThreads;
-
-    myThreads.reserve(threads);
+    my_float pi = 0.0f;
 
     // please complete missing parts
+    std::vector<std::future<my_float>> futureSums;
+    futureSums.reserve(threads);
+
     auto chunks = split_evenly(steps, threads);
-    // ToDo : run several times and check median and deviation
+
     // launch the work
-    auto start = std::chrono::steady_clock::now();
-    for(size_t i = 0; i < threads; ++i) {
+    auto start = std::chrono::steady_clock::now();  // Start timing
+
+    for (size_t i = 0; i < threads; ++i) {
         auto begin_end = get_chunk_begin_end(chunks, i);
-        myThreads.push_back(std::thread(pi_taylor_chunk, partial_results, i, begin_end.first,begin_end.second));
+        futureSums.emplace_back(std::async(std::launch::async, pi_taylor_chunk,begin_end.first,begin_end.second));
     }
 
-    for(auto& t: myThreads) {
-        t.join();
-    }
-
-    my_float pi=0.0f;
-    for(auto r: partial_results) {
-        pi+=r;
+    for(auto &r : futureSums)
+    {
+        pi += r.get();       
     }
 
     pi*=4.0f;
 
+    auto end = std::chrono::steady_clock::now();    // End timing
 
-
+    std::chrono::duration<double, std::milli> elapsed = end - start;
+    std::cout << "Time: " << elapsed.count() << " ms\n";    
 
     std::cout << "For " << steps << ", pi value: "
         << std::setprecision(std::numeric_limits<long double>::digits10 + 1)
