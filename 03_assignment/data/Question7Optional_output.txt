@@ -1,0 +1,446 @@
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ ./Laboratory-3/pi_taylor_parallel_threads 1048576 8
+Thread: 1 Time: Thread: 0 Time: 0.9870630.919216 ms
+
+ ms
+
+Thread: 4 Time: 0.740403 ms
+
+Thread: 6 Time: 0.562579 ms
+
+Thread: 5 Time: 0.677441Thread:  ms
+
+Thread: 2 Time: 0.902406 ms
+
+3Thread:  Time: 7 Time: 0.50362 ms
+
+0.851161 ms
+
+Total execution Time: 1.47101 ms
+For 1048576, pi value: 3.14159169991547685
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ ./Laboratory-3/pi_taylor_parallel_threads 1048576 16
+Thread: 0 Time: Thread: 0.346569 ms
+
+1 Time: 0.344915 ms
+
+Thread: 4 Time: 0.31451 ms
+
+Thread: 3 Time: 0.349176 ms
+
+Thread: Thread: 5 Time: 2 Time: 0.226902 ms
+
+0.367086 ms
+
+Thread: 6 Time: 0.202612 ms
+
+Thread: 7 Time: 0.157217 ms
+
+Thread: 8 Time: 0.082558 ms
+
+Thread: 9 Time: 0.081336 ms
+
+Thread: 10 Time: 0.083529 ms
+
+Thread: 11 Time: 0.076477 ms
+
+Thread: 12 Time: 0.087004 ms
+
+Thread: 15 Time: Thread: 0.09287513 ms
+
+ Time: 0.145663 ms
+
+Thread: 14 Time: 0.14664 ms
+
+Total execution Time: 1.5089 ms
+For 1048576, pi value: 3.141591699915476831
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ ./Laboratory-3/pi_taylor_parallel_threads 1048576 64
+Thread: Thread: 30 Time:  Time: Thread: 2 Time: Thread: 0.0190670.020805 ms
+
+0.080829 ms
+
+Thread: 4 Time: 0.021988 ms
+1
+ ms
+
+ Time: 0.019222 ms
+
+Thread: 5 Time: 0.019861 ms
+
+Thread: 6 Time: 0.020492 ms
+
+Thread: 7 Time: 0.018592 ms
+
+Thread: 8 Time: 0.018578 ms
+
+Thread: 9 Time: 0.01854 ms
+
+Thread: 10 Time: 0.031786 ms
+
+Thread: 11 Time: 0.031589 ms
+
+Thread: 12 Time: 0.020249 ms
+
+Thread: 13 Time: 0.018977 ms
+
+Thread: 14 Time: 0.018999 ms
+
+Thread: 15 Time: 0.019002 ms
+
+Thread: 16 Time: 0.018971 ms
+
+Thread: 17 Time: 0.019007 ms
+
+Thread: 18 Time: 0.018963 ms
+
+Thread: 19 Time: 0.019001 ms
+
+Thread: 20 Time: 0.018965 ms
+
+Thread: 21 Time: 0.019005 ms
+
+Thread: 22 Time: 0.019001 ms
+
+Thread: 23 Time: 0.018971 ms
+
+Thread: 24 Time: 0.019 ms
+
+Thread: 25 Time: 0.019047 ms
+
+Thread: 26 Time: 0.018991 ms
+
+Thread: 27 Time: 0.019004 ms
+
+Thread: 28 Time: 0.018973 ms
+
+Thread: 29 Time: 0.019001 ms
+
+Thread: 30 Time: 0.01899 ms
+
+Thread: 31 Time: 0.018989 ms
+
+Thread: 32 Time: 0.018993 ms
+
+Thread: 33 Time: 0.018998 ms
+
+Thread: 34 Time: 0.018972 ms
+
+Thread: 35 Time: 0.019053 ms
+
+Thread: 36 Time: 0.018961 ms
+
+Thread: 37 Time: 0.02563 ms
+
+Thread: 38 Time: 0.036301 ms
+
+Thread: 39 Time: 0.020609 ms
+
+Thread: 40 Time: 0.020555 ms
+
+Thread: 41 Time: 0.020594 ms
+
+Thread: 42 Time: 0.020579 ms
+
+Thread: 43 Time: 0.020551 ms
+
+Thread: 44 Time: 0.020595 ms
+
+Thread: 45 Time: 0.020565 ms
+
+Thread: 46 Time: 0.020597 ms
+
+Thread: 47 Time: 0.020555 ms
+
+Thread: 48 Time: 0.055423 ms
+
+Thread: 49 Time: 0.020573 ms
+
+Thread: 50 Time: 0.02187 ms
+
+Thread: 51 Time: 0.020592 ms
+
+Thread: 52 Time: 0.021153 ms
+
+Thread: 53 Time: 0.020553 ms
+
+Thread: 54 Time: 0.020541 ms
+
+Thread: 55 Time: 0.020565 ms
+
+Thread: 56 Time: 0.020569 ms
+
+Thread: 57 Time: 0.02061 ms
+
+Thread: 58 Time: 0.020608 ms
+
+Thread: 59 Time: 0.020583 ms
+
+Thread: 60 Time: 0.020578 ms
+
+Thread: 61 Time: 0.020548 ms
+
+Thread: 62 Time: 0.02787 ms
+
+Thread: 63 Time: 0.05006 ms
+
+Total execution Time: 3.86325 ms
+For 1048576, pi value: 3.141591699915476846
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ ./Laboratory-3/pi_taylor_parallel_threads 1048576 128
+Thread: Thread: 31 Time:  Time: Thread: 0.0095960.009574 ms
+
+ ms
+
+Thread: 5 Time: 0.010707 ms
+
+Thread: 6 Time: 00.01013 ms
+Thread: 
+Thread: 2 Time:  Time: 0.010358 ms
+
+0.010003 ms
+
+Thread: 7 Time: 0.010178 ms
+
+4 Time: 0.010421 ms
+
+Thread: 8 Time: 0.0096 ms
+
+Thread: 9 Time: 0.009579 ms
+
+Thread: 10 Time: 0.015587 ms
+
+Thread: 11 Time: 0.011028 ms
+
+Thread: 12 Time: 0.009581 ms
+
+Thread: 13 Time: 0.009593 ms
+
+Thread: 14 Time: 0.010866 ms
+
+Thread: 15 Time: 0.009341 ms
+
+Thread: 16 Time: 0.009592 ms
+
+Thread: Thread: 18 Time: 0.009531 ms
+
+17 Time: 0.009533 ms
+
+Thread: 19 Time: 0.010803 ms
+
+Thread: 20 Time: 0.009545 ms
+
+Thread: 21 Time: 0.009539 ms
+
+Thread: 22 Time: 0.009518 ms
+
+Thread: 23 Time: 0.009524 ms
+
+Thread: 24 Time: 0.010619 ms
+
+Thread: 25 Time: 0.009521 ms
+
+Thread: 26 Time: 0.009515 ms
+
+Thread: 27 Time: 0.009527 ms
+
+Thread: 28 Time: 0.009542 ms
+
+Thread: 29 Time: 0.009534 ms
+
+Thread: 30 Time: 0.009509 ms
+
+Thread: 31 Time: 0.00953 ms
+
+Thread: 32 Time: 0.009533 ms
+
+Thread: 33 Time: 0.009525 ms
+
+Thread: 34 Time: 0.009511 ms
+
+Thread: 35 Time: 0.009501 ms
+
+Thread: 36 Time: 0.009525 ms
+
+Thread: 37 Time: 0.009527 ms
+
+Thread: 38 Time: 0.009524 ms
+
+Thread: 39 Time: 0.009506 ms
+
+Thread: 40 Time: 0.0095 ms
+
+Thread: 41 Time: 0.009532 ms
+
+Thread: 42 Time: 0.009521 ms
+
+Thread: 43 Time: 0.009486 ms
+
+Thread: 44 Time: 0.009501 ms
+
+Thread: 45 Time: 0.009506 ms
+
+Thread: 46 Time: 0.009526 ms
+
+Thread: 47 Time: 0.009542 ms
+
+Thread: 48 Time: 0.009536 ms
+
+Thread: 49 Time: 0.025296 ms
+
+Thread: 50 Time: 0.010983 ms
+
+Thread: 51 Time: 0.010967 ms
+
+Thread: 52 Time: 0.01099 ms
+
+Thread: 53 Time: 0.010903 ms
+
+Thread: 54 Time: 0.012146 ms
+
+Thread: 55 Time: 0.010937 ms
+
+Thread: 56 Time: 0.010977 ms
+
+Thread: 57 Time: 0.010974 ms
+
+Thread: 58 Time: 0.010916 ms
+
+Thread: 59 Time: 0.010908 ms
+
+Thread: 60 Time: 0.010901 ms
+
+Thread: 61 Time: 0.01091 ms
+
+Thread: 62 Time: 0.010915 ms
+
+Thread: 63 Time: 0.010927 ms
+
+Thread: 64 Time: 0.010924 ms
+
+Thread: 65 Time: 0.010898 ms
+
+Thread: 66 Time: 0.010897 ms
+
+Thread: 67 Time: 0.010906 ms
+
+Thread: 68 Time: 0.010899 ms
+
+Thread: 69 Time: 0.010913 ms
+
+Thread: 70 Time: 0.010946 ms
+
+Thread: 71 Time: 0.010942 ms
+
+Thread: 72 Time: 0.010918 ms
+
+Thread: 73 Time: 0.010909 ms
+
+Thread: 74 Time: 0.010888 ms
+
+Thread: 75 Time: 0.010902 ms
+
+Thread: 76 Time: 0.010894 ms
+
+Thread: 77 Time: 0.01092 ms
+
+Thread: 78 Time: 0.01167 ms
+
+Thread: 79 Time: 0.010892 ms
+
+Thread: 80 Time: 0.010905 ms
+
+Thread: 81 Time: 0.010905 ms
+
+Thread: 82 Time: 0.02495 ms
+
+Thread: 83 Time: 0.011962 ms
+
+Thread: 84 Time: 0.011963 ms
+
+Thread: 85 Time: 0.011991 ms
+
+Thread: 86 Time: 0.01199 ms
+
+Thread: 87 Time: 0.01199 ms
+
+Thread: 88 Time: 0.011993 ms
+
+Thread: 89 Time: 0.01199 ms
+
+Thread: 90 Time: 0.011991 ms
+
+Thread: 91 Time: 0.011973 ms
+
+Thread: 92 Time: 0.011994 ms
+
+Thread: 93 Time: 0.011983 ms
+
+Thread: 94 Time: 0.011961 ms
+
+Thread: 95 Time: 0.011987 ms
+
+Thread: 96 Time: 0.011974 ms
+
+Thread: 97 Time: 0.011959 ms
+
+Thread: 98 Time: 0.011956 ms
+
+Thread: 99 Time: 0.011961 ms
+
+Thread: 100 Time: 0.011958 ms
+
+Thread: 101 Time: 0.011973 ms
+
+Thread: 102 Time: 0.011954 ms
+
+Thread: 103 Time: 0.011967 ms
+
+Thread: 104 Time: 0.011959 ms
+
+Thread: 105 Time: 0.01196 ms
+
+Thread: 106 Time: 0.011954 ms
+
+Thread: 107 Time: 0.011986 ms
+
+Thread: 108 Time: 0.011962 ms
+
+Thread: 109 Time: 0.021645 ms
+
+Thread: 110 Time: 0.011956 ms
+
+Thread: 111 Time: 0.011942 ms
+
+Thread: 112 Time: 0.011969 ms
+
+Thread: 113 Time: 0.011952 ms
+
+Thread: 114 Time: 0.025176 ms
+
+Thread: 115 Time: 0.010922 ms
+
+Thread: 116 Time: 0.010929 ms
+
+Thread: 117 Time: 0.010925 ms
+
+Thread: 118 Time: 0.010904 ms
+
+Thread: 119 Time: 0.010915 ms
+
+Thread: 120 Time: 0.010894 ms
+
+Thread: 121 Time: 0.010915 ms
+
+Thread: 122 Time: 0.010922 ms
+
+Thread: 123 Time: 0.01093 ms
+
+Thread: 124 Time: 0.010925 ms
+
+Thread: 125 Time: 0.010917 ms
+
+Thread: 126 Time: 0.010927 ms
+
+Thread: 127 Time: 0.013123 ms
+
+Total execution Time: 5.06751 ms
+For 1048576, pi value: 3.141591699915476836
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ 
+
