@@ -1,3 +1,7 @@
+/* Laboratory 3
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
 #include <iomanip>
 #include <iostream>
 #include <limits>

@@ -1,3 +1,7 @@
+/* Laboratory 3
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -25,9 +29,6 @@ pi_taylor_chunk(size_t start_step, size_t stop_step) {
     
     // Variable to store the error
     my_float c = 0.0f;
-
-
-    //(start_step % 2 == 0) ? one = 1 : one = -1; 
 
     for(size_t i = start_step; i < stop_step; i++){
 
