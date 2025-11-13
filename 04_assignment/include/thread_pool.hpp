@@ -7,62 +7,81 @@
 #include<join_threads.hpp>
 #include<threadsafe_queue.hpp>
 
+//how to implemet std::promise and std::future inside of wait()
+
 class thread_pool
 {
-//added
-  std::atomic<bool> _done;
-  size_t _thread_count;
-  threadsafe_queue<std::function<void()>> _work_queue;
-  std::vector<std::thread> _threads;
-//end of added
-  join_threads _joiner;
-
+  //Atomic flag that signals when the pool should stop atomic ensures thread-safe reads/writes without explicit locks
+  std::atomic_bool done;
+  //Thread-safe queue holding tasks to execute
+  //Each task is a std::function<void()> (callable with no parameters, returns void)
+  threadsafe_queue<std::function<void()> > work_queue;
+  std::vector<std::thread> threads;
+  join_threads joiner;
+  
   using task_type = void();
 
   void worker_thread()
   {
-    while(!_done)
+    while(!done) // Keep running until pool stops
     {
-      std::function<task_type> task;
-      if(_work_queue.try_pop(task)){
-        task();
-      } else {
-        std::this_thread::yield();
+      //task is a function object that holds whatever function/lambda that was submitted to the thread pool
+      std::function<void()> task;
+
+      if(work_queue.try_pop(task)) // Blocks until task available // Try to get a task (non-blocking)
+      {
+        task(); // Execute the task
+      }
+      else // Queue is empty
+      {
+        // Give up CPU time slice to other threads
+        std::this_thread::yield(); //TODO: Use condition variable instead of yield() for better efficiency
       }
     }
   }
 
   public:
-  thread_pool(size_t num_threads = std::thread::hardware_concurrency())
-    : // please complete
-    _done(false), _thread_count(num_threads), _joiner(_threads)
-  {
-      // complete
-    for(size_t i = 0; i < _thread_count; ++i){
-      _threads.push_back(std::thread(&thread_pool::worker_thread,this));
-    }
-  }
 
-  ~thread_pool()
-  {
-    wait();
-  }
+    thread_pool(size_t num_threads = std::thread::hardware_concurrency()):
+      done(false),joiner(threads)
+    {
+      try
+      {
+        for(unsigned i=0;i<num_threads;++i)
+        {
+          threads.push_back(
+          std::thread(&thread_pool::worker_thread,this));
+        }
+      }
+      catch(...)
+      {
+        done=true; // Signal threads to stop
+        throw; // Re-throw exception
+      }
+    }
+
+    ~thread_pool()
+    {
+      wait();
+      done=true;
+    }
+
 
   void wait()
   {
       // wait for completion
       // active waiting
-      while (!_work_queue.empty()) {
+      while (!work_queue.empty()) {
           std::this_thread::yield();
       }
 
-      _done = true; 
+      done = true;
   }
 
-  template<typename F>
+    //Template accepts any callable (function, lambda, functor)
+    template<typename F>
     void submit(F f)
     {
-	// please complete
-      _work_queue.push(std::function<task_type>(f));
+      work_queue.push(std::function<void()>(f)); //Pushes to thread-safe queue and one waiting worker thread will pick it up
     }
 };
