@@ -11,18 +11,20 @@
 
 class thread_pool
 {
+  // Member declaration order matters!
+  
   //Atomic flag that signals when the pool should stop atomic ensures thread-safe reads/writes without explicit locks
   std::atomic_bool done;
+  std::atomic<unsigned> active_tasks;  // Track running tasks
   //Thread-safe queue holding tasks to execute
   //Each task is a std::function<void()> (callable with no parameters, returns void)
   threadsafe_queue<std::function<void()> > work_queue;
   std::vector<std::thread> threads;
-  join_threads joiner;
-
-
-  std::atomic<unsigned> active_tasks;  // Track running tasks
+  
   std::mutex completion_mutex;
   std::condition_variable completion_cv;
+
+  join_threads joiner;
 
   
   using task_type = void();
@@ -33,14 +35,13 @@ class thread_pool
     {
       //task is a function object that holds whatever function/lambda that was submitted to the thread pool
       std::function<void()> task;
-
       if(work_queue.try_pop(task)) // Blocks until task available // Try to get a task (non-blocking)
       {
 
         task(); // Execute the task
-        active_tasks--;
+        //active_tasks--;  // race condition between decrement and check:
 
-        if(active_tasks == 0)  //check
+        if(--active_tasks == 0)  //check //Decrement and check in ONE operation //
         {
           completion_cv.notify_all();  // Notify waiters
         } 
@@ -57,9 +58,9 @@ class thread_pool
     while(work_queue.try_pop(task))
     {
         task();
-        active_tasks--;
+        //active_tasks--;
         
-        if(active_tasks == 0)
+        if(--active_tasks == 0)//Decrement and check in ONE operation
         {
           completion_cv.notify_all();
         }
@@ -88,7 +89,7 @@ class thread_pool
 
     ~thread_pool()
     {
-      wait();
+      //wait();
       done=true;
     }
 
@@ -113,6 +114,7 @@ class thread_pool
     template<typename F>
     void submit(F f)
     {
+      ++active_tasks; 
       work_queue.push(std::function<void()>(f)); //Pushes to thread-safe queue and one waiting worker thread will pick it up
     }
 };
