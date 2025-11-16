@@ -28,6 +28,7 @@
 #include <vector>
 
 #include <thread_pool.hpp>
+#include<threadsafe_queue.hpp>
 
 // Vec is a structure to store position (x,y,z) and color (r,g,b)
 struct Vec {
@@ -248,6 +249,75 @@ int main(int argc, char *argv[]){
     // create a thread pool
 
     // launch the tasks
+
+
+    // //just for testing...
+    // (void) samps;
+    // (void) cx;
+    // (void) cy;
+    // (void) w_div;
+    // (void) h_div;
+    // (void) c_ptr;
+    
+    // threadsafe_queue<int> _queue;
+
+    // // Push some data
+    // _queue.push(1);
+    // _queue.push(2);
+    // _queue.push(3);
+
+    // // Pop some data
+    // int test_value=0;
+    // _queue.try_pop(test_value);
+    // std::cout <<test_value<< std::endl;
+    // _queue.try_pop(test_value);
+    // std::cout <<test_value<< std::endl;
+    // _queue.try_pop(test_value);
+    // std::cout <<test_value<< std::endl;   
+ 
+    // Create Thread pool
+    thread_pool pool;  // Uses hardware_concurrency() threads
+
+    // Divide image into regions
+    size_t region_w = w / w_div;  // Width of each region
+    size_t region_h = h / h_div;  // Height of each region
+
+    // Submit rendering images
+    for(size_t i = 0; i < h_div; ++i) {
+        for(size_t j = 0; j < w_div; ++j) {
+                
+            // Calculate region boundaries
+            int y0 = i * region_h;
+            
+            int y1;
+            if (i == h_div - 1) {
+                y1 = h;  // Last row: extend to full height
+            } else {
+                y1 = (i + 1) * region_h;
+            }
+            
+            int x0 = j * region_w;
+            
+            int x1;
+            if (j == w_div - 1) {
+                x1 = w;  // Last column: extend to full width
+            } else {
+                x1 = (j + 1) * region_w;
+            }
+        
+        Region reg(x0, x1, y0, y1);
+            
+            // Submit rendering task for this region
+            pool.submit([=, &cam, &cx, &cy]{
+                render(w, h, samps, cam, cx, cy, c_ptr, reg);
+            });
+        }
+    }
+
+    // wait for all rendering to complete
+    pool.wait();
+
+
 
 
     // wait for completion
