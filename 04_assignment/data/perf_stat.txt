@@ -1,0 +1,44 @@
+Testing with: blocking wait using a condition variable
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ sudo /usr/lib/linux-tools-6.8.0-87/perf stat -r 5 ./Laboratory-4/smallpt_thread_pool 8 8
+Execution time: 2265 ms.
+Execution time: 2187 ms.
+Execution time: 2153 ms.
+Execution time: 2156 ms.
+Execution time: 2120 ms.
+
+ Performance counter stats for './Laboratory-4/smallpt_thread_pool 8 8' (5 runs):
+
+         41,634.11 msec task-clock                       #    7.761 CPUs utilized               ( +-  0.89% )
+           704,035      context-switches                 #   16.910 K/sec                       ( +-  1.69% )
+                74      cpu-migrations                   #    1.777 /sec                        ( +- 16.78% )
+             5,608      page-faults                      #  134.697 /sec                        ( +-  0.21% )
+   118,434,558,114      cycles                           #    2.845 GHz                         ( +-  1.04% )
+    88,359,519,127      instructions                     #    0.75  insn per cycle              ( +-  0.55% )
+    10,031,140,528      branches                         #  240.936 M/sec                       ( +-  0.84% )
+       236,151,938      branch-misses                    #    2.35% of all branches             ( +-  0.70% )
+
+            5.3646 +- 0.0530 seconds time elapsed  ( +-  0.99% )
+
+######################################################################################################################################################################################
+
+Testing with: while loop condition and sleep of 1 milisecond
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ sudo /usr/lib/linux-tools-6.8.0-87/perf stat -r 5 ./Laboratory-4/smallpt_thread_pool 8 8
+Execution time: 2165 ms.
+Execution time: 2146 ms.
+Execution time: 2179 ms.
+Execution time: 2174 ms.
+Execution time: 2164 ms.
+
+ Performance counter stats for './Laboratory-4/smallpt_thread_pool 8 8' (5 runs):
+
+         43,875.37 msec task-clock                       #    7.803 CPUs utilized               ( +-  2.77% )
+           678,373      context-switches                 #   15.461 K/sec                       ( +-  5.05% )
+                49      cpu-migrations                   #    1.117 /sec                        ( +- 18.68% )
+             5,651      page-faults                      #  128.797 /sec                        ( +-  0.47% )
+   125,582,645,895      cycles                           #    2.862 GHz                         ( +-  2.81% )
+    90,744,492,769      instructions                     #    0.72  insn per cycle              ( +-  1.49% )
+    10,432,842,166      branches                         #  237.784 M/sec                       ( +-  2.20% )
+       240,586,117      branch-misses                    #    2.31% of all branches             ( +-  0.85% )
+
+             5.623 +- 0.153 seconds time elapsed  ( +-  2.73% )
+

@@ -1,0 +1,15 @@
+#Tested on Lab000 unizar:
+lab000:~/Documents/PACS/build/ perf stat -r 5 -a -e "power/energy-cores/" ./Laboratory-4/smallpt_thread_pool 4 4
+Execution time: 6244 ms.
+Execution time: 6037 ms.
+Execution time: 5570 ms.
+Execution time: 5845 ms.
+Execution time: 6035 ms.
+
+ Performance counter stats for 'system wide' (5 runs):
+
+          1,066.79 Joules power/energy-cores/                                           ( +-  1.38% )
+
+             8.596 +- 0.130 seconds time elapsed  ( +-  1.51% )
+
+lab000:~/Documents/PACS/build/ 

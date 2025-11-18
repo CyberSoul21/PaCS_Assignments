@@ -103,11 +103,16 @@ class thread_pool
           std::this_thread::yield();
       }*/
       
-      //Wait for Queue to Empty
-      std::unique_lock<std::mutex> lock(completion_mutex);
-      completion_cv.wait(lock, [this] { 
+      //Wait for Queue to Empty, correct implementation
+       std::unique_lock<std::mutex> lock(completion_mutex);
+       completion_cv.wait(lock, [this] { 
           return active_tasks == 0 && work_queue.empty(); 
-      });
+       });
+      
+      //Testing cycles with sleep.
+     //while (active_tasks.load() != 0) {   //RACE CONDITION! (empty queue in not equal all tasks done)
+     //    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+     // }
   }
 
     //Template accepts any callable (function, lambda, functor)
