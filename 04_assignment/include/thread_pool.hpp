@@ -1,3 +1,7 @@
+/* Laboratory 4
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
 #pragma once
 
 #include <atomic>
@@ -89,7 +93,7 @@ class thread_pool
 
     ~thread_pool()
     {
-      //wait();
+      wait();
       done=true;
     }
 
@@ -98,11 +102,6 @@ class thread_pool
   {
       // wait for completion
       // active waiting
-      /*
-      while (!work_queue.empty()) {   //RACE CONDITION! (empty queue in not equal all tasks done)
-          std::this_thread::yield();
-      }*/
-      
       //Wait for Queue to Empty, correct implementation
        std::unique_lock<std::mutex> lock(completion_mutex);
        completion_cv.wait(lock, [this] { 

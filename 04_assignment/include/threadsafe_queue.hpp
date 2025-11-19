@@ -1,3 +1,7 @@
+/* Laboratory 4
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
 #pragma once
 
 #include <condition_variable>

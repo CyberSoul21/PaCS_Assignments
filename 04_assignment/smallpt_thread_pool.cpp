@@ -1,3 +1,8 @@
+/* Laboratory 4
+*  Wilson Javier Almario Rodriguez -> 962449
+*  Álvaro Provencio Carralero -> 960625
+*/
+
 // readable smallpt, a Path Tracer by Kevin Beason, 2008.  Adjusted
 // for my particular readability sensitivities by Roger Allen, 2016
 // Added C++11 multithreading & removed openmp.
@@ -246,35 +251,6 @@ int main(int argc, char *argv[]){
 
     auto *c_ptr = c.get(); // raw pointer to Vector c
 
-    // create a thread pool
-
-    // launch the tasks
-
-
-    // //just for testing...
-    // (void) samps;
-    // (void) cx;
-    // (void) cy;
-    // (void) w_div;
-    // (void) h_div;
-    // (void) c_ptr;
-    
-    // threadsafe_queue<int> _queue;
-
-    // // Push some data
-    // _queue.push(1);
-    // _queue.push(2);
-    // _queue.push(3);
-
-    // // Pop some data
-    // int test_value=0;
-    // _queue.try_pop(test_value);
-    // std::cout <<test_value<< std::endl;
-    // _queue.try_pop(test_value);
-    // std::cout <<test_value<< std::endl;
-    // _queue.try_pop(test_value);
-    // std::cout <<test_value<< std::endl;   
- 
     // Create Thread pool
     thread_pool pool;  // Uses hardware_concurrency() threads
 
@@ -283,6 +259,7 @@ int main(int argc, char *argv[]){
     size_t region_h = h / h_div;  // Height of each region
 
     // Submit rendering images
+    // launch the tasks
     for(size_t i = 0; i < h_div; ++i) {
         for(size_t j = 0; j < w_div; ++j) {
                 
@@ -316,8 +293,6 @@ int main(int argc, char *argv[]){
 
     // wait for all rendering to complete
     pool.wait();
-
-
 
 
     // wait for completion
