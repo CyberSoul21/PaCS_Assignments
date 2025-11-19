@@ -10,4 +10,21 @@ Execution time: 2630 ms.
             122.26 Joules power/energy-cores/                                                     ( +-  1.70% )
 
             5.8462 +- 0.0891 seconds time elapsed  ( +-  1.52% )
+            
+            
+            
+javier@Tars:~/Documents/PaCS/labs/PACS/build$ sudo /usr/lib/linux-tools-6.8.0-87/perf stat -r 5 -a -e "power/energy-cores/" ./Laboratory-4/smallpt_thread_pool 2 2
+[sudo] password for javier: 
+Execution time: 5232 ms.
+Execution time: 6689 ms.
+Execution time: 5337 ms.
+Execution time: 6787 ms.
+Execution time: 5396 ms.
+
+ Performance counter stats for 'system wide' (5 runs):
+
+            179.12 Joules power/energy-cores/                                                     ( +-  4.44% )
+
+             8.545 +- 0.378 seconds time elapsed  ( +-  4.42% )
+            
 
