@@ -116,6 +116,20 @@ int main(int argc, char** argv)
   cl_error(err, "Failed to create a command queue\n");
 
   /* It is still missing the runtime part of the OpenCL program: createBuffers, createProgram, createKernel, setKernelArg, ... */
+  
+  //Create Buffer
+  // cl_mem_flags flags[] = {CL_​MEM_​READ_​WRITE}
+  cl_mem mem = clCreateBuffer(context,CL_​MEM_​READ_​WRITE,,,err )
+
+
+  //CreateProgram
+
+
+  //CreateKernel
+
+  //SetkernelArg
+  
+  
   return 0;
 }
 
