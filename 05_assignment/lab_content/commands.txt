@@ -1,0 +1,3 @@
+$prompt> g++ source.cpp -o executable -lOpenCL
+
+https://github.com/smistad/OpenCL-Gaussian-Blur/blob/master/gaussian_blur.cl
