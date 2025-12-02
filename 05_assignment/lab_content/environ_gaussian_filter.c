@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 	cl_kernel kernel;                   				// compute kernel
 
 	// Get image
-	CImg<unsigned char> img("cats.jpg");
+	cimg_library::CImg<unsigned char> img("cats.jpg");
 	int width = img.width();
 	int height = img.height();
 
@@ -223,7 +223,7 @@ int main(int argc, char** argv)
     cl_error(err,"Failed to read output");
 
 	// Save output
-	CImg<unsigned char> outImg(width, height, 1, 3);
+	cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x,y) {
         int i = 3*(y*width + x);
         outImg(x,y,0) = outRGB[i+0];
