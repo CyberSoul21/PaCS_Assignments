@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 
 	// Create Gaussian mask
     int maskSize, radius;
-    float * mask = createMask(1.f, &maskSize, &radius);
+    float * mask = createMask(1.f, maskSize, radius);
 	
 	
 	// 1. Scan the available platforms:
