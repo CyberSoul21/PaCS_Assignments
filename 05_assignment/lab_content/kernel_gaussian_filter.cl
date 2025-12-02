@@ -6,7 +6,7 @@ __kernel void gaussian_filter(
         __constant float * mask,
         __private int radius,
         __private int width,
-        __private int heigth,
+        __private int height
     ) {
 
     int2 pos = {get_global_id(0), get_global_id(1)};
