@@ -4,10 +4,14 @@ __kernel void gaussian_filter(
         __read_only image2d_t in_image,
         __write_only image2d_t out_image,
         __constant float * mask,
-        __private int radius
+        __private int radius,
+        __private int width,
+        __private int heigth,
     ) {
 
     int2 pos = {get_global_id(0), get_global_id(1)};
+    if (pos.x >= width || pos.y >= height)
+        return;
     float3 acc = (float3)(0.0f);
 
     for(int x = -radius; x <= radius; x++) {

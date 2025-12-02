@@ -214,13 +214,22 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to set argument 2\n");
 	err = clSetKernelArg(kernel, 3, sizeof(int), &radius);
 	cl_error(err, "Failed to set argument 3\n");
+	err = clSetKernelArg(kernel, 4, sizeof(int), &width);
+	cl_error(err, "Failed to set argument 3\n");
+	err = clSetKernelArg(kernel, 5, sizeof(int), &height);
+	cl_error(err, "Failed to set argument 3\n");
 
 
 	// Launch Kernel
-	size_t global_size[2] = { (size_t)width, (size_t)height};
-	size_t local_size = 256; 
+	// size_t global_size[2] = { (size_t)width, (size_t)height};
+	// size_t local_size = 256; 
+	size_t local_size[2] = {16, 16};
+	size_t global_size[2] = {
+		((size_t)width  + local_size[0] - 1) / local_size[0] * local_size[0],
+		((size_t)height + local_size[1] - 1) / local_size[1] * local_size[1]
+	};
 	// err = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_size, &local_size, 0, NULL, NULL);
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, &local_size, 0, NULL, NULL);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
 	cl_error(err, "Failed to launch kernel to the device\n");
 
     // Read output image
