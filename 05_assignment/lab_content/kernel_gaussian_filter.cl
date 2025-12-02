@@ -4,7 +4,7 @@ __kernel void gaussian_filter(
         __read_only image2d_t in_image,
         __write_only image2d_t out_image,
         __constant float * mask,
-        __private int radius,
+        __private int radius
     ) {
 
     int2 pos = {get_global_id(0), get_global_id(1)};
