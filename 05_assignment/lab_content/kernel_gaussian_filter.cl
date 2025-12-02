@@ -10,6 +10,8 @@ __kernel void gaussian_filter(
     ) {
 
     const int2 pos = {get_global_id(0), get_global_id(1)};
+    if (pos.x >= width || pos.y >= height)
+        return;
     
     // Collect neighbor values and multiply with gaussian
     float sum = 0.0f;
