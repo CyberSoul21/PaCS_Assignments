@@ -179,11 +179,23 @@ int main(int argc, char** argv)
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
-	format.image_channel_order = CL_RGB;
-	format.image_channel_data_type = CL_UNORM_INT8;
-	cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
+	img_format.image_channel_order = CL_RGB;
+	img_format.image_channel_data_type = CL_UNORM_INT8;
+
+	cl_image_desc img_desc;
+	memset(&img_desc, 0, sizeof(img_desc));   // MUY IMPORTANTE
+
+	img_desc.image_type = CL_MEM_OBJECT_IMAGE2D;
+	img_desc.image_width = width;
+	img_desc.image_height = height;
+	img_desc.image_depth = 1;
+	img_desc.image_array_size = 1;
+
+	// cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
+	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,img.data(), &err);
 	cl_error(err, "Failed to create input image at device\n");
-    cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
+    // cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
+    cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc, NULL, &err);
 	cl_error(err, "Failed to create input image at device\n");
     
     // Create buffer for mask and transfer it to the device
