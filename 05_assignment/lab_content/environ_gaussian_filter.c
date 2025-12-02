@@ -161,10 +161,11 @@ int main(int argc, char** argv)
 	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
     std::vector<unsigned char> rgb_in(width*height*3);
     cimg_forXY(img, x, y){
-        int idx = 3*(y*width + x);
+        int idx = 4*(y*width + x);
         rgb_in[idx+0] = img(x,y,0);
         rgb_in[idx+1] = img(x,y,1);
         rgb_in[idx+2] = img(x,y,2);
+        rgb_in[idx+3] = 255;
     }
 
 	// Create Gaussian mask
@@ -173,7 +174,7 @@ int main(int argc, char** argv)
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
-	img_format.image_channel_order = CL_RGB;
+	img_format.image_channel_order = CL_RGBA;
 	img_format.image_channel_data_type = CL_UNORM_INT8;
 
 	cl_image_desc img_desc;
@@ -225,19 +226,19 @@ int main(int argc, char** argv)
     size_t origin[3] = {0,0,0};
     size_t region[3] = {(size_t)width, (size_t)height, 1};
 
-    std::vector<unsigned char> outRGB(width*height*3);
+    std::vector<unsigned char> outRGBA(width*height*4);
 
     err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,
                     origin, region,
                     0, 0,
-                    outRGB.data(),
+                    outRGBA.data(),
                     0, NULL, NULL);
     cl_error(err,"Failed to read output");
 
 	// Save output
 	cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x,y) {
-        int i = 3*(y*width + x);
+        int i = 4*(y*width + x);
         outImg(x,y,0) = outRGB[i+0];
         outImg(x,y,1) = outRGB[i+1];
         outImg(x,y,2) = outRGB[i+2];
