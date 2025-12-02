@@ -239,9 +239,9 @@ int main(int argc, char** argv)
 	cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x,y) {
         int i = 4*(y*width + x);
-        outImg(x,y,0) = outRGB[i+0];
-        outImg(x,y,1) = outRGB[i+1];
-        outImg(x,y,2) = outRGB[i+2];
+        outImg(x,y,0) = outRGBA[i+0];
+        outImg(x,y,1) = outRGBA[i+1];
+        outImg(x,y,2) = outRGBA[i+2];
     }
 
     outImg.save("result.jpg");
