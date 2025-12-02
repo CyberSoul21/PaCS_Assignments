@@ -159,13 +159,13 @@ int main(int argc, char** argv)
 	int height = img.height();
 
 	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
-    std::vector<unsigned char> rgb_in(width*height*3);
+    std::vector<unsigned char> rgba_in(width*height*4);
     cimg_forXY(img, x, y){
         int idx = 4*(y*width + x);
-        rgb_in[idx+0] = img(x,y,0);
-        rgb_in[idx+1] = img(x,y,1);
-        rgb_in[idx+2] = img(x,y,2);
-        rgb_in[idx+3] = 255;
+        rgba_in[idx+0] = img(x,y,0);
+        rgba_in[idx+1] = img(x,y,1);
+        rgba_in[idx+2] = img(x,y,2);
+        rgba_in[idx+3] = 255;
     }
 
 	// Create Gaussian mask
@@ -187,7 +187,7 @@ int main(int argc, char** argv)
 	img_desc.image_array_size = 1;
 
 	// cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
-	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgb_in.data(), &err);
+	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgba_in.data(), &err);
 	cl_error(err, "Failed to create input image at device\n");
     // cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
     cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY, &img_format, &img_desc, NULL, &err);
@@ -214,12 +214,10 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to set argument 5\n");
 
 	// Launch Kernel
-	// size_t global_size[2] = { (size_t)width, (size_t)height};
-	// size_t local_size = 256; 
 	size_t local_size[2] = {16, 16};
 	size_t global_size[2] = { (size_t)width, (size_t)height };
-	// err = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_size, &local_size, 0, NULL, NULL);
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
+	// err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
 	cl_error(err, "Failed to launch kernel to the device\n");
 
     // Read output image
