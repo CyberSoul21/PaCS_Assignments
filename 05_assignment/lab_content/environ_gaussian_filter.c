@@ -26,7 +26,7 @@ void cl_error(cl_int code, const char *string){
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-float * createBlurMask(float sigma, int * maskSizePointer) {
+float * createMask(float sigma, int * maskSizePointer) {
     int maskSize = (int)ceil(3.0f*sigma);
     float * mask = new float[(maskSize*2+1)*(maskSize*2+1)];
     float sum = 0.0f;
