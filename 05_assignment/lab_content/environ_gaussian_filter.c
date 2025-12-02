@@ -218,8 +218,9 @@ int main(int argc, char** argv)
 
 	// Launch Kernel
 	size_t global_size[2] = { (size_t)width, (size_t)height};
+	size_t local_size = 256; 
 	// err = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_size, &local_size, 0, NULL, NULL);
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, &local_size, NULL, 0, NULL, NULL);
 	cl_error(err, "Failed to launch kernel to the device\n");
 
     // Read output image
