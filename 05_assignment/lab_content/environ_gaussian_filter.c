@@ -193,7 +193,7 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to create output image at device\n");
     
     // Create buffer for mask and transfer it to the device
-    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*maskSize*maskSize, mask, &err);
+    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*(2*maskSize+1)*(2*maskSize+1), mask, &err);
 	cl_error(err, "Failed to create mask buffer at device\n");
 	// err = clEnqueueWriteBuffer(command_queue, clMask, CL_TRUE, 0, sizeof(float)*maskSize*maskSize, mask, 0, NULL, NULL);
 	// cl_error(err, "Failed to enqueue a write command\n");
