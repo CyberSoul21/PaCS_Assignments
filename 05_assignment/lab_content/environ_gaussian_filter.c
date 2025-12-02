@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "CImg.h"
+#include "CImg/CImg.h"
 #ifdef __APPLE__
 	  #include <OpenCL/opencl.h>
 #else
@@ -181,9 +181,9 @@ int main(int argc, char** argv)
 	cl_image_format img_format;
 	format.image_channel_order = CL_RGB;
 	format.image_channel_data_type = CL_UNORM_INT8;
-	cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY, img_format, width, height, 0, img.data(), &err);
+	cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
 	cl_error(err, "Failed to create input image at device\n");
-    cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY, img_format, width, height, 0, NULL, &err);
+    cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
 	cl_error(err, "Failed to create input image at device\n");
     
     // Create buffer for mask and transfer it to the device
