@@ -60,8 +60,8 @@ int main(int argc, char** argv)
 	size_t e_buf;				// effective size of str_buffer in use
 	size_t program_Size;			// size of the opencl program
 		
-	size_t global_size;                      	// global domain size for our calculation
-	size_t local_size;                       	// local domain size for our calculation
+	// size_t global_size;                      	// global domain size for our calculation
+	// size_t local_size;                       	// local domain size for our calculation
 
 	const cl_uint num_platforms_ids = 10;				// max of allocatable platforms
 	cl_platform_id platforms_ids[num_platforms_ids];		// array of platforms
@@ -244,7 +244,7 @@ int main(int argc, char** argv)
     }
 
     outImg.save("result.jpg");
-    cout << "Gaussian filter saved to result.jpg\n";
+    std::cout << "Gaussian filter saved to result.jpg\n"<<std::endl;
 
 	// Read data form device memory back to host memory
 	// err = clEnqueueReadBuffer(command_queue, out_device_object, CL_TRUE, 0, sizeof(float) * count, out_host_object, 0, NULL, NULL);
