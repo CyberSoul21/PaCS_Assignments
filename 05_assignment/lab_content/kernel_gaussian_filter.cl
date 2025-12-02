@@ -8,7 +8,7 @@ __kernel void gaussian_filter(
     ) {
 
     int2 pos = {get_global_id(0), get_global_id(1)};
-    float acc = (float3)(0.0f);
+    float3 acc = (float3)(0.0f);
 
     for(int x = -radius; x <= radius; x++) {
         for(int y = -radius; y <= radius; y++) {
