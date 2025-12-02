@@ -1,7 +1,7 @@
 __constant sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE | CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
 
 __kernel void gaussian_blur(
-        __read_only image2d_t image,
+        __read_only image2d_t in_image,
         __write_only image2d_t out_image,
         __constant float * mask,
         __private int maskSize
