@@ -26,30 +26,23 @@ void cl_error(cl_int code, const char *string){
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-float * createMask(float sigma, int& masksize, int& radius){
-	// int maskSize = (int)ceil(sigma); // If we want a dynamic size
-	masksize = 3;
-	radius = 1;
-	float * mask = new float[masksize * masksize];
-	float sum = 0.0f;
-	float denom = (2*sigma*sigma);
-	int idx = 0;
-	for(int x = -radius; x<=radius;x++){
-		for(int y = -radius; y<=radius;y++){
-			float temp = exp(-((float)(x*x+y*y) / denom));
-			sum += temp;
-			mask[idx++] = temp;
-		}
-	}
+float * createBlurMask(float sigma, int * maskSizePointer) {
+    int maskSize = (int)ceil(3.0f*sigma);
+    float * mask = new float[(maskSize*2+1)*(maskSize*2+1)];
+    float sum = 0.0f;
+    for(int a = -maskSize; a < maskSize+1; a++) {
+        for(int b = -maskSize; b < maskSize+1; b++) {
+            float temp = exp(-((float)(a*a+b*b) / (2*sigma*sigma)));
+            sum += temp;
+            mask[a+maskSize+(b+maskSize)*(maskSize*2+1)] = temp;
+        }
+    }
+    // Normalize the mask
+    for(int i = 0; i < (maskSize*2+1)*(maskSize*2+1); i++)
+        mask[i] = mask[i] / sum;
 
-	// Normalization
-	for(int i = 0;i<masksize*masksize;i++){
-		mask[i] = mask[i] / sum;
-	}
-	
-	// Return Matrix dimension, in case we compute it from sigma
-	return mask;
-
+    *maskSizePointer = maskSize;
+    return mask;
 }
 
 
@@ -175,8 +168,8 @@ int main(int argc, char** argv)
     }
 
 	// Create Gaussian mask
-    int maskSize, radius;
-    float * mask = createMask(1.f, maskSize, radius);
+    int maskSize;
+    float * mask = createMask(1.f, &maskSize);
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
@@ -212,12 +205,7 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to set argument 1\n");
 	err = clSetKernelArg(kernel, 2, sizeof(cl_mem), &clMask);
 	cl_error(err, "Failed to set argument 2\n");
-	err = clSetKernelArg(kernel, 3, sizeof(int), &radius);
-	cl_error(err, "Failed to set argument 3\n");
-	err = clSetKernelArg(kernel, 4, sizeof(int), &width);
-	cl_error(err, "Failed to set argument 3\n");
-	err = clSetKernelArg(kernel, 5, sizeof(int), &height);
-	cl_error(err, "Failed to set argument 3\n");
+	err = clSetKernelArg(kernel, 3, sizeof(int), &maskSize);
 
 
 	// Launch Kernel
