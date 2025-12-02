@@ -5,6 +5,8 @@ __kernel void gaussian_filter(
         __write_only image2d_t out_image,
         __constant float * mask,
         __private int maskSize
+        __private int width
+        __private int height
     ) {
 
     const int2 pos = {get_global_id(0), get_global_id(1)};
@@ -15,6 +17,9 @@ __kernel void gaussian_filter(
     float3 acc = (float3)(0.0f);
     for(int a = -maskSize; a < maskSize+1; a++) {
         for(int b = -maskSize; b < maskSize+1; b++) {
+            if ((pos.x + (int)a) < 0 || (pos.x + (int)a) >= width || (pos.y + (int)b) < 0 || (pos.y + (int)b) >= height)
+                continue;
+                
             float4 pix = read_imagef(in_image, sampler, pos + (int2)(a,b));
             acc.x += mask[a+maskSize+(b+maskSize)*(maskSize*2+1)]*pix.x;
             acc.y += mask[a+maskSize+(b+maskSize)*(maskSize*2+1)]*pix.y;

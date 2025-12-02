@@ -206,7 +206,11 @@ int main(int argc, char** argv)
 	err = clSetKernelArg(kernel, 2, sizeof(cl_mem), &clMask);
 	cl_error(err, "Failed to set argument 2\n");
 	err = clSetKernelArg(kernel, 3, sizeof(int), &maskSize);
-
+	cl_error(err, "Failed to set argument 3\n");
+	err = clSetKernelArg(kernel, 4, sizeof(int), &width);
+	cl_error(err, "Failed to set argument 4\n");
+	err = clSetKernelArg(kernel, 5, sizeof(int), &height);
+	cl_error(err, "Failed to set argument 5\n");
 
 	// Launch Kernel
 	// size_t global_size[2] = { (size_t)width, (size_t)height};
