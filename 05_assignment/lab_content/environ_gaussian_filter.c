@@ -76,24 +76,6 @@ int main(int argc, char** argv)
 	cl_command_queue command_queue;     				// compute command queue
 	cl_program program;                 				// compute program
 	cl_kernel kernel;                   				// compute kernel
-
-	// Get image
-	cimg_library::CImg<unsigned char> img("cats.jpg");
-	int width = img.width();
-	int height = img.height();
-
-	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
-    std::vector<unsigned char> rgb(width*height*3);
-    cimg_forXY(img, x, y){
-        int idx = 3*(y*width + x);
-        rgb[idx+0] = img(x,y,0);
-        rgb[idx+1] = img(x,y,1);
-        rgb[idx+2] = img(x,y,2);
-    }
-
-	// Create Gaussian mask
-    int maskSize, radius;
-    float * mask = createMask(1.f, maskSize, radius);
 	
 	
 	// 1. Scan the available platforms:
@@ -178,6 +160,24 @@ int main(int argc, char** argv)
 	kernel = clCreateKernel(program, "gaussian_filter", &err);
 	cl_error(err, "Failed to create kernel from the program\n");
 
+	// Get image
+	cimg_library::CImg<unsigned char> img("cats.jpg");
+	int width = img.width();
+	int height = img.height();
+
+	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
+    std::vector<unsigned char> rgb_in(width*height*3);
+    cimg_forXY(img, x, y){
+        int idx = 3*(y*width + x);
+        rgb_in[idx+0] = img(x,y,0);
+        rgb_in[idx+1] = img(x,y,1);
+        rgb_in[idx+2] = img(x,y,2);
+    }
+
+	// Create Gaussian mask
+    int maskSize, radius;
+    float * mask = createMask(1.f, maskSize, radius);
+
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
 	img_format.image_channel_order = CL_RGB;
@@ -193,14 +193,14 @@ int main(int argc, char** argv)
 	img_desc.image_array_size = 1;
 
 	// cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
-	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,img.data(), &err);
+	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgb_in.data(), &err);
 	cl_error(err, "Failed to create input image at device\n");
     // cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
     cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY, &img_format, &img_desc, NULL, &err);
 	cl_error(err, "Failed to create output image at device\n");
     
     // Create buffer for mask and transfer it to the device
-    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY, sizeof(float)*maskSize*maskSize, mask, &err);
+    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*maskSize*maskSize, mask, &err);
 	cl_error(err, "Failed to create mask buffer at device\n");
 	// err = clEnqueueWriteBuffer(command_queue, clMask, CL_TRUE, 0, sizeof(float)*maskSize*maskSize, mask, 0, NULL, NULL);
 	// cl_error(err, "Failed to enqueue a write command\n");
