@@ -24,8 +24,8 @@ void cl_error(cl_int code, const char *string){
 		exit(-1);
 	}
 }
-////////////////////////////////////////////////////////////////////////////////
 
+// Creat gaussian mask
 float * createMask(float sigma, int * maskSizePointer) {
     int maskSize = (int)ceil(3.0f*sigma);
     float * mask = new float[(maskSize*2+1)*(maskSize*2+1)];
@@ -196,8 +196,6 @@ int main(int argc, char** argv)
     // Create buffer for mask and transfer it to the device
     cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*(2*maskSize+1)*(2*maskSize+1), mask, &err);
 	cl_error(err, "Failed to create mask buffer at device\n");
-	// err = clEnqueueWriteBuffer(command_queue, clMask, CL_TRUE, 0, sizeof(float)*maskSize*maskSize, mask, 0, NULL, NULL);
-	// cl_error(err, "Failed to enqueue a write command\n");
 
 	// Set the arguments to the kernel
 	err = clSetKernelArg(kernel, 0, sizeof(cl_mem), &clImage_In);
@@ -216,7 +214,6 @@ int main(int argc, char** argv)
 	// Launch Kernel
 	size_t local_size[2] = {16, 16};
 	size_t global_size[2] = { (size_t)width, (size_t)height };
-	// err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
 	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
 	cl_error(err, "Failed to launch kernel to the device\n");
 
@@ -245,10 +242,6 @@ int main(int argc, char** argv)
     outImg.save("result.jpg");
     std::cout << "Gaussian filter saved to result.jpg\n"<<std::endl;
 
-	// Read data form device memory back to host memory
-	// err = clEnqueueReadBuffer(command_queue, out_device_object, CL_TRUE, 0, sizeof(float) * count, out_host_object, 0, NULL, NULL);
-	// cl_error(err, "Failed to enqueue a read command\n");
-
 	clReleaseMemObject(clMask);
 	clReleaseMemObject(clImage_Out);
 	clReleaseMemObject(clImage_In);
@@ -257,5 +250,5 @@ int main(int argc, char** argv)
 	clReleaseCommandQueue(command_queue);
 	clReleaseContext(context);
 	return 0;
-	}
+}
 
