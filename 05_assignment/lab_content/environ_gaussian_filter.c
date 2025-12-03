@@ -1,5 +1,5 @@
 
-
+#include <chrono>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,6 +16,8 @@
 	  #include <CL/cl.h>
 #endif
 	  
+using namespace std::chrono;
+
 // check error, in such a case, it exits
 
 void cl_error(cl_int code, const char *string){
@@ -48,6 +50,9 @@ float * createMask(float sigma, int * maskSizePointer) {
 
 int main(int argc, char** argv)
 {
+	// Complete program time
+	auto t_program_start = high_resolution_clock::now();
+
 	int err;                            	// error code returned from api calls
 	size_t t_buf = 50;			// size of str_buffer
 	char str_buffer[t_buf];		// auxiliary buffer	
@@ -186,11 +191,16 @@ int main(int argc, char** argv)
 	img_desc.image_depth = 1;
 	img_desc.image_array_size = 1;
 
-	// cl_mem clImage_In = clCreateImage2D(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, img.data(), &err);
-	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgba_in.data(), &err);
+	// Write input image
+	// cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgba_in.data(), &err);
+	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY, &img_format, &img_desc,NULL, &err);
 	cl_error(err, "Failed to create input image at device\n");
-    // cl_mem clImage_Out = clCreateImage2D(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, img_format, width, height, 0, NULL, &err);
-    cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY, &img_format, &img_desc, NULL, &err);
+    cl_event write_event;
+	size_t origin[3] = {0,0,0};
+	size_t region[3] = {(size_t)width, (size_t)height, 1};
+	err = clEnqueueWriteImage(command_queue,clImage_In,CL_TRUE,origin,region,0, 0,rgba_in.data(),0, NULL,&write_event);
+	cl_error(err, "Failed to write input image to device\n");
+	cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY, &img_format, &img_desc, NULL, &err);
 	cl_error(err, "Failed to create output image at device\n");
     
     // Create buffer for mask and transfer it to the device
@@ -212,22 +222,22 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to set argument 5\n");
 
 	// Launch Kernel
+	cl_event kernel_event;
 	size_t local_size[2] = {16, 16};
 	size_t global_size[2] = { (size_t)width, (size_t)height };
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
+	// err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, &kernel_event);
 	cl_error(err, "Failed to launch kernel to the device\n");
+	//we are not calling clWaitForEvents(1, &kernel_event); because in readImage we have CL_TRUE,
+	//that blocks until the kernel has finished, avoiding calling the event before
 
-    // Read output image
+    // Read output image 
     size_t origin[3] = {0,0,0};
     size_t region[3] = {(size_t)width, (size_t)height, 1};
-
     std::vector<unsigned char> outRGBA(width*height*4);
-
-    err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,
-                    origin, region,
-                    0, 0,
-                    outRGBA.data(),
-                    0, NULL, NULL);
+	cl_event read_event;
+    // err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, NULL);
+    err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, &read_event);
     cl_error(err,"Failed to read output");
 
 	// Save output
@@ -249,6 +259,74 @@ int main(int argc, char** argv)
 	clReleaseKernel(kernel);
 	clReleaseCommandQueue(command_queue);
 	clReleaseContext(context);
+	
+	// Complete program time
+	auto t_program_end = high_resolution_clock::now();
+    double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
+    std::cout << "Program time: " << program_ms << " ms" << std::endl;
+
+	// Kernel time
+	cl_ulong start_ns = 0, end_ns = 0;
+	clGetEventProfilingInfo(kernel_event, CL_PROFILING_COMMAND_START, sizeof(start_ns), &start_ns, NULL);
+	clGetEventProfilingInfo(kernel_event, CL_PROFILING_COMMAND_END,	sizeof(end_ns), &end_ns, NULL);
+	double kernel_ms = (end_ns - start_ns) * 1e-6;
+	std::cout << "Kernel time: " << kernel_ms << " ms" << std::endl;
+	clReleaseEvent(kernel_event);
+
+	// Measure input image time
+	cl_ulong w_start = 0, w_end = 0;
+	clGetEventProfilingInfo(write_event, CL_PROFILING_COMMAND_START,sizeof(w_start), &w_start, NULL);
+	clGetEventProfilingInfo(write_event, CL_PROFILING_COMMAND_END,sizeof(w_end), &w_end, NULL);
+	double write_ms = (w_end - w_start) * 1e-6;
+	clReleaseEvent(write_event);
+	//Measure
+	size_t bytes_h2d = width * height * 4; // RGBA 8-bit
+	double bandwidth_h2d_GBps = (bytes_h2d / (1024.0*1024.0*1024.0)) / (write_ms / 1000.0);
+	std::cout << "Host->Device: " << write_ms << " ms, "<< bandwidth_h2d_GBps << " GB/s" << std::endl;
+	
+
+	// Measure output image time
+	cl_ulong r_start = 0, r_end = 0;
+	clGetEventProfilingInfo(read_event, CL_PROFILING_COMMAND_START,sizeof(r_start), &r_start, NULL);
+	clGetEventProfilingInfo(read_event, CL_PROFILING_COMMAND_END,sizeof(r_end), &r_end, NULL);
+	clReleaseEvent(read_event);
+	double read_ms = (r_end - r_start) * 1e-6;
+	size_t bytes_d2h = width * height * 4;
+	double bandwidth_d2h_GBps = (bytes_d2h / (1024.0*1024.0*1024.0)) / (read_ms / 1000.0);
+	std::cout << "Device->Host: " << read_ms << " ms, "<< bandwidth_d2h_GBps << " GB/s" << std::endl;
+
+	//Kernel troughput
+	double num_pixels = (double)width * (double)height;
+	double kernel_s = kernel_ms / 1000.0;
+	double pixels_per_sec = num_pixels / kernel_s;
+	std::cout << "Throughput (pixels/s): " << pixels_per_sec << std::endl;
+	// This could be GFLOP/s if we assume an operation to be 1 mul + 1 add, so 2 FLOPs
+	int side = 2*maskSize + 1;
+	double taps_per_pixel = (double)side * (double)side;
+	double total_taps = num_pixels * taps_per_pixel;
+	double taps_per_sec = total_taps / kernel_s;
+	std::cout << "Throughput (taps/s): " << taps_per_sec << std::endl;
+	// Total bandwithd
+	double bytes_per_read = 16.0;  // float4
+	double bytes_per_write = 16.0; // float4
+	double bytes_read = total_taps * bytes_per_read;
+	double bytes_written = num_pixels * bytes_per_write;
+	double total_bytes_kernel = bytes_read + bytes_written;
+	double kernel_bandwidth_GBps =(total_bytes_kernel / (1024.0*1024.0*1024.0)) / kernel_s;
+	std::cout << "Kernel <-> global memory (approx): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;
+	// Memory footprint
+	int side = 2*maskSize + 1;
+	size_t host_mem =
+		width*height*4    // rgba_in
+	+ width*height*4    // outRGBA
+	+ side*side*sizeof(float); // mask
+	size_t device_mem =
+		width*height*4    // clImage_In
+	+ width*height*4    // clImage_Out
+	+ side*side*sizeof(float); // clMask
+	std::cout << "Host memory footprint:   " << host_mem / (1024.0*1024.0)<< " MB" << std::endl;
+	std::cout << "Device memory footprint: " << device_mem / (1024.0*1024.0)<< " MB" << std::endl;
+
 	return 0;
 }
 
