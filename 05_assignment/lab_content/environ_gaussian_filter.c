@@ -47,9 +47,27 @@ float * createMask(float sigma, int * maskSizePointer) {
     return mask;
 }
 
+usage(int argc, const char *argv[]) {
+    // read the number of steps from the command line
+    if (argc != 3) {
+        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4)" << std::endl;
+        exit(1);
+    }
 
-int main(int argc, char** argv)
-{
+    size_t sigma = std::stoll(argv[1]);
+    size_t image = std::stoll(argv[2]);
+
+    return std::make_pair(sigma, image);
+}
+
+
+int main(int argc, const char *argv[]){
+
+	//Set arguments
+	auto ret_pair = usage(argc, argv);
+    float sigma = (float)ret_pair.first;
+    auto image = ret_pair.second;
+
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
 
@@ -159,7 +177,15 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// Get image
-	cimg_library::CImg<unsigned char> img("cats.jpg");
+	string image_name;
+	switch(image) {
+    case 1: image_name = "cat_275x183.jpg"; break;
+    case 2: image_name = "cat_250x334.jpg"; break;
+    case 3: image_name = "cat_600x600.jpg"; break;
+    default: image_name = "cat_1000x600.jpg"; break;
+	}
+
+	cimg_library::CImg<unsigned char> img(image_name.c_str());
 	int width = img.width();
 	int height = img.height();
 
@@ -175,7 +201,7 @@ int main(int argc, char** argv)
 
 	// Create Gaussian mask
     int maskSize;
-    float * mask = createMask(1.f, &maskSize);
+    float * mask = createMask(sigma, &maskSize);
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
@@ -261,7 +287,10 @@ int main(int argc, char** argv)
 	// Complete program time
 	auto t_program_end = high_resolution_clock::now();
     double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
-    std::cout << "Program time: " << program_ms << " ms" << std::endl;
+    std::cout << "sigma: " << sigma << "imagen:" <<image_name.c_str()<<std::endl;
+	std::cout << "matrix size: " << 2*maskSize+1 <<std::endl;
+	std::cout << "image" << 2*maskSize+1 <<std::endl;
+	std::cout << "Program time: " << program_ms << " ms" << std::endl;
 
 	// Kernel time
 	cl_ulong start_ns = 0, end_ns = 0;
