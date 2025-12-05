@@ -158,7 +158,7 @@ int main(int argc, const char *argv[]){
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, 0, NULL, &kernelSourceSize);
 	char *kernelSource = (char*) malloc(kernelSourceSize);
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, kernelSourceSize, kernelSource, NULL);
-	printf("nKernel source:\n\n%s\n", kernelSource);
+	// printf("Kernel source:\n\n%s\n", kernelSource);
 	free(kernelSource);
 
 	// Build the executable and check errors
@@ -273,9 +273,10 @@ int main(int argc, const char *argv[]){
         outImg(x,y,1) = outRGBA[i+1];
         outImg(x,y,2) = outRGBA[i+2];
     }
-
-    outImg.save("result.jpg");
-    std::cout << "Gaussian filter saved to result.jpg\n"<<std::endl;
+	
+	std::string result = "result_"+ image_name;
+    outImg.save(result.c_str());
+    std::cout << "Gaussian filter saved\n"<<std::endl;
 
 	clReleaseMemObject(clMask);
 	clReleaseMemObject(clImage_Out);
@@ -288,9 +289,8 @@ int main(int argc, const char *argv[]){
 	// Complete program time
 	auto t_program_end = high_resolution_clock::now();
     double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
-    std::cout << "sigma: " << sigma << "imagen:" <<image_name.c_str()<<std::endl;
+    std::cout << "sigma: " << sigma << ", image: " <<image_name.c_str()<<std::endl;
 	std::cout << "matrix size: " << 2*maskSize+1 <<std::endl;
-	std::cout << "image" << 2*maskSize+1 <<std::endl;
 	std::cout << "Program time: " << program_ms << " ms" << std::endl;
 
 	// Kernel time
