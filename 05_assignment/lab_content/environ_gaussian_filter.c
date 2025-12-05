@@ -47,9 +47,28 @@ float * createMask(float sigma, int * maskSizePointer) {
     return mask;
 }
 
+std::pair<size_t, size_t>
+usage(int argc, const char *argv[]) {
+    // read the number of steps from the command line
+    if (argc != 3) {
+        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4)" << std::endl;
+        exit(1);
+    }
 
-int main(int argc, char** argv)
-{
+    size_t sigma = std::stoll(argv[1]);
+    size_t image = std::stoll(argv[2]);
+
+    return std::make_pair(sigma, image);
+}
+
+
+int main(int argc, const char *argv[]){
+
+	//Set arguments
+	auto ret_pair = usage(argc, argv);
+    float sigma = (float)ret_pair.first;
+    auto image = ret_pair.second;
+
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
 
@@ -139,7 +158,7 @@ int main(int argc, char** argv)
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, 0, NULL, &kernelSourceSize);
 	char *kernelSource = (char*) malloc(kernelSourceSize);
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, kernelSourceSize, kernelSource, NULL);
-	printf("nKernel source:\n\n%s\n", kernelSource);
+	// printf("Kernel source:\n\n%s\n", kernelSource);
 	free(kernelSource);
 
 	// Build the executable and check errors
@@ -159,7 +178,16 @@ int main(int argc, char** argv)
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// Get image
-	cimg_library::CImg<unsigned char> img("cats.jpg");
+	std::string image_name;
+	switch(image) {
+		case 1: {image_name = "cat_275x183.jpg"; break;}
+		case 2: {image_name = "cat_250x334.jpg"; break;}
+		case 3: {image_name = "cat_600x600.jpg"; break;}
+		case 4: {image_name = "cat_760x570.jpg"; break;}
+		default:{ image_name = "cat_1000x600.jpg"; break;}
+	}
+
+	cimg_library::CImg<unsigned char> img(image_name.c_str());
 	int width = img.width();
 	int height = img.height();
 
@@ -175,7 +203,7 @@ int main(int argc, char** argv)
 
 	// Create Gaussian mask
     int maskSize;
-    float * mask = createMask(1.f, &maskSize);
+    float * mask = createMask(sigma, &maskSize);
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
@@ -232,8 +260,6 @@ int main(int argc, char** argv)
 	//that blocks until the kernel has finished, avoiding calling the event before
 
     // Read output image 
-    size_t origin[3] = {0,0,0};
-    size_t region[3] = {(size_t)width, (size_t)height, 1};
     std::vector<unsigned char> outRGBA(width*height*4);
 	cl_event read_event;
     // err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, NULL);
@@ -248,9 +274,10 @@ int main(int argc, char** argv)
         outImg(x,y,1) = outRGBA[i+1];
         outImg(x,y,2) = outRGBA[i+2];
     }
-
-    outImg.save("result.jpg");
-    std::cout << "Gaussian filter saved to result.jpg\n"<<std::endl;
+	
+	std::string result = "result_" + std::to_string(sigma) + "_" + image_name;
+    outImg.save(result.c_str());
+    std::cout << "Gaussian filter saved\n"<<std::endl;
 
 	clReleaseMemObject(clMask);
 	clReleaseMemObject(clImage_Out);
@@ -263,7 +290,9 @@ int main(int argc, char** argv)
 	// Complete program time
 	auto t_program_end = high_resolution_clock::now();
     double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
-    std::cout << "Program time: " << program_ms << " ms" << std::endl;
+    std::cout << "sigma: " << sigma << ", image: " <<image_name.c_str()<<std::endl;
+	std::cout << "matrix size: " << 2*maskSize+1 <<std::endl;
+	std::cout << "Program time: " << program_ms << " ms" << std::endl;
 
 	// Kernel time
 	cl_ulong start_ns = 0, end_ns = 0;
@@ -302,20 +331,17 @@ int main(int argc, char** argv)
 	std::cout << "Throughput (pixels/s): " << pixels_per_sec << std::endl;
 	// This could be GFLOP/s if we assume an operation to be 1 mul + 1 add, so 2 FLOPs
 	int side = 2*maskSize + 1;
-	double taps_per_pixel = (double)side * (double)side;
-	double total_taps = num_pixels * taps_per_pixel;
-	double taps_per_sec = total_taps / kernel_s;
-	std::cout << "Throughput (taps/s): " << taps_per_sec << std::endl;
+	double flops_per_pixel = 2.0 * (double)side * (double)side;
+	double total_flops = num_pixels * flops_per_pixel;
+	double gflops = (total_flops / kernel_s) / 1e9;
+	std::cout << "Kernel throughput: " << gflops << " GFLOP/s" << std::endl;
 	// Total bandwithd
 	double bytes_per_read = 16.0;  // float4
 	double bytes_per_write = 16.0; // float4
-	double bytes_read = total_taps * bytes_per_read;
-	double bytes_written = num_pixels * bytes_per_write;
-	double total_bytes_kernel = bytes_read + bytes_written;
-	double kernel_bandwidth_GBps =(total_bytes_kernel / (1024.0*1024.0*1024.0)) / kernel_s;
-	std::cout << "Kernel <-> global memory (approx): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;
-	// Memory footprint
-	int side = 2*maskSize + 1;
+	double total_bytes = num_pixels * (bytes_per_read + bytes_per_write);
+ 	double kernel_bandwidth_GBps = (total_bytes / (1024.0 * 1024.0 * 1024.0)) / kernel_s;
+	std::cout << "Kernel global-memory bandwidth (1 read + 1 write): "
+          << kernel_bandwidth_GBps << " GB/s" << std::endl;// Memory footprint
 	size_t host_mem =
 		width*height*4    // rgba_in
 	+ width*height*4    // outRGBA
