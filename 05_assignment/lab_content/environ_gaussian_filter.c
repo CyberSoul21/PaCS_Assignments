@@ -338,12 +338,10 @@ int main(int argc, const char *argv[]){
 	// Total bandwithd
 	double bytes_per_read = 16.0;  // float4
 	double bytes_per_write = 16.0; // float4
-	double bytes_read = total_taps * bytes_per_read;
-	double bytes_written = num_pixels * bytes_per_write;
-	double total_bytes_kernel = num_pixels * (bytes_read + bytes_written);
-	double kernel_bandwidth_GBps =(total_bytes_kernel / (1024.0*1024.0*1024.0)) / kernel_s;
-	std::cout << "Kernel <-> global memory (approx): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;
-	// Memory footprint
+	double total_bytes = num_pixels * (bytes_per_read + bytes_per_write);
+ 	double kernel_bandwidth_GBps = (total_bytes / (1024.0 * 1024.0 * 1024.0)) / kernel_s;
+	std::cout << "Kernel global-memory bandwidth (1 read + 1 write): "
+          << kernel_bandwidth_GBps << " GB/s" << std::endl;// Memory footprint
 	size_t host_mem =
 		width*height*4    // rgba_in
 	+ width*height*4    // outRGBA
