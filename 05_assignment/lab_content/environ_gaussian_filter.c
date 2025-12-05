@@ -178,12 +178,12 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// Get image
-	string image_name;
+	std::string image_name;
 	switch(image) {
-    case 1: image_name = "cat_275x183.jpg"; break;
-    case 2: image_name = "cat_250x334.jpg"; break;
-    case 3: image_name = "cat_600x600.jpg"; break;
-    default: image_name = "cat_1000x600.jpg"; break;
+		case 1: {image_name = "cat_275x183.jpg"; break;}
+		case 2: {image_name = "cat_250x334.jpg"; break;}
+		case 3: {image_name = "cat_600x600.jpg"; break;}
+		default:{ image_name = "cat_1000x600.jpg"; break;}
 	}
 
 	cimg_library::CImg<unsigned char> img(image_name.c_str());
