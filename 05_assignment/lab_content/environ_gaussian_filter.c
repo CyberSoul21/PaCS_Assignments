@@ -331,16 +331,16 @@ int main(int argc, const char *argv[]){
 	std::cout << "Throughput (pixels/s): " << pixels_per_sec << std::endl;
 	// This could be GFLOP/s if we assume an operation to be 1 mul + 1 add, so 2 FLOPs
 	int side = 2*maskSize + 1;
-	double taps_per_pixel = (double)side * (double)side;
-	double total_taps = num_pixels * taps_per_pixel;
-	double taps_per_sec = total_taps / kernel_s;
-	std::cout << "Throughput (taps/s): " << taps_per_sec << std::endl;
+	double flops_per_pixel = 2.0 * (double)side * (double)side;
+	double total_flops = num_pixels * flops_per_pixel;
+	double gflops = (total_flops / kernel_s) / 1e9;
+	std::cout << "Kernel throughput: " << gflops << " GFLOP/s" << std::endl;
 	// Total bandwithd
 	double bytes_per_read = 16.0;  // float4
 	double bytes_per_write = 16.0; // float4
 	double bytes_read = total_taps * bytes_per_read;
 	double bytes_written = num_pixels * bytes_per_write;
-	double total_bytes_kernel = bytes_read + bytes_written;
+	double total_bytes_kernel = num_pixels * (bytes_read + bytes_written);
 	double kernel_bandwidth_GBps =(total_bytes_kernel / (1024.0*1024.0*1024.0)) / kernel_s;
 	std::cout << "Kernel <-> global memory (approx): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;
 	// Memory footprint
