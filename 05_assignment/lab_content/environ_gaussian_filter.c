@@ -183,6 +183,7 @@ int main(int argc, const char *argv[]){
 		case 1: {image_name = "cat_275x183.jpg"; break;}
 		case 2: {image_name = "cat_250x334.jpg"; break;}
 		case 3: {image_name = "cat_600x600.jpg"; break;}
+		case 4: {image_name = "cat_760x570.jpg"; break;}
 		default:{ image_name = "cat_1000x600.jpg"; break;}
 	}
 
@@ -274,7 +275,7 @@ int main(int argc, const char *argv[]){
         outImg(x,y,2) = outRGBA[i+2];
     }
 	
-	std::string result = "result_"+ image_name;
+	std::string result = "result_" + sigma + "_" + image_name;
     outImg.save(result.c_str());
     std::cout << "Gaussian filter saved\n"<<std::endl;
 
