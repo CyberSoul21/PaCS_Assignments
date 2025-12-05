@@ -232,8 +232,6 @@ int main(int argc, char** argv)
 	//that blocks until the kernel has finished, avoiding calling the event before
 
     // Read output image 
-    size_t origin[3] = {0,0,0};
-    size_t region[3] = {(size_t)width, (size_t)height, 1};
     std::vector<unsigned char> outRGBA(width*height*4);
 	cl_event read_event;
     // err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, NULL);
@@ -315,7 +313,6 @@ int main(int argc, char** argv)
 	double kernel_bandwidth_GBps =(total_bytes_kernel / (1024.0*1024.0*1024.0)) / kernel_s;
 	std::cout << "Kernel <-> global memory (approx): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;
 	// Memory footprint
-	int side = 2*maskSize + 1;
 	size_t host_mem =
 		width*height*4    // rgba_in
 	+ width*height*4    // outRGBA
