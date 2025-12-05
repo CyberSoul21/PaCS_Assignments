@@ -275,7 +275,7 @@ int main(int argc, const char *argv[]){
         outImg(x,y,2) = outRGBA[i+2];
     }
 	
-	std::string result = "result_" + sigma + "_" + image_name;
+	std::string result = "result_" + std::to_string(sigma) + "_" + image_name;
     outImg.save(result.c_str());
     std::cout << "Gaussian filter saved\n"<<std::endl;
 
