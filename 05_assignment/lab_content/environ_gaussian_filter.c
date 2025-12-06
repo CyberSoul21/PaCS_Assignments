@@ -332,6 +332,10 @@ int main(int argc, const char *argv[]){
 			local_size[0] = 16; local_size[1] = 16; break;    // 256 work-items / group
 		case 4: 
 			local_size[0] = 32; local_size[1] = 8;  break;    // 256 work-items / group (different shape)
+		case 5: 
+			local_size[0] = 32; local_size[1] = 32;  break;    // 1024 work-items / group (different shape)	
+		case 6: 
+			local_size[0] = 64; local_size[1] = 32;  break;    // 2048 work-items / group (different shape)						
 		default:
 			local_size[0] = 8;  local_size[1] = 8;  break;
 	}
