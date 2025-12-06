@@ -316,37 +316,39 @@ int main(int argc, const char *argv[]){
 
 	// 12. Launch Kernel
 	cl_event kernel_event;
-	//size_t local_size[2] = {16, 16};
-	//size_t global_size[2] = { (size_t)width, (size_t)height };
+	size_t local_size[2] = {16, 16};
+	size_t global_size[2] = { (size_t)width, (size_t)height };
 	
-	// >>> choose the local work-group size here <<<
+	//>>> choose the local work-group size here <<<
 	//size_t local_size[2] = {8, 8};   // try {8,8}, {16,16}, {32,8}, etc.
 
-	size_t local_size[2];
-	switch (selectSize) {
-		case 1: 
-			local_size[0] = 8;  local_size[1] = 8;  break;    // 64 work-items / group
-		case 2: 
-			local_size[0] = 16; local_size[1] = 8;  break;    // 128 work-items / group
-		case 3: 
-			local_size[0] = 16; local_size[1] = 16; break;    // 256 work-items / group
-		case 4: 
-			local_size[0] = 32; local_size[1] = 8;  break;    // 256 work-items / group (different shape)
-		case 5: 
-			local_size[0] = 32; local_size[1] = 32;  break;    // 1024 work-items / group (different shape)	
-		case 6: 
-			local_size[0] = 64; local_size[1] = 32;  break;    // 2048 work-items / group (different shape)						
-		default:
-			local_size[0] = 8;  local_size[1] = 8;  break;
-	}
+	// size_t local_size[2];
+	// switch (selectSize) {
+	// 	case 1: 
+	// 		local_size[0] = 8;  local_size[1] = 8;  break;    // 64 work-items / group
+	// 	case 2: 
+	// 		local_size[0] = 16; local_size[1] = 8;  break;    // 128 work-items / group
+	// 	case 3: 
+	// 		local_size[0] = 16; local_size[1] = 16; break;    // 256 work-items / group
+	// 	case 4: 
+	// 		local_size[0] = 32; local_size[1] = 8;  break;    // 256 work-items / group (different shape)
+	// 	case 5: 
+	// 		local_size[0] = 32; local_size[1] = 32;  break;    // 1024 work-items / group (different shape)	
+	// 	case 6: 
+	// 		local_size[0] = 64; local_size[1] = 32;  break;    // 2048 work-items / group (different shape)						
+	// 	default:
+	// 		local_size[0] = 8;  local_size[1] = 8;  break;
+	// }
 
-	// Pad global size to multiples of local_size (safe because kernel has bounds check)
-	size_t global_size[2] = {
-		((size_t)width  + local_size[0] - 1) / local_size[0] * local_size[0],
-		((size_t)height + local_size[1] - 1) / local_size[1] * local_size[1]
-	};	
+	// // Pad global size to multiples of local_size (safe because kernel has bounds check)
+	// size_t global_size[2] = {
+	// 	((size_t)width  + local_size[0] - 1) / local_size[0] * local_size[0],
+	// 	((size_t)height + local_size[1] - 1) / local_size[1] * local_size[1]
+	// };	
 	
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, &kernel_event);
+	//err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, &kernel_event);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, &kernel_event);
+
 	cl_error(err, "Failed to launch kernel to the device\n");
 	//we are not calling clWaitForEvents(1, &kernel_event); because in readImage we have CL_TRUE,
 	//that blocks until the kernel has finished, avoiding calling the event before
