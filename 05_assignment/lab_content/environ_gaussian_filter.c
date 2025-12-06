@@ -71,7 +71,7 @@ std::tuple<float, size_t, size_t> usage(int argc, char** argv){
 
     size_t sigma = std::stoll(argv[1]);
     size_t image = std::stoll(argv[2]);
-	size_t slectSize = std::stoll(argv[3]);
+	size_t selectSize = std::stoll(argv[3]);
 
     return std::make_tuple(sigma, image, selectSize);
 }
