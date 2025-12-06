@@ -13,7 +13,7 @@ Number of available platforms: 1
 
 Gaussian filter saved
 
-sigma: 0.5, image: galaxia_monocerotis.jpg
+sigma: 0.5, image: galaxia_2976x3323
 matrix dimention: 5
 Program time: 1704.32 ms
 Kernel time: 0.483328 ms
@@ -40,7 +40,7 @@ Number of available platforms: 1
 
 Gaussian filter saved
 
-sigma: 0.5, image: galaxia_monocerotis.jpg
+sigma: 0.5, image: galaxia_2976x3323
 matrix dimention: 5
 Program time: 1554.03 ms
 Kernel time: 0.477184 ms
@@ -67,7 +67,7 @@ Number of available platforms: 1
 
 Gaussian filter saved
 
-sigma: 0.5, image: galaxia_monocerotis.jpg
+sigma: 0.5, image: galaxia_2976x3323
 matrix dimention: 5
 Program time: 1597 ms
 Kernel time: 0.478208 ms
