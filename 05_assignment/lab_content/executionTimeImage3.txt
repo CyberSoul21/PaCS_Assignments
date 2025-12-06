@@ -1,0 +1,96 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_600x600.jpg
+matrix size: 7
+Program time: 464.573 ms
+Kernel time: 0.049152 ms
+Host->Device: 0.12816 ms, 11.906 GB/s
+Device->Host: 0.236768 ms, 6.44462 GB/s
+Throughput (pixels/s): 8.33333e+09
+Throughput (taps/s): 4.08333e+11
+Kernel <-> global memory (approx): 6208.82 GB/s
+Host memory footprint:   3.12519 MB
+Device memory footprint: 3.12519 MB
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_600x600.jpg
+matrix size: 7
+Program time: 465.7 ms
+Kernel time: 0.050176 ms
+Host->Device: 0.127552 ms, 11.9628 GB/s
+Device->Host: 0.223648 ms, 6.82268 GB/s
+Throughput (pixels/s): 8.16327e+09
+Throughput (taps/s): 4e+11
+Kernel <-> global memory (approx): 6082.11 GB/s
+Host memory footprint:   3.12519 MB
+Device memory footprint: 3.12519 MB
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_600x600.jpg
+matrix size: 7
+Program time: 481.76 ms
+Kernel time: 0.0512 ms
+Host->Device: 0.138816 ms, 10.9921 GB/s
+Device->Host: 0.22848 ms, 6.67839 GB/s
+Throughput (pixels/s): 8e+09
+Throughput (taps/s): 3.92e+11
+Kernel <-> global memory (approx): 5960.46 GB/s
+Host memory footprint:   3.12519 MB
+Device memory footprint: 3.12519 MB
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_760x570.jpg
+matrix size: 7
+Program time: 476.852 ms
+Kernel time: 0.050336 ms
+Host->Device: 0.139584 ms, 11.5615 GB/s
+Device->Host: 0.266432 ms, 6.05706 GB/s
+Throughput (pixels/s): 8.60617e+09
+Throughput (taps/s): 4.21702e+11
+Kernel <-> global memory (approx): 6412.09 GB/s
+Host memory footprint:   3.30524 MB
+Device memory footprint: 3.30524 MB

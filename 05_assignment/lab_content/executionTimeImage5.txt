@@ -1,0 +1,72 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_1000x600.jpg
+matrix size: 7
+Program time: 509.338 ms
+Kernel time: 0.068608 ms
+Host->Device: 0.190528 ms, 11.7315 GB/s
+Device->Host: 0.36768 ms, 6.07913 GB/s
+Throughput (pixels/s): 8.74534e+09
+Throughput (taps/s): 4.28521e+11
+Kernel <-> global memory (approx): 6515.78 GB/s
+Host memory footprint:   4.57782 MB
+Device memory footprint: 4.57782 MB
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_1000x600.jpg
+matrix size: 7
+Program time: 523.937 ms
+Kernel time: 0.07168 ms
+Host->Device: 0.19104 ms, 11.7 GB/s
+Device->Host: 0.368992 ms, 6.05751 GB/s
+Throughput (pixels/s): 8.37054e+09
+Throughput (taps/s): 4.10156e+11
+Kernel <-> global memory (approx): 6236.54 GB/s
+Host memory footprint:   4.57782 MB
+Device memory footprint: 4.57782 MB
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: cat_1000x600.jpg
+matrix size: 7
+Program time: 490.137 ms
+Kernel time: 0.067584 ms
+Host->Device: 0.199456 ms, 11.2064 GB/s
+Device->Host: 0.505376 ms, 4.42279 GB/s
+Throughput (pixels/s): 8.87784e+09
+Throughput (taps/s): 4.35014e+11
+Kernel <-> global memory (approx): 6614.51 GB/s
+Host memory footprint:   4.57782 MB
+Device memory footprint: 4.57782 MB
