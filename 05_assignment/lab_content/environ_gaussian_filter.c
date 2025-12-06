@@ -284,12 +284,17 @@ int main(int argc, const char *argv[]){
 	//size_t local_size[2] = {8, 8};   // try {8,8}, {16,16}, {32,8}, etc.
 
 	size_t local_size[2];
-	switch(selectSize) {
-		case 1: {local_size[2] = {8, 8}; break;}   //64 work-items / group
-		case 2: {local_size[2] = {16, 8}; break;}  //128 work-items / group
-		case 3: {local_size[2] = {16, 16}; break;} //256 work-items / group
-		case 4: {local_size[2] = {32, 8}; break;}  //256 work-items / group (different shape, same total)
-		default:{ local_size[2] = {8, 8}; break;}
+	switch (selectSize) {
+		case 1: 
+			local_size[0] = 8;  local_size[1] = 8;  break;    // 64 work-items / group
+		case 2: 
+			local_size[0] = 16; local_size[1] = 8;  break;    // 128 work-items / group
+		case 3: 
+			local_size[0] = 16; local_size[1] = 16; break;    // 256 work-items / group
+		case 4: 
+			local_size[0] = 32; local_size[1] = 8;  break;    // 256 work-items / group (different shape)
+		default:
+			local_size[0] = 8;  local_size[1] = 8;  break;
 	}
 
 	// Pad global size to multiples of local_size (safe because kernel has bounds check)
