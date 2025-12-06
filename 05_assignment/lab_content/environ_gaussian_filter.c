@@ -121,7 +121,7 @@ int main(int argc, const char *argv[]){
 		
 		cl_uint max_work_size;
 		err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_MAX_WORK_GROUP_SIZE, sizeof(max_work_size), &max_work_size, NULL);
-		cl_error(err, "clGetDeviceInfo: Getting device max compute units available");
+		cl_error(err, "clGetDeviceInfo: Getting device max work-group size available");
 		printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: %d\n\n", i, j, max_work_size);
 		}
 	}	
