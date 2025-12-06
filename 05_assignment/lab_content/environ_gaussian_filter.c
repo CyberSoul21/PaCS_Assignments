@@ -56,7 +56,7 @@ usage(int argc, const char *argv[]) {
     }
 
     size_t sigma = std::stoll(argv[1]);
-    std::string image = std::stoll(argv[2]);
+    std::string image = argv[2];
 
     return std::make_pair(sigma, image);
 }
