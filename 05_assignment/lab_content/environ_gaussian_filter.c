@@ -180,8 +180,13 @@ int main(int argc, const char *argv[]){
 		case 2: {image_name = "cat_250x334.jpg"; break;}
 		case 3: {image_name = "cat_600x600.jpg"; break;}
 		case 4: {image_name = "cat_760x570.jpg"; break;}
-		case 5: {image_name = "galaxia_irregular.jpg"; break;}
-		default:{ image_name = "cat_1000x600.jpg"; break;}
+		case 5: {image_name = "cat_1000x600.jpg"; break;}
+		case 6: {image_name = "galaxia_nebulosa.jpg"; break;}
+		case 7: {image_name = "galaxia_monocerotis.jpg"; break;}
+		case 8: {image_name = "galaxia_cumulo_trumper.jpg"; break;}
+		case 9: {image_name = "galaxia_espiral.jpg"; break;}		
+		case 10: {image_name = "galaxia_irregular.jpg"; break;}
+		default:{ image_name = "galaxia_irregular.jpg"; break;}
 	}
 
 	cimg_library::CImg<unsigned char> img(image_name.c_str());
