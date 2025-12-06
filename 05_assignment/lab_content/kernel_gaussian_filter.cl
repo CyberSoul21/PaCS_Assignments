@@ -14,11 +14,9 @@ __kernel void gaussian_filter(
         return;
     
     // Collect neighbor values and multiply with gaussian
-    float sum = 0.0f;
-    // Calculate the mask size based on sigma (larger sigma, larger mask)
     float3 acc = (float3)(0.0f);
-    for(int a = -maskSize; a < maskSize+1; a++) {
-        for(int b = -maskSize; b < maskSize+1; b++) {
+    for(int a = -maskSize; a <= maskSize; a++) {
+        for(int b = -maskSize; b <= maskSize; b++) {
             if ((pos.x + (int)a) < 0 || (pos.x + (int)a) >= width || (pos.y + (int)b) < 0 || (pos.y + (int)b) >= height)
                 continue;
 
