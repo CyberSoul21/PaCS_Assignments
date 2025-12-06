@@ -175,7 +175,7 @@ int main(int argc, const char *argv[]){
 	}
 
 	// Create a compute kernel with the program we want to run
-	kernel = clCreateKernel(program, "gaussian_filter", &err);
+	kernel = clCreateKernel(program, "gaussian_filter_tiled", &err);
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// 6. Get image
