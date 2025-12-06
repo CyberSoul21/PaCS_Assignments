@@ -51,7 +51,7 @@ std::pair<size_t, std::string>
 usage(int argc, const char *argv[]) {
     // read the number of steps from the command line
     if (argc != 3) {
-        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4)" << std::endl;
+        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>" << std::endl;
         exit(1);
     }
 
@@ -179,7 +179,7 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// 6. Get image
-	cimg_library::CImg<unsigned char> img(image);
+	cimg_library::CImg<unsigned char> img(image.c_str());
 	int width = img.width();
 	int height = img.height();
 	double num_pixels = (double)width * (double)height;
