@@ -10,10 +10,10 @@ __kernel void gaussian_filter_tiled(
         __private int maskSize,
         __private int width,
         __private int height,
-        __local float4 *tile     // tile cooperativo
+        __local float4 *tile
     )
 {
-    // Coordinates
+    // coords
     const int lx = get_local_id(0);
     const int ly = get_local_id(1);
     const int gx = get_global_id(0);
@@ -24,61 +24,54 @@ __kernel void gaussian_filter_tiled(
 
     const int side = 2*maskSize + 1;
 
-    // Tile dimensions (WG region + halo)
+    // tile dims
     const int tileW = Lx + 2*maskSize;
     const int tileH = Ly + 2*maskSize;
 
-    // Position inside tile
+    // tile coords
     int tx = lx + maskSize;
     int ty = ly + maskSize;
 
-    // ---------------------------
-    // 1. LOAD CENTER PIXEL
-    // ---------------------------
-    if (gx < width && gy < height) {
+    // ============================
+    // 1. LOAD CENTER
+    // ============================
+    if (gx < width && gy < height)
         tile[ty*tileW + tx] =
             read_imagef(in_image, sampler, (int2)(gx,gy));
-    }
 
-    // ---------------------------
-    // 2. LOAD HALOS (LEFT / RIGHT / TOP / BOTTOM)
-    // ---------------------------
+    // ============================
+    // 2. HORIZONTAL + VERTICAL HALOS
+    // ============================
 
-    // LEFT halo
     if (lx < maskSize) {
         int ix = clamp(gx - maskSize, 0, width - 1);
         tile[ty*tileW + (tx - maskSize)] =
             read_imagef(in_image, sampler, (int2)(ix, gy));
     }
 
-    // RIGHT halo
     if (lx >= Lx - maskSize) {
         int ix = clamp(gx + maskSize, 0, width - 1);
         tile[ty*tileW + (tx + maskSize)] =
             read_imagef(in_image, sampler, (int2)(ix, gy));
     }
 
-    // TOP halo
     if (ly < maskSize) {
         int iy = clamp(gy - maskSize, 0, height - 1);
         tile[(ty - maskSize)*tileW + tx] =
             read_imagef(in_image, sampler, (int2)(gx, iy));
     }
 
-    // BOTTOM halo
     if (ly >= Ly - maskSize) {
         int iy = clamp(gy + maskSize, 0, height - 1);
         tile[(ty + maskSize)*tileW + tx] =
             read_imagef(in_image, sampler, (int2)(gx, iy));
     }
 
-    // ---------------------------
-    // 3. LOAD 4 CORNER HALOS
-    //    (each WG loads up to maskSize×maskSize pixels per corner)
-    // ---------------------------
+    // ============================
+    // 3. CORNER HALOS (CORREGIDOS)
+    // ============================
 
-    // TOP-LEFT corner
-    if (lx < maskSize && ly < maskSize) {
+    if (lx < maskSize && ly < maskSize) {            // TOP-LEFT
         for (int a = 0; a < maskSize; a++) {
             for (int b = 0; b < maskSize; b++) {
                 int ix = clamp(gx - maskSize + a, 0, width - 1);
@@ -89,8 +82,7 @@ __kernel void gaussian_filter_tiled(
         }
     }
 
-    // TOP-RIGHT corner
-    if (lx >= Lx - maskSize && ly < maskSize) {
+    if (lx >= Lx - maskSize && ly < maskSize) {      // TOP-RIGHT
         for (int a = 0; a < maskSize; a++) {
             for (int b = 0; b < maskSize; b++) {
                 int ix = clamp(gx + a, 0, width - 1);
@@ -101,8 +93,7 @@ __kernel void gaussian_filter_tiled(
         }
     }
 
-    // BOTTOM-LEFT corner
-    if (lx < maskSize && ly >= Ly - maskSize) {
+    if (lx < maskSize && ly >= Ly - maskSize) {      // BOTTOM-LEFT
         for (int a = 0; a < maskSize; a++) {
             for (int b = 0; b < maskSize; b++) {
                 int ix = clamp(gx - maskSize + a, 0, width - 1);
@@ -113,8 +104,7 @@ __kernel void gaussian_filter_tiled(
         }
     }
 
-    // BOTTOM-RIGHT corner
-    if (lx >= Lx - maskSize && ly >= Ly - maskSize) {
+    if (lx >= Lx - maskSize && ly >= Ly - maskSize) { // BOTTOM-RIGHT
         for (int a = 0; a < maskSize; a++) {
             for (int b = 0; b < maskSize; b++) {
                 int ix = clamp(gx + a, 0, width - 1);
@@ -125,26 +115,22 @@ __kernel void gaussian_filter_tiled(
         }
     }
 
-    // ------------------------------------------------
-    // 4. SYNC BEFORE USING TILE MEMORY
-    // ------------------------------------------------
+    // ============================
+    // 4. SYNC
+    // ============================
     barrier(CLK_LOCAL_MEM_FENCE);
 
-    // ------------------------------------------------
-    // 5. CONVOLUTION USING LOCAL MEMORY ONLY
-    // ------------------------------------------------
+    // ============================
+    // 5. CONVOLUTION
+    // ============================
     if (gx < width && gy < height) {
-
         float3 acc = (float3)(0);
 
         for (int a = -maskSize; a <= maskSize; a++) {
             for (int b = -maskSize; b <= maskSize; b++) {
                 float4 pix = tile[(ty + b)*tileW + (tx + a)];
                 float w = mask[(a + maskSize)*side + (b + maskSize)];
-
-                acc.x += w * pix.x;
-                acc.y += w * pix.y;
-                acc.z += w * pix.z;
+                acc += w * pix.xyz;
             }
         }
 
