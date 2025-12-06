@@ -56,7 +56,7 @@ size_x, throughput, kernel_throughput, kernel_global_memory = np.loadtxt("size_t
 # fig.tight_layout()
 # plt.show()
 
-size_x = size_x / 1e6
+#size_x = size_x / 1e6
 
 fig, ax1 = plt.subplots()
 

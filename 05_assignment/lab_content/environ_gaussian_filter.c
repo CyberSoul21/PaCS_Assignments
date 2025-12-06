@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <tuple>
 #include "CImg/CImg.h"
 #ifdef __APPLE__
 	  #include <OpenCL/opencl.h>
@@ -50,8 +51,8 @@ float * createMask(float sigma, int * maskSizePointer) {
 std::pair<size_t, size_t>
 usage(int argc, const char *argv[]) {
     // read the number of steps from the command line
-    if (argc != 3) {
-        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4)" << std::endl;
+    if (argc != 4) {
+        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4) <selectLocal size>" << std::endl;
         exit(1);
     }
 
@@ -61,13 +62,33 @@ usage(int argc, const char *argv[]) {
     return std::make_pair(sigma, image);
 }
 
+std::tuple<float, ImageType, int> usage(int argc, char** argv){
+    // read the number of steps from the command line
+    if (argc != 4) {
+        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4) <selectLocal size>" << std::endl;
+        exit(1);
+    }
+
+    size_t sigma = std::stoll(argv[1]);
+    size_t image = std::stoll(argv[2]);
+	size_t slectSize = std::stoll(argv[3]);
+
+    return std::make_tuple(sigma, image, selectSize);
+}
+
 
 int main(int argc, const char *argv[]){
 
 	//Set arguments
-	auto ret_pair = usage(argc, argv);
-    float sigma = (float)ret_pair.first;
-    auto image = ret_pair.second;
+	// auto ret_pair = usage(argc, argv);
+    // float sigma = (float)ret_pair.first;
+    // auto image = ret_pair.second;
+	// auto selectSize = ret_pair.
+
+	auto args = usage(argc, argv);
+	float sigma      = args.sigma;
+	auto  image      = args.image;
+	int   selectSize = args.selectSize;
 
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
@@ -260,7 +281,16 @@ int main(int argc, const char *argv[]){
 	//size_t global_size[2] = { (size_t)width, (size_t)height };
 	
 	// >>> choose the local work-group size here <<<
-	size_t local_size[2] = {8, 8};   // try {8,8}, {16,16}, {32,8}, etc.
+	//size_t local_size[2] = {8, 8};   // try {8,8}, {16,16}, {32,8}, etc.
+
+	size_t local_size[2];
+	switch(selectSize) {
+		case 1: {local_size[2] = {8, 8}; break;}   //64 work-items / group
+		case 2: {local_size[2] = {16, 8}; break;}  //128 work-items / group
+		case 3: {local_size[2] = {16, 16}; break;} //256 work-items / group
+		case 4: {local_size[2] = {32, 8}; break;}  //256 work-items / group (different shape, same total)
+		default:{ local_size[2] = {8, 8}; break;}
+	}
 
 	// Pad global size to multiples of local_size (safe because kernel has bounds check)
 	size_t global_size[2] = {
