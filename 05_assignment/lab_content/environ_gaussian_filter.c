@@ -62,16 +62,19 @@ float * createMask(float sigma, int * maskSizePointer) {
 //     return std::make_pair(sigma, image);
 // }
 
-std::tuple<size_t, size_t, size_t> usage(int argc, const char *argv[]){
+std::tuple<float, std::size_t, std::size_t>
+usage(int argc, const char *argv[])
+{
     // read the number of steps from the command line
     if (argc != 4) {
-        std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4) <selectLocal size>" << std::endl;
-        exit(1);
+        std::cerr << "Invalid syntax: environ_gaussian_filter "
+                  << "<sigma> <image>(1,2,3 or 4) <selectLocal size>\n";
+        std::exit(1);
     }
 
-    size_t sigma = std::stoll(argv[1]);
-    size_t image = std::stoll(argv[2]);
-	size_t selectSize = std::stoll(argv[3]);
+    float sigma          = std::stof(argv[1]);   // sigma is float
+    std::size_t image    = std::stoul(argv[2]); // or int if you prefer
+    std::size_t selectSize = std::stoul(argv[3]);
 
     return std::make_tuple(sigma, image, selectSize);
 }
@@ -85,10 +88,7 @@ int main(int argc, const char *argv[]){
     // auto image = ret_pair.second;
 	// auto selectSize = ret_pair.
 
-	auto args = usage(argc, argv);
-	float sigma      = (float)args.sigma;
-	auto  image      = args.image;
-	int   selectSize = args.selectSize;
+	auto [sigma, image, selectSize] = usage(argc, argv);  // structured binding
 
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
