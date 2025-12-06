@@ -1,6 +1,5 @@
 
 #include <chrono>
-#include <filesystem>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -180,9 +179,7 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// 6. Get image
-	std::string abs_image = std::filesystem::absolute(image).string();
-	// cimg_library::CImg<unsigned char> img(image.c_str());
-	cimg_library::CImg<unsigned char> img(abs_image.c_str());
+	cimg_library::CImg<unsigned char> img(image.c_str());
 	int width = img.width();
 	int height = img.height();
 	double num_pixels = (double)width * (double)height;
