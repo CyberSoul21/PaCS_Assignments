@@ -240,6 +240,8 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to create mask buffer at device\n");
 
 	// 11. Set the arguments to the kernel
+	size_t global_size[2] = { (size_t)width, (size_t)height };
+	size_t local_size[2] = {16, 16};
 	err = clSetKernelArg(kernel, 0, sizeof(cl_mem), &clImage_In);
 	cl_error(err, "Failed to set argument 0\n");
 	err = clSetKernelArg(kernel, 1, sizeof(cl_mem), &clImage_Out);
@@ -252,12 +254,12 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to set argument 4\n");
 	err = clSetKernelArg(kernel, 5, sizeof(int), &height);
 	cl_error(err, "Failed to set argument 5\n");
+	err = clSetKernelArg(kernel, 6, (local_size[0]+2*maskSize)*(local_size[1]+2*maskSize)*sizeof(cl_float4), NULL); //local arg
+	cl_error(err, "Failed to set argument 6\n");
 
 	// 12. Launch Kernel
 	cl_event kernel_event;
-	size_t local_size[2] = {16, 16};
-	size_t global_size[2] = { (size_t)width, (size_t)height };
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, &kernel_event);
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, &kernel_event);
 	cl_error(err, "Failed to launch kernel to the device\n");
 	//we are not calling clWaitForEvents(1, &kernel_event); because in readImage we have CL_TRUE,
 	//that blocks until the kernel has finished, avoiding calling the event before

@@ -1,6 +1,6 @@
 g++ basic_environ.c -o executable -lOpenCL
 g++ environ_gaussian_filter.c -o executable -I ./CImg -lm -lpthread -lX11 -lOpenCL
-g++ environ_gaussian_filter_cache.c -o executable -I ./CImg -lm -lpthread -lX11 -lOpenCL
+g++ environ_gaussian_filter_cache.c -o executable_cache -I ./CImg -lm -lpthread -lX11 -lOpenCL
 
 https://github.com/smistad/OpenCL-Gaussian-Blur/blob/master/gaussian_blur.cl
 
