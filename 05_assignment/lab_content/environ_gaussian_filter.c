@@ -62,7 +62,7 @@ float * createMask(float sigma, int * maskSizePointer) {
 //     return std::make_pair(sigma, image);
 // }
 
-std::tuple<float, size_t, size_t> usage(int argc, const char *argv[]){
+std::tuple<size_t, size_t, size_t> usage(int argc, const char *argv[]){
     // read the number of steps from the command line
     if (argc != 4) {
         std::cerr << "Invalid syntax: environ_gaussian_filter <sigma> <image>(1,2,3 or 4) <selectLocal size>" << std::endl;
