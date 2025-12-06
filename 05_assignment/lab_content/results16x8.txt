@@ -13,13 +13,13 @@ Gaussian filter saved
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
-Program time: 1666.44 ms
-Kernel time: 0.932864 ms
-Host->Device: 3.32912 ms, 11.0661 GB/s
-Device->Host: 5.57757 ms, 6.60509 GB/s
-Throughput (pixels/s): 1.0601e+10
-Kernel throughput: 3116.68 GFLOP/s
-Kernel global-memory bandwidth (1 read + 1 write): 315.933 GB/s
+Program time: 1599.46 ms
+Kernel time: 0.917504 ms
+Host->Device: 3.29162 ms, 11.1922 GB/s
+Device->Host: 5.44934 ms, 6.76051 GB/s
+Throughput (pixels/s): 1.07784e+10
+Kernel throughput: 3168.86 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 321.222 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
@@ -38,13 +38,13 @@ Gaussian filter saved
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
-Program time: 1630.73 ms
-Kernel time: 0.939008 ms
-Host->Device: 3.23078 ms, 11.4029 GB/s
-Device->Host: 5.81194 ms, 6.33873 GB/s
-Throughput (pixels/s): 1.05316e+10
-Kernel throughput: 3096.29 GFLOP/s
-Kernel global-memory bandwidth (1 read + 1 write): 313.866 GB/s
+Program time: 1508.59 ms
+Kernel time: 0.941056 ms
+Host->Device: 3.24246 ms, 11.3618 GB/s
+Device->Host: 5.4489 ms, 6.76106 GB/s
+Throughput (pixels/s): 1.05087e+10
+Kernel throughput: 3089.55 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 313.183 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
@@ -63,13 +63,13 @@ Gaussian filter saved
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
-Program time: 1654.98 ms
-Kernel time: 0.939008 ms
-Host->Device: 3.30026 ms, 11.1629 GB/s
-Device->Host: 5.68781 ms, 6.47707 GB/s
-Throughput (pixels/s): 1.05316e+10
-Kernel throughput: 3096.29 GFLOP/s
-Kernel global-memory bandwidth (1 read + 1 write): 313.866 GB/s
+Program time: 1501.51 ms
+Kernel time: 0.96256 ms
+Host->Device: 3.33514 ms, 11.0461 GB/s
+Device->Host: 5.66275 ms, 6.50573 GB/s
+Throughput (pixels/s): 1.02739e+10
+Kernel throughput: 3020.53 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 306.186 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
