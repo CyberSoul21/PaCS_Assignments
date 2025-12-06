@@ -256,9 +256,19 @@ int main(int argc, const char *argv[]){
 
 	// 12. Launch Kernel
 	cl_event kernel_event;
-	size_t local_size[2] = {16, 16};
-	size_t global_size[2] = { (size_t)width, (size_t)height };
-	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, &kernel_event);
+	//size_t local_size[2] = {16, 16};
+	//size_t global_size[2] = { (size_t)width, (size_t)height };
+	
+	// >>> choose the local work-group size here <<<
+	size_t local_size[2] = {8, 8};   // try {8,8}, {16,16}, {32,8}, etc.
+
+	// Pad global size to multiples of local_size (safe because kernel has bounds check)
+	size_t global_size[2] = {
+		((size_t)width  + local_size[0] - 1) / local_size[0] * local_size[0],
+		((size_t)height + local_size[1] - 1) / local_size[1] * local_size[1]
+	};	
+	
+	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, local_size, 0, NULL, &kernel_event);
 	cl_error(err, "Failed to launch kernel to the device\n");
 	//we are not calling clWaitForEvents(1, &kernel_event); because in readImage we have CL_TRUE,
 	//that blocks until the kernel has finished, avoiding calling the event before
