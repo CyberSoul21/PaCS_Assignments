@@ -125,22 +125,61 @@ int main(int argc, const char *argv[]){
 	printf("\n");
 		
 	// 2. Scan for devices in each platform
+	// for (int i = 0; i < n_platforms; i++ ){
+	// 	err = clGetDeviceIDs(platforms_ids[i], CL_DEVICE_TYPE_ALL, num_devices_ids, devices_ids[i], &(n_devices[i]));
+	// 	cl_error(err, "Error: Failed to Scan for Devices IDs");
+	// 	printf("\t[%d]-Platform. Number of available devices: %d\n", i, n_devices[i]);
+
+	// 	for(int j = 0; j < n_devices[i]; j++){
+	// 	err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_NAME, sizeof(str_buffer), &str_buffer, NULL);
+	// 	cl_error(err, "clGetDeviceInfo: Getting device name");
+	// 	printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_NAME: %s\n", i, j,str_buffer);
+
+	// 	cl_uint max_compute_units_available;
+	// 	err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_MAX_COMPUTE_UNITS, sizeof(max_compute_units_available), &max_compute_units_available, NULL);
+	// 	cl_error(err, "clGetDeviceInfo: Getting device max compute units available");
+	// 	printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_MAX_COMPUTE_UNITS: %d\n\n", i, j, max_compute_units_available);
+	// 	}
+	// }	
+
 	for (int i = 0; i < n_platforms; i++ ){
-		err = clGetDeviceIDs(platforms_ids[i], CL_DEVICE_TYPE_ALL, num_devices_ids, devices_ids[i], &(n_devices[i]));
-		cl_error(err, "Error: Failed to Scan for Devices IDs");
-		printf("\t[%d]-Platform. Number of available devices: %d\n", i, n_devices[i]);
+    err = clGetDeviceIDs(platforms_ids[i], CL_DEVICE_TYPE_ALL,
+                         num_devices_ids, devices_ids[i], &(n_devices[i]));
+    cl_error(err, "Error: Failed to Scan for Devices IDs");
+    printf("\t[%d]-Platform. Number of available devices: %d\n", i, n_devices[i]);
 
-		for(int j = 0; j < n_devices[i]; j++){
-		err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_NAME, sizeof(str_buffer), &str_buffer, NULL);
-		cl_error(err, "clGetDeviceInfo: Getting device name");
-		printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_NAME: %s\n", i, j,str_buffer);
+    for (int j = 0; j < n_devices[i]; j++) {
+        err = clGetDeviceInfo(devices_ids[i][j],
+                              CL_DEVICE_NAME,
+                              sizeof(str_buffer),
+                              &str_buffer,
+                              NULL);
+        cl_error(err, "clGetDeviceInfo: Getting device name");
+        printf("\t\t[%d]-Platform [%d]-Device CL_DEVICE_NAME: %s\n",
+               i, j, str_buffer);
 
-		cl_uint max_compute_units_available;
-		err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_MAX_COMPUTE_UNITS, sizeof(max_compute_units_available), &max_compute_units_available, NULL);
-		cl_error(err, "clGetDeviceInfo: Getting device max compute units available");
-		printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_MAX_COMPUTE_UNITS: %d\n\n", i, j, max_compute_units_available);
-		}
-	}	
+        cl_uint max_compute_units_available;
+        err = clGetDeviceInfo(devices_ids[i][j],
+                              CL_DEVICE_MAX_COMPUTE_UNITS,
+                              sizeof(max_compute_units_available),
+                              &max_compute_units_available,
+                              NULL);
+        cl_error(err, "clGetDeviceInfo: Getting device max compute units available");
+        printf("\t\t[%d]-Platform [%d]-Device CL_DEVICE_MAX_COMPUTE_UNITS: %d\n",
+               i, j, max_compute_units_available);
+
+        // >>> HERE: maximum total work-items per work-group <<<
+        size_t max_work_group_size;
+        err = clGetDeviceInfo(devices_ids[i][j],
+                              CL_DEVICE_MAX_WORK_GROUP_SIZE,
+                              sizeof(max_work_group_size),
+                              &max_work_group_size,
+                              NULL);
+        cl_error(err, "clGetDeviceInfo: Getting CL_DEVICE_MAX_WORK_GROUP_SIZE");
+        printf("\t\t[%d]-Platform [%d]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: %zu\n\n",
+               i, j, max_work_group_size);
+    }
+}
 
 	// 3. Create a context, with a device
 	cl_context_properties properties[] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platforms_ids[0], 0};
