@@ -138,7 +138,7 @@ int main(int argc, const char *argv[]){
 
 	// 5. Read an OpenCL program from the file kernel.cl
 	// Calculate size of the file
-	FILE *fileHandler = fopen("kernel_gaussian_filter.cl", "r");
+	FILE *fileHandler = fopen("kernel_gaussian_filter_cache.cl", "r");
 	fseek(fileHandler, 0, SEEK_END);
 	size_t fileSize = ftell(fileHandler);
 	rewind(fileHandler);
