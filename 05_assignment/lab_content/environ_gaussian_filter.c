@@ -56,7 +56,7 @@ usage(int argc, const char *argv[]) {
     }
 
     size_t sigma = std::stoll(argv[1]);
-    std:string image = std::stoll(argv[2]);
+    std::string image = std::stoll(argv[2]);
 
     return std::make_pair(sigma, image);
 }
@@ -67,7 +67,7 @@ int main(int argc, const char *argv[]){
 	//Set arguments
 	auto ret_pair = usage(argc, argv);
     float sigma = (float)ret_pair.first;
-    std:string image = ret_pair.second;
+    std::string image = ret_pair.second;
 
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
