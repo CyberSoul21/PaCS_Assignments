@@ -72,15 +72,11 @@ int main(int argc, const char *argv[]){
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
 
-	int err;                            	// error code returned from api calls
+	int err;                    // error code returned from api calls
 	size_t t_buf = 50;			// size of str_buffer
 	char str_buffer[t_buf];		// auxiliary buffer	
 	size_t e_buf;				// effective size of str_buffer in use
-	size_t program_Size;			// size of the opencl program
 		
-	// size_t global_size;                      	// global domain size for our calculation
-	// size_t local_size;                       	// local domain size for our calculation
-
 	const cl_uint num_platforms_ids = 10;				// max of allocatable platforms
 	cl_platform_id platforms_ids[num_platforms_ids];		// array of platforms
 	cl_uint n_platforms;						// effective number of platforms in use
@@ -177,7 +173,7 @@ int main(int argc, const char *argv[]){
 	kernel = clCreateKernel(program, "gaussian_filter", &err);
 	cl_error(err, "Failed to create kernel from the program\n");
 
-	// Get image
+	// 6. Get image
 	std::string image_name;
 	switch(image) {
 		case 1: {image_name = "cat_275x183.jpg"; break;}
@@ -190,9 +186,10 @@ int main(int argc, const char *argv[]){
 	cimg_library::CImg<unsigned char> img(image_name.c_str());
 	int width = img.width();
 	int height = img.height();
+	double num_pixels = (double)width * (double)height;
 
 	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
-    std::vector<unsigned char> rgba_in(width*height*4);
+    std::vector<unsigned char> rgba_in(num_pixels*4);
     cimg_forXY(img, x, y){
         int idx = 4*(y*width + x);
         rgba_in[idx+0] = img(x,y,0);
@@ -201,9 +198,10 @@ int main(int argc, const char *argv[]){
         rgba_in[idx+3] = 255;
     }
 
-	// Create Gaussian mask
+	// 7. Create Gaussian mask
     int maskSize;
     float * mask = createMask(sigma, &maskSize);
+	int side = 2*maskSize + 1;
 
 	// Create OpenCL buffer visible to the OpenCl runtime
 	cl_image_format img_format;
@@ -219,8 +217,7 @@ int main(int argc, const char *argv[]){
 	img_desc.image_depth = 1;
 	img_desc.image_array_size = 1;
 
-	// Write input image
-	// cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, &img_format, &img_desc,rgba_in.data(), &err);
+	// 8. Write input image
 	cl_mem clImage_In = clCreateImage(context, CL_MEM_READ_ONLY, &img_format, &img_desc,NULL, &err);
 	cl_error(err, "Failed to create input image at device\n");
     cl_event write_event;
@@ -228,14 +225,16 @@ int main(int argc, const char *argv[]){
 	size_t region[3] = {(size_t)width, (size_t)height, 1};
 	err = clEnqueueWriteImage(command_queue,clImage_In,CL_TRUE,origin,region,0, 0,rgba_in.data(),0, NULL,&write_event);
 	cl_error(err, "Failed to write input image to device\n");
+
+	// 9. Create read buffer
 	cl_mem clImage_Out = clCreateImage(context, CL_MEM_WRITE_ONLY, &img_format, &img_desc, NULL, &err);
 	cl_error(err, "Failed to create output image at device\n");
     
-    // Create buffer for mask and transfer it to the device
-    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*(2*maskSize+1)*(2*maskSize+1), mask, &err);
+    // 10. Create buffer for mask and transfer it to the device
+    cl_mem clMask = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*side*side, mask, &err);
 	cl_error(err, "Failed to create mask buffer at device\n");
 
-	// Set the arguments to the kernel
+	// 11. Set the arguments to the kernel
 	err = clSetKernelArg(kernel, 0, sizeof(cl_mem), &clImage_In);
 	cl_error(err, "Failed to set argument 0\n");
 	err = clSetKernelArg(kernel, 1, sizeof(cl_mem), &clImage_Out);
@@ -249,24 +248,22 @@ int main(int argc, const char *argv[]){
 	err = clSetKernelArg(kernel, 5, sizeof(int), &height);
 	cl_error(err, "Failed to set argument 5\n");
 
-	// Launch Kernel
+	// 12. Launch Kernel
 	cl_event kernel_event;
 	size_t local_size[2] = {16, 16};
 	size_t global_size[2] = { (size_t)width, (size_t)height };
-	// err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, NULL);
 	err = clEnqueueNDRangeKernel(command_queue, kernel, 2, NULL, global_size, NULL, 0, NULL, &kernel_event);
 	cl_error(err, "Failed to launch kernel to the device\n");
 	//we are not calling clWaitForEvents(1, &kernel_event); because in readImage we have CL_TRUE,
 	//that blocks until the kernel has finished, avoiding calling the event before
 
-    // Read output image 
+    // 13. Read output image 
     std::vector<unsigned char> outRGBA(width*height*4);
 	cl_event read_event;
-    // err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, NULL);
     err = clEnqueueReadImage(command_queue, clImage_Out, CL_TRUE,origin, region,0, 0,outRGBA.data(),0, NULL, &read_event);
     cl_error(err,"Failed to read output");
 
-	// Save output
+	// 14. Save output
 	cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x,y) {
         int i = 4*(y*width + x);
@@ -279,6 +276,7 @@ int main(int argc, const char *argv[]){
     outImg.save(result.c_str());
     std::cout << "Gaussian filter saved\n"<<std::endl;
 
+	// 15. Released cl objects
 	clReleaseMemObject(clMask);
 	clReleaseMemObject(clImage_Out);
 	clReleaseMemObject(clImage_In);
@@ -287,71 +285,67 @@ int main(int argc, const char *argv[]){
 	clReleaseCommandQueue(command_queue);
 	clReleaseContext(context);
 	
+	// 16. Metrics
 	// Complete program time
 	auto t_program_end = high_resolution_clock::now();
     double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
     std::cout << "sigma: " << sigma << ", image: " <<image_name.c_str()<<std::endl;
-	std::cout << "matrix size: " << 2*maskSize+1 <<std::endl;
+	std::cout << "matrix dimention: " << side <<std::endl;
 	std::cout << "Program time: " << program_ms << " ms" << std::endl;
 
 	// Kernel time
 	cl_ulong start_ns = 0, end_ns = 0;
 	clGetEventProfilingInfo(kernel_event, CL_PROFILING_COMMAND_START, sizeof(start_ns), &start_ns, NULL);
 	clGetEventProfilingInfo(kernel_event, CL_PROFILING_COMMAND_END,	sizeof(end_ns), &end_ns, NULL);
+	clReleaseEvent(kernel_event);
 	double kernel_ms = (end_ns - start_ns) * 1e-6;
 	std::cout << "Kernel time: " << kernel_ms << " ms" << std::endl;
-	clReleaseEvent(kernel_event);
 
-	// Measure input image time
+	// Measure input image time and bandwidth
 	cl_ulong w_start = 0, w_end = 0;
 	clGetEventProfilingInfo(write_event, CL_PROFILING_COMMAND_START,sizeof(w_start), &w_start, NULL);
 	clGetEventProfilingInfo(write_event, CL_PROFILING_COMMAND_END,sizeof(w_end), &w_end, NULL);
-	double write_ms = (w_end - w_start) * 1e-6;
 	clReleaseEvent(write_event);
-	//Measure
-	size_t bytes_h2d = width * height * 4; // RGBA 8-bit
+	double write_ms = (w_end - w_start) * 1e-6;
+	size_t bytes_h2d = num_pixels * 4; // 4 bytes per pixel (RGBA)
 	double bandwidth_h2d_GBps = (bytes_h2d / (1024.0*1024.0*1024.0)) / (write_ms / 1000.0);
 	std::cout << "Host->Device: " << write_ms << " ms, "<< bandwidth_h2d_GBps << " GB/s" << std::endl;
-	
 
-	// Measure output image time
+	// Measure output image time and bandwidth
 	cl_ulong r_start = 0, r_end = 0;
 	clGetEventProfilingInfo(read_event, CL_PROFILING_COMMAND_START,sizeof(r_start), &r_start, NULL);
 	clGetEventProfilingInfo(read_event, CL_PROFILING_COMMAND_END,sizeof(r_end), &r_end, NULL);
 	clReleaseEvent(read_event);
 	double read_ms = (r_end - r_start) * 1e-6;
-	size_t bytes_d2h = width * height * 4;
+	size_t bytes_d2h = num_pixels * 4;
 	double bandwidth_d2h_GBps = (bytes_d2h / (1024.0*1024.0*1024.0)) / (read_ms / 1000.0);
 	std::cout << "Device->Host: " << read_ms << " ms, "<< bandwidth_d2h_GBps << " GB/s" << std::endl;
 
 	//Kernel troughput
-	double num_pixels = (double)width * (double)height;
 	double kernel_s = kernel_ms / 1000.0;
-	double pixels_per_sec = num_pixels / kernel_s;
+	double pixels_per_sec = num_pixels / kernel_s; //each pixel corresponds to a work-item, kernel time is what it takes from the first pixel to the last 
 	std::cout << "Throughput (pixels/s): " << pixels_per_sec << std::endl;
-	// This could be GFLOP/s if we assume an operation to be 1 mul + 1 add, so 2 FLOPs
-	int side = 2*maskSize + 1;
-	double flops_per_pixel = 2.0 * (double)side * (double)side;
-	double total_flops = num_pixels * flops_per_pixel;
+	// This could be GFLOP/s if we assume an operation to be 1 mul + 1 add, so 2 FLOPs per color (we compute 3 colors)
+	double flops_per_pixel = 2.0 * (double)side * (double)side * 3.0;
+	double total_flops = num_pixels * flops_per_pixel; //We are assuming all pixels do the same operations, it would be less considering that pixels on the edges have less operations
 	double gflops = (total_flops / kernel_s) / 1e9;
 	std::cout << "Kernel throughput: " << gflops << " GFLOP/s" << std::endl;
-	// Total bandwithd
-	double bytes_per_read = 16.0;  // float4
-	double bytes_per_write = 16.0; // float4
+
+	// Kernel bandwithd
+	double bytes_per_read = 16.0;  // Read_imagef in kernel returns a float4 (4 components of 4 bytes) in private memory
+	double bytes_per_write = 16.0; // write_imagef too
 	double total_bytes = num_pixels * (bytes_per_read + bytes_per_write);
  	double kernel_bandwidth_GBps = (total_bytes / (1024.0 * 1024.0 * 1024.0)) / kernel_s;
-	std::cout << "Kernel global-memory bandwidth (1 read + 1 write): "
-          << kernel_bandwidth_GBps << " GB/s" << std::endl;// Memory footprint
-	size_t host_mem =
-		width*height*4    // rgba_in
-	+ width*height*4    // outRGBA
-	+ side*side*sizeof(float); // mask
-	size_t device_mem =
-		width*height*4    // clImage_In
-	+ width*height*4    // clImage_Out
-	+ side*side*sizeof(float); // clMask
+	std::cout << "Kernel global-memory bandwidth (1 read + 1 write): "<< kernel_bandwidth_GBps << " GB/s" << std::endl;// Memory footprint
+	
+	// Footprints
+	size_t host_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // rgba_in + outRGBA + mask
+	size_t device_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // clImage_In + clImage_Out + clMask
+	size_t kernel_mem = 2*8 + 16 + 16 // pos(2*int2) + acc(float3) + pix(float4)
 	std::cout << "Host memory footprint:   " << host_mem / (1024.0*1024.0)<< " MB" << std::endl;
-	std::cout << "Device memory footprint: " << device_mem / (1024.0*1024.0)<< " MB" << std::endl;
+	std::cout << "Device memory footprint in global data: " << device_mem / (1024.0*1024.0)<< " MB" << std::endl;
+	std::cout << "Kernel memory footprint in private data per workitem: " << kernel_mem << " Bytes" << std::endl;
+	// This kernel uses global data, it only creates a private data for the pixel info
 
 	return 0;
 }
