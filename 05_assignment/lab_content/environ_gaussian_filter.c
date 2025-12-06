@@ -160,7 +160,6 @@ int main(int argc, const char *argv[]){
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, 0, NULL, &kernelSourceSize);
 	char *kernelSource = (char*) malloc(kernelSourceSize);
 	clGetProgramInfo(program, CL_PROGRAM_SOURCE, kernelSourceSize, kernelSource, NULL);
-	// printf("Kernel source:\n\n%s\n", kernelSource);
 	free(kernelSource);
 
 	// Build the executable and check errors
@@ -338,11 +337,10 @@ int main(int argc, const char *argv[]){
 	// Footprints
 	size_t host_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // rgba_in + outRGBA + mask
 	size_t device_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // clImage_In + clImage_Out + clMask
-	size_t kernel_mem = 2*8 + 16 + 16; // pos(2*int2) + acc(float3) + pix(float4)
+	size_t kernel_mem = 2*4 + 16 + 16 + 5*4; // pos(int2) + acc(float3) + pix(float4) + a,b,masksize,width,height(int)
 	std::cout << "Host memory footprint:   " << host_mem / (1024.0*1024.0)<< " MB" << std::endl;
 	std::cout << "Device memory footprint in global data: " << device_mem / (1024.0*1024.0)<< " MB" << std::endl;
 	std::cout << "Kernel memory footprint in private data per workitem: " << kernel_mem << " Bytes" << std::endl;
-	// This kernel uses global data, it only creates a private data for the pixel info
 
 	return 0;
 }
