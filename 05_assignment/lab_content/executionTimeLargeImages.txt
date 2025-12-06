@@ -1,6 +1,6 @@
 ####################################
 
-sigma: 1, image: galaxia_nebulosa.jpg
+sigma: 1, image: galaxia_5051x3321
 matrix dimention: 7
 Program time: 2075.1 ms
 Kernel time: 140.104 ms
@@ -14,7 +14,7 @@ Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_nebulosa.jpg
+sigma: 1, image: galaxia_5051x3321
 matrix dimention: 7
 Program time: 1965 ms
 Kernel time: 112.73 ms
@@ -28,7 +28,7 @@ Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_nebulosa.jpg
+sigma: 1, image: galaxia_5051x3321
 matrix dimention: 7
 Program time: 1943.1 ms
 Kernel time: 73.1279 ms
@@ -42,7 +42,7 @@ Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_monocerotis.jpg
+sigma: 1, image: galaxia_2976x3323
 matrix dimention: 7
 Program time: 1490.73 ms
 Kernel time: 0.953344 ms
@@ -56,7 +56,7 @@ Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_monocerotis.jpg
+sigma: 1, image: galaxia_2976x3323
 matrix dimention: 7
 Program time: 1544.29 ms
 Kernel time: 0.941056 ms
@@ -70,7 +70,7 @@ Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_monocerotis.jpg
+sigma: 1, image: galaxia_2976x3323
 matrix dimention: 7
 Program time: 1493.88 ms
 Kernel time: 0.941056 ms
@@ -84,7 +84,7 @@ Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_cumulo_trumper.jpg
+sigma: 1, image: galaxia_3906x3906
 matrix dimention: 7
 Program time: 2012.91 ms
 Kernel time: 1.43565 ms
@@ -98,7 +98,7 @@ Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_cumulo_trumper.jpg
+sigma: 1, image: galaxia_3906x3906
 matrix dimention: 7
 Program time: 2055.07 ms
 Kernel time: 1.45306 ms
@@ -112,7 +112,7 @@ Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_cumulo_trumper.jpg
+sigma: 1, image: galaxia_3906x3906
 matrix dimention: 7
 Program time: 2042.34 ms
 Kernel time: 1.4592 ms
@@ -126,7 +126,7 @@ Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_espiral.jpg
+sigma: 1, image: galaxia_7910x6178
 matrix dimention: 7
 Program time: 5639.57 ms
 Kernel time: 9.99446 ms
@@ -140,7 +140,7 @@ Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_espiral.jpg
+sigma: 1, image: galaxia_7910x6178
 matrix dimention: 7
 Program time: 5455.15 ms
 Kernel time: 10.1386 ms
@@ -154,7 +154,7 @@ Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_espiral.jpg
+sigma: 1, image: galaxia_7910x6178
 matrix dimention: 7
 Program time: 5506.09 ms
 Kernel time: 9.98093 ms
@@ -168,7 +168,7 @@ Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_irregular.jpg
+sigma: 1, image: galaxia_8736x5630
 matrix dimention: 7
 Program time: 5998.28 ms
 Kernel time: 9.97277 ms
@@ -182,7 +182,7 @@ Device memory footprint in global data: 375.242 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_irregular.jpg
+sigma: 1, image: galaxia_8736x5630
 matrix dimention: 7
 Program time: 6001.58 ms
 Kernel time: 9.73722 ms
@@ -196,7 +196,7 @@ Device memory footprint in global data: 375.242 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
 ####################################
 
-sigma: 1, image: galaxia_irregular.jpg
+sigma: 1, image: galaxia_8736x5630
 matrix dimention: 7
 Program time: 6195.82 ms
 Kernel time: 8.97139 ms
