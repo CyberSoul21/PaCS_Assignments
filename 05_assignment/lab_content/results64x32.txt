@@ -1,0 +1,45 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		[0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [0]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+		[0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [1]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+-54 - Failed to launch kernel to the device
+
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		[0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [0]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+		[0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [1]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+-54 - Failed to launch kernel to the device
+
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		[0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [0]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+		[0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+		[0]-Platform [1]-Device CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+
+-54 - Failed to launch kernel to the device
+
