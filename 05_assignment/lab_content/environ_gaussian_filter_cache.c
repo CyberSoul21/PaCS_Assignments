@@ -241,7 +241,7 @@ int main(int argc, const char *argv[]){
 
 	// 11. Set the arguments to the kernel
 	size_t global_size[2] = { (size_t)width, (size_t)height };
-	size_t local_size[2] = {16, 16};
+	size_t local_size[2] = {8, 8};
 	err = clSetKernelArg(kernel, 0, sizeof(cl_mem), &clImage_In);
 	cl_error(err, "Failed to set argument 0\n");
 	err = clSetKernelArg(kernel, 1, sizeof(cl_mem), &clImage_Out);
