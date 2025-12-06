@@ -186,6 +186,7 @@ int main(int argc, const char *argv[]){
 	int width = img.width();
 	int height = img.height();
 	double num_pixels = (double)width * (double)height;
+	std::cout<<"image"<<width<<std::endl;
 
 	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
     std::vector<unsigned char> rgba_in(num_pixels*4);
