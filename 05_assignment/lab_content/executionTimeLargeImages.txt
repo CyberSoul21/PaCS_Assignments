@@ -1,15 +1,4 @@
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_nebulosa.jpg
 matrix dimention: 7
@@ -23,18 +12,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 3.56818 GB/s
 Host memory footprint:   127.978 MB
 Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_nebulosa.jpg
 matrix dimention: 7
@@ -48,18 +26,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 4.43462 GB/s
 Host memory footprint:   127.978 MB
 Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_nebulosa.jpg
 matrix dimention: 7
@@ -73,18 +40,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 6.83617 GB/s
 Host memory footprint:   127.978 MB
 Device memory footprint in global data: 127.978 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
@@ -98,18 +54,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 309.146 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
@@ -123,18 +68,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 313.183 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_monocerotis.jpg
 matrix dimention: 7
@@ -148,18 +82,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 313.183 GB/s
 Host memory footprint:   75.4492 MB
 Device memory footprint in global data: 75.4492 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_cumulo_trumper.jpg
 matrix dimention: 7
@@ -173,18 +96,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 316.714 GB/s
 Host memory footprint:   116.401 MB
 Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_cumulo_trumper.jpg
 matrix dimention: 7
@@ -198,18 +110,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 312.919 GB/s
 Host memory footprint:   116.401 MB
 Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_cumulo_trumper.jpg
 matrix dimention: 7
@@ -223,18 +124,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 311.602 GB/s
 Host memory footprint:   116.401 MB
 Device memory footprint in global data: 116.401 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_espiral.jpg
 matrix dimention: 7
@@ -248,18 +138,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 145.719 GB/s
 Host memory footprint:   372.833 MB
 Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_espiral.jpg
 matrix dimention: 7
@@ -273,18 +152,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 143.647 GB/s
 Host memory footprint:   372.833 MB
 Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_espiral.jpg
 matrix dimention: 7
@@ -298,18 +166,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 145.916 GB/s
 Host memory footprint:   372.833 MB
 Device memory footprint in global data: 372.833 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_irregular.jpg
 matrix dimention: 7
@@ -323,18 +180,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 146.979 GB/s
 Host memory footprint:   375.242 MB
 Device memory footprint in global data: 375.242 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_irregular.jpg
 matrix dimention: 7
@@ -348,18 +194,7 @@ Kernel global-memory bandwidth (1 read + 1 write): 150.535 GB/s
 Host memory footprint:   375.242 MB
 Device memory footprint in global data: 375.242 MB
 Kernel memory footprint in private data per workitem: 48 Bytes
-Number of available platforms: 1
-
-	[0]-Platform Name: NVIDIA CUDA
-
-	[0]-Platform. Number of available devices: 2
-		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
-		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
-
-Gaussian filter saved
+####################################
 
 sigma: 1, image: galaxia_irregular.jpg
 matrix dimention: 7
