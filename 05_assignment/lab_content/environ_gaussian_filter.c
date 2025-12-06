@@ -67,7 +67,7 @@ int main(int argc, const char *argv[]){
 	//Set arguments
 	auto ret_pair = usage(argc, argv);
     float sigma = (float)ret_pair.first;
-    auto image = ret_pair.second;
+    std:string image = ret_pair.second;
 
 	// Complete program time
 	auto t_program_start = high_resolution_clock::now();
