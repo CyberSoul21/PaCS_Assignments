@@ -1,0 +1,375 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 2075.1 ms
+Kernel time: 140.104 ms
+Host->Device: 5.56877 ms, 11.2214 GB/s
+Device->Host: 13.7011 ms, 4.56091 GB/s
+Throughput (pixels/s): 1.19728e+08
+Kernel throughput: 35.2001 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 3.56818 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 1965 ms
+Kernel time: 112.73 ms
+Host->Device: 5.75066 ms, 10.8665 GB/s
+Device->Host: 11.5131 ms, 5.4277 GB/s
+Throughput (pixels/s): 1.48801e+08
+Kernel throughput: 43.7475 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 4.43462 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 1943.1 ms
+Kernel time: 73.1279 ms
+Host->Device: 5.55946 ms, 11.2402 GB/s
+Device->Host: 9.99098 ms, 6.25458 GB/s
+Throughput (pixels/s): 2.29384e+08
+Kernel throughput: 67.4389 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 6.83617 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_monocerotis.jpg
+matrix dimention: 7
+Program time: 1490.73 ms
+Kernel time: 0.953344 ms
+Host->Device: 3.19501 ms, 11.5306 GB/s
+Device->Host: 5.27366 ms, 6.98572 GB/s
+Throughput (pixels/s): 1.03732e+10
+Kernel throughput: 3049.73 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 309.146 GB/s
+Host memory footprint:   75.4492 MB
+Device memory footprint in global data: 75.4492 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_monocerotis.jpg
+matrix dimention: 7
+Program time: 1544.29 ms
+Kernel time: 0.941056 ms
+Host->Device: 3.20432 ms, 11.4971 GB/s
+Device->Host: 5.63757 ms, 6.53479 GB/s
+Throughput (pixels/s): 1.05087e+10
+Kernel throughput: 3089.55 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 313.183 GB/s
+Host memory footprint:   75.4492 MB
+Device memory footprint in global data: 75.4492 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_monocerotis.jpg
+matrix dimention: 7
+Program time: 1493.88 ms
+Kernel time: 0.941056 ms
+Host->Device: 3.28205 ms, 11.2248 GB/s
+Device->Host: 5.58531 ms, 6.59593 GB/s
+Throughput (pixels/s): 1.05087e+10
+Kernel throughput: 3089.55 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 313.183 GB/s
+Host memory footprint:   75.4492 MB
+Device memory footprint in global data: 75.4492 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2012.91 ms
+Kernel time: 1.43565 ms
+Host->Device: 5.22954 ms, 10.8683 GB/s
+Device->Host: 9.47158 ms, 6.0007 GB/s
+Throughput (pixels/s): 1.06271e+10
+Kernel throughput: 3124.38 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 316.714 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2055.07 ms
+Kernel time: 1.45306 ms
+Host->Device: 5.08938 ms, 11.1676 GB/s
+Device->Host: 9.29539 ms, 6.11444 GB/s
+Throughput (pixels/s): 1.04998e+10
+Kernel throughput: 3086.95 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 312.919 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2042.34 ms
+Kernel time: 1.4592 ms
+Host->Device: 5.2359 ms, 10.8551 GB/s
+Device->Host: 9.37949 ms, 6.05962 GB/s
+Throughput (pixels/s): 1.04556e+10
+Kernel throughput: 3073.95 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 311.602 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_espiral.jpg
+matrix dimention: 7
+Program time: 5639.57 ms
+Kernel time: 9.99446 ms
+Host->Device: 16.597 ms, 10.9687 GB/s
+Device->Host: 29.548 ms, 6.16107 GB/s
+Throughput (pixels/s): 4.8895e+09
+Kernel throughput: 1437.51 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 145.719 GB/s
+Host memory footprint:   372.833 MB
+Device memory footprint in global data: 372.833 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_espiral.jpg
+matrix dimention: 7
+Program time: 5455.15 ms
+Kernel time: 10.1386 ms
+Host->Device: 16.6132 ms, 10.958 GB/s
+Device->Host: 29.423 ms, 6.18725 GB/s
+Throughput (pixels/s): 4.81998e+09
+Kernel throughput: 1417.07 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 143.647 GB/s
+Host memory footprint:   372.833 MB
+Device memory footprint in global data: 372.833 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_espiral.jpg
+matrix dimention: 7
+Program time: 5506.09 ms
+Kernel time: 9.98093 ms
+Host->Device: 16.7166 ms, 10.8902 GB/s
+Device->Host: 28.5626 ms, 6.37362 GB/s
+Throughput (pixels/s): 4.89614e+09
+Kernel throughput: 1439.46 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 145.916 GB/s
+Host memory footprint:   372.833 MB
+Device memory footprint in global data: 372.833 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_irregular.jpg
+matrix dimention: 7
+Program time: 5998.28 ms
+Kernel time: 9.97277 ms
+Host->Device: 15.9587 ms, 11.4811 GB/s
+Device->Host: 26.8262 ms, 6.83002 GB/s
+Throughput (pixels/s): 4.9318e+09
+Kernel throughput: 1449.95 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 146.979 GB/s
+Host memory footprint:   375.242 MB
+Device memory footprint in global data: 375.242 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_irregular.jpg
+matrix dimention: 7
+Program time: 6001.58 ms
+Kernel time: 9.73722 ms
+Host->Device: 16.0834 ms, 11.3921 GB/s
+Device->Host: 27.6087 ms, 6.63643 GB/s
+Throughput (pixels/s): 5.0511e+09
+Kernel throughput: 1485.02 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 150.535 GB/s
+Host memory footprint:   375.242 MB
+Device memory footprint in global data: 375.242 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_irregular.jpg
+matrix dimention: 7
+Program time: 6195.82 ms
+Kernel time: 8.97139 ms
+Host->Device: 16.1281 ms, 11.3605 GB/s
+Device->Host: 27.2915 ms, 6.71357 GB/s
+Throughput (pixels/s): 5.48228e+09
+Kernel throughput: 1611.79 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 163.385 GB/s
+Host memory footprint:   375.242 MB
+Device memory footprint in global data: 375.242 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
