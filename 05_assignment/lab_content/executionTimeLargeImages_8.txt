@@ -1,0 +1,75 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2063.88 ms
+Kernel time: 1.48275 ms
+Host->Device: 5.12067 ms, 11.0994 GB/s
+Device->Host: 9.18422 ms, 6.18845 GB/s
+Throughput (pixels/s): 1.02895e+10
+Kernel throughput: 3025.12 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 306.652 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2028.66 ms
+Kernel time: 1.4295 ms
+Host->Device: 5.32934 ms, 10.6648 GB/s
+Device->Host: 9.67814 ms, 5.87263 GB/s
+Throughput (pixels/s): 1.06728e+10
+Kernel throughput: 3137.81 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 318.075 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_cumulo_trumper.jpg
+matrix dimention: 7
+Program time: 2048.39 ms
+Kernel time: 1.43258 ms
+Host->Device: 5.1353 ms, 11.0677 GB/s
+Device->Host: 9.50845 ms, 5.97744 GB/s
+Throughput (pixels/s): 1.06499e+10
+Kernel throughput: 3131.08 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 317.393 GB/s
+Host memory footprint:   116.401 MB
+Device memory footprint in global data: 116.401 MB
+Kernel memory footprint in private data per workitem: 48 Bytes

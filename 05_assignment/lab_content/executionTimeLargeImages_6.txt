@@ -1,0 +1,75 @@
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 1986.17 ms
+Kernel time: 140.905 ms
+Host->Device: 5.83386 ms, 10.7115 GB/s
+Device->Host: 11.1313 ms, 5.61386 GB/s
+Throughput (pixels/s): 1.19047e+08
+Kernel throughput: 34.9998 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 3.54788 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 2119.02 ms
+Kernel time: 104.153 ms
+Host->Device: 5.63613 ms, 11.0873 GB/s
+Device->Host: 10.9612 ms, 5.70099 GB/s
+Throughput (pixels/s): 1.61055e+08
+Kernel throughput: 47.3502 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 4.79981 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		 [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		 [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		 [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+Gaussian filter saved
+
+sigma: 1, image: galaxia_nebulosa.jpg
+matrix dimention: 7
+Program time: 1914.56 ms
+Kernel time: 117.84 ms
+Host->Device: 5.7641 ms, 10.8411 GB/s
+Device->Host: 13.2004 ms, 4.73392 GB/s
+Throughput (pixels/s): 1.42349e+08
+Kernel throughput: 41.8506 GFLOP/s
+Kernel global-memory bandwidth (1 read + 1 write): 4.24233 GB/s
+Host memory footprint:   127.978 MB
+Device memory footprint in global data: 127.978 MB
+Kernel memory footprint in private data per workitem: 48 Bytes
