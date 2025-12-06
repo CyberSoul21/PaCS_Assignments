@@ -180,6 +180,7 @@ int main(int argc, const char *argv[]){
 		case 2: {image_name = "cat_250x334.jpg"; break;}
 		case 3: {image_name = "cat_600x600.jpg"; break;}
 		case 4: {image_name = "cat_760x570.jpg"; break;}
+		case 5: {image_name = "galaxia_irregular.jpg"; break;}
 		default:{ image_name = "cat_1000x600.jpg"; break;}
 	}
 
