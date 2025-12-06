@@ -47,7 +47,7 @@ float * createMask(float sigma, int * maskSizePointer) {
     return mask;
 }
 
-std::pair<size_t, size_t>
+std::pair<size_t, std::string>
 usage(int argc, const char *argv[]) {
     // read the number of steps from the command line
     if (argc != 3) {
