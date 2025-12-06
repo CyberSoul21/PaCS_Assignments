@@ -10,10 +10,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "CImg/CImg.h"
+#define CL_TARGET_OPENCL_VERSION 220
 #ifdef __APPLE__
 	  #include <OpenCL/opencl.h>
 #else
-	  #include <CL/cl.h>
+	#include <CL/cl.h>
 #endif
 	  
 using namespace std::chrono;
