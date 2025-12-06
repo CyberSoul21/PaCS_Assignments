@@ -138,7 +138,7 @@ int main(int argc, const char *argv[]){
 
 	// 5. Read an OpenCL program from the file kernel.cl
 	// Calculate size of the file
-	FILE *fileHandler = fopen("kernel_gaussian_filter.cl", "r");
+	FILE *fileHandler = fopen("./kernel_gaussian_filter.cl", "r");
 	fseek(fileHandler, 0, SEEK_END);
 	size_t fileSize = ftell(fileHandler);
 	rewind(fileHandler);
@@ -179,16 +179,7 @@ int main(int argc, const char *argv[]){
 	cl_error(err, "Failed to create kernel from the program\n");
 
 	// 6. Get image
-	std::string image_name;
-	switch(image) {
-		case 1: {image_name = "cat_275x183.jpg"; break;}
-		case 2: {image_name = "cat_250x334.jpg"; break;}
-		case 3: {image_name = "cat_600x600.jpg"; break;}
-		case 4: {image_name = "cat_760x570.jpg"; break;}
-		default:{ image_name = "cat_1000x600.jpg"; break;}
-	}
-
-	cimg_library::CImg<unsigned char> img(image_name.c_str());
+	cimg_library::CImg<unsigned char> img(image);
 	int width = img.width();
 	int height = img.height();
 	double num_pixels = (double)width * (double)height;
@@ -277,7 +268,7 @@ int main(int argc, const char *argv[]){
         outImg(x,y,2) = outRGBA[i+2];
     }
 	
-	std::string result = "result_" + std::to_string(sigma) + "_" + image_name;
+	std::string result = "result_" + std::to_string(sigma) + "_" + image;
     outImg.save(result.c_str());
     std::cout << "Gaussian filter saved\n"<<std::endl;
 
@@ -294,7 +285,7 @@ int main(int argc, const char *argv[]){
 	// Complete program time
 	auto t_program_end = high_resolution_clock::now();
     double program_ms = duration<double, std::milli>(t_program_end - t_program_start).count();
-    std::cout << "sigma: " << sigma << ", image: " <<image_name.c_str()<<std::endl;
+    std::cout << "sigma: " << sigma << ", image: " <<image<<std::endl;
 	std::cout << "matrix dimention: " << side <<std::endl;
 	std::cout << "Program time: " << program_ms << " ms" << std::endl;
 

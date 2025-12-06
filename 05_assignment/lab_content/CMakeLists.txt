@@ -1,23 +1,14 @@
 cmake_minimum_required(VERSION 3.15...3.30)
-project(
-    GaussianFilter
-    VERSION 1.0
-    LANGUAGES CXX
-)
+project(GaussianFilter LANGUAGES CXX)
 
-# For all executables in project
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Include directory for CImg
+
 include_directories(${CMAKE_SOURCE_DIR}/CImg)
+find_package(OpenCL REQUIRED)
+find_package(X11 REQUIRED)
 
-# Add executable
-add_executable(executable environ_gaussian_filter.c)
-
-# Link libraries
-target_link_libraries(executable
-    m
-    pthread
-    X11
-    OpenCL
-)
+set_source_files_properties(environ_gaussian_filter.c PROPERTIES LANGUAGE CXX)
+add_executable(gaussian_filter environ_gaussian_filter.c)
+target_link_libraries(gaussian_filter m pthread X11 OpenCL::OpenCL)
