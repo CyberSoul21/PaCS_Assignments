@@ -346,7 +346,7 @@ int main(int argc, const char *argv[]){
 	// Footprints
 	size_t host_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // rgba_in + outRGBA + mask
 	size_t device_mem = num_pixels*4 + num_pixels*4 + side*side*sizeof(float); // clImage_In + clImage_Out + clMask
-	size_t kernel_mem = 2*8 + 16 + 16 // pos(2*int2) + acc(float3) + pix(float4)
+	size_t kernel_mem = 2*8 + 16 + 16; // pos(2*int2) + acc(float3) + pix(float4)
 	std::cout << "Host memory footprint:   " << host_mem / (1024.0*1024.0)<< " MB" << std::endl;
 	std::cout << "Device memory footprint in global data: " << device_mem / (1024.0*1024.0)<< " MB" << std::endl;
 	std::cout << "Kernel memory footprint in private data per workitem: " << kernel_mem << " Bytes" << std::endl;
