@@ -148,18 +148,19 @@ int main(int argc, const char *argv[]){
 
 			cl_device_type dtype;
         	clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_TYPE, sizeof(dtype), &dtype, NULL);
+			cl_error(err, "clGetDeviceInfo: Getting device type");
 
-			if ((dtype & CL_DEVICE_TYPE_GPU) && gpu_device == nullptr)
-            	gpu_device = devices_ids[i][j];
+			// if ((dtype & CL_DEVICE_TYPE_GPU) && gpu_device == nullptr)
+            // 	gpu_device = devices_ids[i][j];
 
-			if ((dtype & CL_DEVICE_TYPE_CPU) && cpu_device == nullptr)
-				cpu_device = devices_ids[i][j];
+			// if ((dtype & CL_DEVICE_TYPE_CPU) && cpu_device == nullptr)
+			// 	cpu_device = devices_ids[i][j];
 		}
 	}	
 
-	//// Berlin case: both gpus
-	// gpu_device = devices_ids[0][0];
-	// cpu_device = devices_ids[0][1];
+	// Berlin case: both gpus
+	gpu_device = devices_ids[0][0];
+	cpu_device = devices_ids[0][1];
 
 	// 3. Create a context, with a device
 	cl_device_id context_devices[2] = { gpu_device, cpu_device };
