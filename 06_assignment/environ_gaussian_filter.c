@@ -149,6 +149,8 @@ int main(int argc, const char *argv[]){
 			cl_device_type dtype;
         	clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_TYPE, sizeof(dtype), &dtype, NULL);
 			cl_error(err, "clGetDeviceInfo: Getting device type");
+			// printf("\t\t [%d]-Platform [%d]-Device CL_DEVICE_TYPE: %s\n\n", i, j, dtype);
+
 
 			// if ((dtype & CL_DEVICE_TYPE_GPU) && gpu_device == nullptr)
             // 	gpu_device = devices_ids[i][j];
@@ -232,10 +234,14 @@ int main(int argc, const char *argv[]){
     std::vector<unsigned char> rgba_in(num_pixels*4);
     cimg_forXY(img, x, y){
         int idx = 4*(y*width + x);
-        rgba_in[idx+0] = img(x,y,0);
-        rgba_in[idx+1] = img(x,y,1);
-        rgba_in[idx+2] = img(x,y,2);
-        rgba_in[idx+3] = 255;
+        // rgba_in[idx+0] = img(x,y,0);
+        // rgba_in[idx+1] = img(x,y,1);
+        // rgba_in[idx+2] = img(x,y,2);
+        // rgba_in[idx+3] = 255;
+		rgba_in[idx+0] = img(x, y, 0, 0); // R
+		rgba_in[idx+1] = img(x, y, 0, 1); // G
+		rgba_in[idx+2] = img(x, y, 0, 2); // B
+		rgba_in[idx+3] = 255;
     }
 
 	// Replicating image 5000 times
@@ -436,9 +442,12 @@ int main(int argc, const char *argv[]){
 	cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
 	cimg_forXY(outImg, x,y) {
 		int i = 4*(y*width + x);
-		outImg(x,y,0) = out0[i+0];
-		outImg(x,y,1) = out0[i+1];
-		outImg(x,y,2) = out0[i+2];
+		// outImg(x,y,0) = out0[i+0];
+		// outImg(x,y,1) = out0[i+1];
+		// outImg(x,y,2) = out0[i+2];
+		outImg(x,y,0,0) = out0[i+0];
+		outImg(x,y,0,1) = out0[i+1];
+		outImg(x,y,0,2) = out0[i+2];
 	}
 	outImg.save("result_stream.jpg");
     std::cout << "Gaussian filter saved\n"<<std::endl;
