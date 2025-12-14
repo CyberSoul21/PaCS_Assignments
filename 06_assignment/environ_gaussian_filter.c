@@ -237,14 +237,14 @@ int main(int argc, const char *argv[]){
     cimg_forXY(img, x, y){
         printf("fallo 3");
 		int idx = 4*(y*width + x);
-        // rgba_in[idx+0] = img(x,y,0);
-        // rgba_in[idx+1] = img(x,y,1);
-        // rgba_in[idx+2] = img(x,y,2);
-        // rgba_in[idx+3] = 255;
-		rgba_in[idx+0] = img(x, y, 0, 0); // R
-		rgba_in[idx+1] = img(x, y, 0, 1); // G
-		rgba_in[idx+2] = img(x, y, 0, 2); // B
-		rgba_in[idx+3] = 255;
+        rgba_in[idx+0] = img(x,y,0);
+        rgba_in[idx+1] = img(x,y,1);
+        rgba_in[idx+2] = img(x,y,2);
+        rgba_in[idx+3] = 255;
+		// rgba_in[idx+0] = img(x, y, 0, 0); // R
+		// rgba_in[idx+1] = img(x, y, 0, 1); // G
+		// rgba_in[idx+2] = img(x, y, 0, 2); // B
+		// rgba_in[idx+3] = 255;
 		printf("fallo 4");
     }
 
