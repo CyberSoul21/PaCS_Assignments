@@ -243,6 +243,7 @@ int main(int argc, const char *argv[]){
 		rgba_in[idx+2] = img(x, y, 0, 2); // B
 		rgba_in[idx+3] = 255;
     }
+	printf("fallo 1");
 
 	// Replicating image 5000 times
 	const size_t N_IMAGES = 5000; 
@@ -250,8 +251,10 @@ int main(int argc, const char *argv[]){
 	size_t gpu_images = (size_t)(gpu_share * N_IMAGES);
 	size_t cpu_images = N_IMAGES - gpu_images;
 
+	printf("fallo 2");
 	std::vector<unsigned char> stream_in(N_IMAGES * image_bytes);
 	std::vector<unsigned char> stream_out(N_IMAGES * image_bytes);
+	printf("fallo 3");
 	for (size_t i = 0; i < N_IMAGES; ++i) {
 		memcpy(stream_in.data() + i * image_bytes,
 			rgba_in.data(),
