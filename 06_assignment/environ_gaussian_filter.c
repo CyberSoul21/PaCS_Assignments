@@ -231,9 +231,12 @@ int main(int argc, const char *argv[]){
 	std::cout<<"image"<<width<<std::endl;
 
 	// Convert CImg planar RGB → interleaved RGB (OpenCL format)
+	printf("fallo 1");
     std::vector<unsigned char> rgba_in(num_pixels*4);
+	printf("fallo 2");
     cimg_forXY(img, x, y){
-        int idx = 4*(y*width + x);
+        printf("fallo 3");
+		int idx = 4*(y*width + x);
         // rgba_in[idx+0] = img(x,y,0);
         // rgba_in[idx+1] = img(x,y,1);
         // rgba_in[idx+2] = img(x,y,2);
@@ -242,8 +245,9 @@ int main(int argc, const char *argv[]){
 		rgba_in[idx+1] = img(x, y, 0, 1); // G
 		rgba_in[idx+2] = img(x, y, 0, 2); // B
 		rgba_in[idx+3] = 255;
+		printf("fallo 4");
     }
-	printf("fallo 1");
+
 
 	// Replicating image 5000 times
 	const size_t N_IMAGES = 5000; 
