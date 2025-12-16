@@ -1,0 +1,104 @@
+berlin:~/Documents/05_laboratory/PaCS_Assignments/06_assignment_javier/ ./metricts 2.0
+Number of available platforms: 1
+
+	[0]-Platform Name: NVIDIA CUDA
+
+	[0]-Platform. Number of available devices: 2
+		[0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+		[0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+		[0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+Found 5000 images to process
+
+Starting concurrent processing with 50/50 load balancing...
+
+
+============================================================
+       DETAILED EXECUTION TIME AND PERFORMANCE ANALYSIS
+============================================================
+
+╔══════════════════════════════════════════════════════════╗
+║  GPU 0 Performance                                     ║
+╚══════════════════════════════════════════════════════════╝
+Images processed:        2500
+Average time per image:  146.947 ms
+Min time:                112.937 ms
+Max time:                598.262 ms
+Average kernel time:     0.204428 ms (0.139117%)
+Average H2D transfer:    0.237811 ms (0.161835%)
+Average D2H transfer:    0.482073 ms (0.328059%)
+Average I/O time:        127.873 ms (87.0198%)
+Throughput:              6.80517 images/sec
+
+╔══════════════════════════════════════════════════════════╗
+║  GPU 1 Performance                                     ║
+╚══════════════════════════════════════════════════════════╝
+Images processed:        2500
+Average time per image:  143.657 ms
+Min time:                114.191 ms
+Max time:                716.253 ms
+Average kernel time:     0.198472 ms (0.138157%)
+Average H2D transfer:    0.132255 ms (0.0920635%)
+Average D2H transfer:    0.413693 ms (0.287973%)
+Average I/O time:        124.735 ms (86.8283%)
+Throughput:              6.96103 images/sec
+
+╔══════════════════════════════════════════════════════════╗
+║  Overall System Performance                              ║
+╚══════════════════════════════════════════════════════════╝
+Total images processed:  5000
+Total program time:      391795 ms
+Overall throughput:      12.7618 images/sec
+
+============================================================
+            WORKLOAD UNBALANCE MEASUREMENT
+============================================================
+
+GPU 0: 2500 images, Total span: 391431 ms
+GPU 1: 2500 images, Total span: 391453 ms
+
+Time difference:         21.6726 ms
+Workload imbalance:      0.00553645%
+Slower GPU:              GPU 1
+Faster GPU:              GPU 0 (idle time: 21.6726 ms)
+Load balance ratio:      1
+
+============================================================
+              BOTTLENECK IDENTIFICATION
+============================================================
+
+[A] Inter-Device Bottleneck (GPU vs GPU)
+    GPU 0 avg time:      146.947 ms
+    GPU 1 avg time:      143.657 ms
+    Slower GPU:          GPU 0
+    Performance gap:     2.29037%
+
+[B] GPU 0 - Intra-Device Bottleneck (Computation vs Communication)
+    Computation (kernel): 0.139117% (0.204428 ms avg)
+    Communication H2D:    0.161835% (0.237811 ms avg)
+    Communication D2H:    0.328059% (0.482073 ms avg)
+    I/O (load/save):      87.0198% (127.873 ms avg)
+    → BOTTLENECK: Communication-bound (transfers are 3.52x slower than kernel)
+
+[B] GPU 1 - Intra-Device Bottleneck (Computation vs Communication)
+    Computation (kernel): 0.14% (0.20 ms avg)
+    Communication H2D:    0.09% (0.13 ms avg)
+    Communication D2H:    0.29% (0.41 ms avg)
+    I/O (load/save):      86.83% (124.73 ms avg)
+    → BOTTLENECK: Communication-bound (transfers are 2.75x slower than kernel)
+
+[C] System-Level Bottlenecks
+    I/O percentage:       86.93%
+    ⚠ WARNING: Disk I/O may be a significant bottleneck!
+
+Metrics exported to: performance_metrics.csv
+
+============================================================
+All 5000 images processed successfully!
+============================================================
+
