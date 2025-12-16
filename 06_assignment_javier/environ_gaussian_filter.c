@@ -188,8 +188,8 @@ void processImage(GPUContext& gpu_ctx, const std::string& image_path, float sigm
     
     {
         std::lock_guard<std::mutex> lock(console_mutex);
-        std::cout << "[GPU " << gpu_ctx.gpu_id << "] Completed: " << filename 
-                  << " | Total: " << total_ms << " ms | Kernel: " << kernel_ms << " ms" << std::endl;
+        //std::cout << "[GPU " << gpu_ctx.gpu_id << "] Completed: " << filename 
+        //          << " | Total: " << total_ms << " ms | Kernel: " << kernel_ms << " ms" << std::endl;
     }
     
     // Cleanup
