@@ -122,7 +122,7 @@ void processImage(GPUContext& gpu_ctx, const std::string& image_path, float sigm
     
     {
         std::lock_guard<std::mutex> lock(console_mutex);
-        std::cout << "[GPU " << gpu_ctx.gpu_id << "] Processing: " << metrics.filename << std::endl;
+        //std::cout << "[GPU " << gpu_ctx.gpu_id << "] Processing: " << metrics.filename << std::endl;
     }
     
     // Time image loading
@@ -273,8 +273,8 @@ void processImage(GPUContext& gpu_ctx, const std::string& image_path, float sigm
     
     {
         std::lock_guard<std::mutex> lock(console_mutex);
-        std::cout << "[GPU " << gpu_ctx.gpu_id << "] Completed: " << metrics.filename 
-                  << " | Total: " << metrics.total_time_ms << " ms | Kernel: " << metrics.kernel_time_ms << " ms" << std::endl;
+        //std::cout << "[GPU " << gpu_ctx.gpu_id << "] Completed: " << metrics.filename 
+                  //<< " | Total: " << metrics.total_time_ms << " ms | Kernel: " << metrics.kernel_time_ms << " ms" << std::endl;
     }
     
     // Cleanup
