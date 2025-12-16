@@ -77,7 +77,7 @@ void processImage(GPUContext& gpu_ctx, const std::string& image_path, float sigm
     
     {
         std::lock_guard<std::mutex> lock(console_mutex);
-        std::cout << "[GPU " << gpu_ctx.gpu_id << "] Processing: " << filename << std::endl;
+        //std::cout << "[GPU " << gpu_ctx.gpu_id << "] Processing: " << filename << std::endl;
     }
     
     // Load image
