@@ -1,0 +1,84 @@
+============================================================
+       DETAILED EXECUTION TIME AND PERFORMANCE ANALYSIS
+============================================================
+
+╔══════════════════════════════════════════════════════════╗
+║  GPU 0 Performance                                     ║
+╚══════════════════════════════════════════════════════════╝
+Images processed:        1000
+Average time per image:  173.012 ms
+Min time:                114.069 ms
+Max time:                588.863 ms
+Average kernel time:     0.203951 ms (0.117883%)
+Average H2D transfer:    0.239968 ms (0.1387%)
+Average D2H transfer:    0.45997 ms (0.26586%)
+Average I/O time:        154.04 ms (89.0343%)
+Throughput:              5.77995 images/sec
+
+╔══════════════════════════════════════════════════════════╗
+║  GPU 1 Performance                                     ║
+╚══════════════════════════════════════════════════════════╝
+Images processed:        1000
+Average time per image:  169.073 ms
+Min time:                116.668 ms
+Max time:                622.321 ms
+Average kernel time:     0.196082 ms (0.115975%)
+Average H2D transfer:    0.131718 ms (0.0779058%)
+Average D2H transfer:    0.415901 ms (0.245988%)
+Average I/O time:        150.233 ms (88.8568%)
+Throughput:              5.91459 images/sec
+
+╔══════════════════════════════════════════════════════════╗
+║  Overall System Performance                              ║
+╚══════════════════════════════════════════════════════════╝
+Total images processed:  2000
+Total program time:      195948 ms
+Overall throughput:      10.2068 images/sec
+
+============================================================
+            WORKLOAD UNBALANCE MEASUREMENT
+============================================================
+
+GPU 0: 1000 images, Total span: 195548 ms
+GPU 1: 1000 images, Total span: 195596 ms
+
+Time difference:         47.1694 ms
+Workload imbalance:      0.0241158%
+Slower GPU:              GPU 1
+Faster GPU:              GPU 0 (idle time: 47.1694 ms)
+Load balance ratio:      1
+
+============================================================
+              BOTTLENECK IDENTIFICATION
+============================================================
+
+[A] Inter-Device Bottleneck (GPU vs GPU)
+    GPU 0 avg time:      173.012 ms
+    GPU 1 avg time:      169.073 ms
+    Slower GPU:          GPU 0
+    Performance gap:     2.32951%
+
+[B] GPU 0 - Intra-Device Bottleneck (Computation vs Communication)
+    Computation (kernel): 0.117883% (0.203951 ms avg)
+    Communication H2D:    0.1387% (0.239968 ms avg)
+    Communication D2H:    0.26586% (0.45997 ms avg)
+    I/O (load/save):      89.0343% (154.04 ms avg)
+    → BOTTLENECK: Communication-bound (transfers are 3.43x slower than kernel)
+
+[B] GPU 1 - Intra-Device Bottleneck (Computation vs Communication)
+    Computation (kernel): 0.12% (0.20 ms avg)
+    Communication H2D:    0.08% (0.13 ms avg)
+    Communication D2H:    0.25% (0.42 ms avg)
+    I/O (load/save):      88.86% (150.23 ms avg)
+    → BOTTLENECK: Communication-bound (transfers are 2.79x slower than kernel)
+
+[C] System-Level Bottlenecks
+    I/O percentage:       88.95%
+    ⚠ WARNING: Disk I/O may be a significant bottleneck!
+
+Metrics exported to: performance_metrics.csv
+
+============================================================
+All 2000 images processed successfully!
+============================================================
+
