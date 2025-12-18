@@ -317,10 +317,8 @@ int main(int argc, const char *argv[]) {
     err = clEnqueueWriteBuffer(gpu1_ctx.command_queue,input_buf1,CL_FALSE,0,bytes_per_image * N1,images1,0, nullptr,&h2d_evt[1]);
     cl_error(err, "EnqueueWriteBuffer GPU1 failed");
 
-    // size_t global0[3] = {(size_t)width,(size_t)height,(size_t)N0};
-    // size_t global1[3] = {(size_t)width,(size_t)height,(size_t)N1};
-    size_t global0[3] = {(size_t)width,(size_t)height,(size_t)1};
-    size_t global1[3] = {(size_t)width,(size_t)height,(size_t)1};
+    size_t global0[3] = {(size_t)width,(size_t)height,(size_t)N0};
+    size_t global1[3] = {(size_t)width,(size_t)height,(size_t)N1};
 
     cl_event kernel_evt[2];
     err = clEnqueueNDRangeKernel(gpu0_ctx.command_queue,gpu0_ctx.kernel,3, nullptr,global0, nullptr,1, &h2d_evt[0],&kernel_evt[0]);
