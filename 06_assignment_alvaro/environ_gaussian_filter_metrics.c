@@ -370,11 +370,13 @@ int main(int argc, const char *argv[]) {
     std::cout << "\n=== Average times per iteration ===\n";
     std::cout << "GPU 0: H2D = " << avg_h2d_ms[0]
             << " ms | Kernel = " << avg_kernel_ms[0]
-            << " ms | D2H = " << avg_d2h_ms[0] << " ms\n";
+            << " ms | D2H = " << avg_d2h_ms[0] << " ms\n"
+            << "iters = " << m[0].iters;
 
     std::cout << "GPU 1: H2D = " << avg_h2d_ms[1]
             << " ms | Kernel = " << avg_kernel_ms[1]
-            << " ms | D2H = " << avg_d2h_ms[1] << " ms\n";
+            << " ms | D2H = " << avg_d2h_ms[1] << " ms\n"
+            << "iters = " << m[1].iters;
 
     double h2d_bw_avg0 = (bytes_per_image / (1024.0*1024.0)) / (avg_h2d_ms[0] / 1000.0);
     double d2h_bw_avg0 = (bytes_per_image / (1024.0*1024.0)) / (avg_d2h_ms[0] / 1000.0);
