@@ -216,7 +216,6 @@ int main(int argc, const char *argv[]) {
     int height = img.height();
     size_t num_pixels = (size_t)width * height;
 
-    std::cout << "test 1" <<std::endl;
     std::vector<unsigned char> rgba_in(num_pixels * 4);
     std::vector<unsigned char> rgba_out(width * height * 4);
     cimg_forXY(img, x, y) {
@@ -283,7 +282,6 @@ int main(int argc, const char *argv[]) {
     err = clSetKernelArg(gpu0_ctx.kernel, 5, sizeof(int), &height);
     cl_error(err, "set arg 5 GPU0");
 
-    std::cout << "test 2" <<std::endl;
     // GPU 1
     cl_mem input_buf1 = clCreateBuffer(gpu1_ctx.context,CL_MEM_READ_ONLY,bytes_per_image * N1,nullptr, &err);
     cl_error(err, "Failed to create input image buffer for GPU1 at device\n");
@@ -305,7 +303,6 @@ int main(int argc, const char *argv[]) {
     err = clSetKernelArg(gpu1_ctx.kernel, 5, sizeof(int), &height);
     cl_error(err, "set arg 5 GPU1");
 
-    std::cout << "test 3" <<std::endl;
     Metrics m[2];
     std::vector<unsigned char> out_gpu[2] = {
         std::vector<unsigned char>(bytes_per_image * N0),
@@ -315,7 +312,6 @@ int main(int argc, const char *argv[]) {
     auto t_start = high_resolution_clock::now();
 
     cl_event h2d_evt[2];
-    std::cout << "test 4" <<std::endl;
     clEnqueueWriteBuffer(gpu0_ctx.command_queue,input_buf0,CL_FALSE,0,bytes_per_image * N0,images0,0, nullptr,&h2d_evt[0]);
     cl_error(err, "EnqueueWriteBuffer GPU0 failed");
     clEnqueueWriteBuffer(gpu1_ctx.command_queue,input_buf1,CL_FALSE,0,bytes_per_image * N1,images1,0, nullptr,&h2d_evt[1]);
@@ -325,28 +321,23 @@ int main(int argc, const char *argv[]) {
     size_t global1[3] = {(size_t)width,(size_t)height,(size_t)N1};
 
     cl_event kernel_evt[2];
-    std::cout << "test 5" <<std::endl;
     clEnqueueNDRangeKernel(gpu0_ctx.command_queue,gpu0_ctx.kernel,3, nullptr,global0, nullptr,1, &h2d_evt[0],&kernel_evt[0]);
     cl_error(err, "EnqueueNDRangeKernel GPU0 failed");
     clEnqueueNDRangeKernel(gpu1_ctx.command_queue,gpu1_ctx.kernel,3, nullptr,global1, nullptr,1, &h2d_evt[1],&kernel_evt[1]);
     cl_error(err, "EnqueueNDRangeKernel GPU1 failed");
 
     cl_event d2h_evt[2];
-    std::cout << "test 6" <<std::endl;
     clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu[0].data(),1, &kernel_evt[0],&d2h_evt[0]);
     cl_error(err, "EnqueueReadBuffer GPU0 failed");
     clEnqueueReadBuffer(gpu1_ctx.command_queue,output_buf1,CL_FALSE,0,bytes_per_image * N1,out_gpu[1].data(),1, &kernel_evt[1],&d2h_evt[1]);
     cl_error(err, "EnqueueReadBuffer GPU1 failed");
 
-    std::cout << "test 7" <<std::endl;
     clFlush(gpu0_ctx.command_queue);
     clFlush(gpu1_ctx.command_queue);
 
-    std::cout << "test 8" <<std::endl;
     clFinish(gpu0_ctx.command_queue);
     clFinish(gpu1_ctx.command_queue);
 
-    std::cout << "test 9" <<std::endl;
     auto t_end = high_resolution_clock::now();
     double total_ms = duration<double, std::milli>(t_end - t_start).count();
 
@@ -373,7 +364,7 @@ int main(int argc, const char *argv[]) {
             << " ms | Kernel = " << m[0].kernel_ms << " ms\n"
             << " ms | D2H total = " << m[0].d2h_ms << " ms\n"
             << " ms | D2H per image = " << (m[0].d2h_ms / m[0].iters) << " ms\n"
-            << "iters = " << m[0].iters;
+            << "iters = " << m[0].iters << std::cout;
 
     std::cout << "GPU 0:" 
             << " ms | H2D total = " << m[1].h2d_ms << " ms\n"
@@ -381,7 +372,7 @@ int main(int argc, const char *argv[]) {
             << " ms | Kernel = " << m[1].kernel_ms << " ms\n"
             << " ms | D2H total = " << m[1].d2h_ms << " ms\n"
             << " ms | D2H per image = " << (m[1].d2h_ms / m[1].iters) << " ms\n"
-            << "iters = " << m[1].iters;
+            << "iters = " << m[1].iters<< std::cout;
 
     double h2d_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].h2d_ms / 1000.0);
     double d2h_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].d2h_ms / 1000.0);
