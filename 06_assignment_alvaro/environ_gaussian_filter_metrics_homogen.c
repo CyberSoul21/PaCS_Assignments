@@ -298,15 +298,15 @@ int main(int argc, const char *argv[]) {
 
     std::cout << "\n=== Average times per iteration ===\n";
     std::cout << "GPU 0:" 
-            << " ms | H2D total = " << m[0].h2d_ms << " ms\n"
-            << " ms | H2D per image = " << (m[0].h2d_ms / m[0].iters) << " ms\n"
-            << " ms | Kernel = " << m[0].kernel_ms << " ms\n"
-            << " ms | D2H total = " << m[0].d2h_ms << " ms\n"
-            << " ms | D2H per image = " << (m[0].d2h_ms / m[0].iters) << " ms\n"
-            << "iters = " << m[0].iters << std::endl;
+            << " ms | H2D total = " << m.h2d_ms << " ms\n"
+            << " ms | H2D per image = " << (m.h2d_ms / m.iters) << " ms\n"
+            << " ms | Kernel = " << m.kernel_ms << " ms\n"
+            << " ms | D2H total = " << m.d2h_ms << " ms\n"
+            << " ms | D2H per image = " << (m.d2h_ms / m.iters) << " ms\n"
+            << "iters = " << m.iters << std::endl;
 
-    double h2d_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].h2d_ms / 1000.0);
-    double d2h_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].d2h_ms / 1000.0);
+    double h2d_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m.h2d_ms / 1000.0);
+    double d2h_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m.d2h_ms / 1000.0);
 
     std::cout << "\n=== Average Bandwidth per GPU ===\n";
     std::cout << "GPU 0: H2D = " << h2d_bw0
@@ -316,9 +316,9 @@ int main(int argc, const char *argv[]) {
     cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x, y) {
         int i = 4*(y*width + x);
-        outImg(x,y,0) = out_gpu[0][i];
-        outImg(x,y,1) = out_gpu[0][i+1];
-        outImg(x,y,2) = out_gpu[0][i+2];
+        outImg(x,y,0) = out_gpu[i];
+        outImg(x,y,1) = out_gpu[i+1];
+        outImg(x,y,2) = out_gpu[i+2];
     }
 
     std::string result = "final_result.jpg";
