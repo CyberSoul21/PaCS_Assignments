@@ -364,7 +364,7 @@ int main(int argc, const char *argv[]) {
             << " ms | Kernel = " << m[0].kernel_ms << " ms\n"
             << " ms | D2H total = " << m[0].d2h_ms << " ms\n"
             << " ms | D2H per image = " << (m[0].d2h_ms / m[0].iters) << " ms\n"
-            << "iters = " << m[0].iters << std::cout;
+            << "iters = " << m[0].iters << std::endl;
 
     std::cout << "GPU 0:" 
             << " ms | H2D total = " << m[1].h2d_ms << " ms\n"
@@ -372,7 +372,7 @@ int main(int argc, const char *argv[]) {
             << " ms | Kernel = " << m[1].kernel_ms << " ms\n"
             << " ms | D2H total = " << m[1].d2h_ms << " ms\n"
             << " ms | D2H per image = " << (m[1].d2h_ms / m[1].iters) << " ms\n"
-            << "iters = " << m[1].iters<< std::cout;
+            << "iters = " << m[1].iters<< std::endl;
 
     double h2d_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].h2d_ms / 1000.0);
     double d2h_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].d2h_ms / 1000.0);
