@@ -1,0 +1,145 @@
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           244.554 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 66.2348 ms
+ ms | H2D per image = 0.0264939 ms
+ ms | Kernel = 19.5348 ms
+ ms | D2H total = 66.338 ms
+ ms | D2H per image = 0.0265352 ms
+iters = 2500
+GPU 0: ms | H2D total = 45.606 ms
+ ms | H2D per image = 0.0182424 ms
+ ms | Kernel = 84.3028 ms
+ ms | D2H total = 49.1788 ms
+ ms | D2H per image = 0.0196715 ms
+iters = 2500
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 12022.7 MB/s | D2H = 12003.9 MB/s
+GPU 1: H2D = 17460.8 MB/s | D2H = 16192.3 MB/s
+
+Workload imbalance (iterations): 0 %
+Kernel time imbalance ratio (max/min): 4.31551
+
+=== Bottleneck analysis ===
+GPU 0: Computation = 12.8428% | Communication = 87.1572%
+GPU 1: Computation = 47.0735% | Communication = 52.9265%
+
+Global bottleneck:
+Computation = 31.3524% | Communication = 68.6476%
+Gaussian filter saved
+
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           240.258 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 66.2955 ms
+ ms | H2D per image = 0.0265182 ms
+ ms | Kernel = 19.5267 ms
+ ms | D2H total = 66.4561 ms
+ ms | D2H per image = 0.0265824 ms
+iters = 2500
+GPU 0: ms | H2D total = 45.9085 ms
+ ms | H2D per image = 0.0183634 ms
+ ms | Kernel = 83.6987 ms
+ ms | D2H total = 47.0904 ms
+ ms | D2H per image = 0.0188362 ms
+iters = 2500
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 12011.7 MB/s | D2H = 11982.6 MB/s
+GPU 1: H2D = 17345.7 MB/s | D2H = 16910.4 MB/s
+
+Workload imbalance (iterations): 0 %
+Kernel time imbalance ratio (max/min): 4.28638
+
+=== Bottleneck analysis ===
+GPU 0: Computation = 12.823% | Communication = 87.177%
+GPU 1: Computation = 47.3683% | Communication = 52.6317%
+
+Global bottleneck:
+Computation = 31.3778% | Communication = 68.6222%
+Gaussian filter saved
+
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           257.241 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 66.1493 ms
+ ms | H2D per image = 0.0264597 ms
+ ms | Kernel = 19.541 ms
+ ms | D2H total = 69.1571 ms
+ ms | D2H per image = 0.0276628 ms
+iters = 2500
+GPU 0: ms | H2D total = 54.825 ms
+ ms | H2D per image = 0.02193 ms
+ ms | Kernel = 84.2148 ms
+ ms | D2H total = 53.1626 ms
+ ms | D2H per image = 0.021265 ms
+iters = 2500
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 12038.2 MB/s | D2H = 11514.6 MB/s
+GPU 1: H2D = 14524.7 MB/s | D2H = 14978.9 MB/s
+
+Workload imbalance (iterations): 0 %
+Kernel time imbalance ratio (max/min): 4.30965
+
+=== Bottleneck analysis ===
+GPU 0: Computation = 12.6195% | Communication = 87.3805%
+GPU 1: Computation = 43.8157% | Communication = 56.1843%
+
+Global bottleneck:
+Computation = 29.8965% | Communication = 70.1035%
+Gaussian filter saved
