@@ -1,0 +1,66 @@
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+Found 5000 images to process
+
+Starting concurrent processing
+
+
+============================================================
+       DETAILED EXECUTION TIME AND PERFORMANCE ANALYSIS
+============================================================
+
+╔══════════════════════════════════════════════════════════╗
+║  GPU 0 Performance                                     ║
+╚══════════════════════════════════════════════════════════╝
+Images processed:        5000
+Average time per image:  187.477 ms
+Min time:                109.1 ms
+Max time:                2876.98 ms
+Average kernel time:     0.0712819 ms (0.0380217%)
+Average H2D transfer:    0.218395 ms (0.116492%)
+Average D2H transfer:    0.529026 ms (0.282182%)
+Average I/O time:        166.602 ms (88.8656%)
+Throughput:              5.334 images/sec
+
+╔══════════════════════════════════════════════════════════╗
+║  Overall System Performance                              ║
+╚══════════════════════════════════════════════════════════╝
+Total images processed:  5000
+Total program time:      941855 ms
+Overall throughput:      5.30867 images/sec
+
+============================================================
+              BOTTLENECK IDENTIFICATION
+============================================================
+
+[A] Inter-Device Bottleneck (GPU vs GPU)
+    GPU 0 avg time:      187.477 ms
+
+[B] GPU 0 - Intra-Device Bottleneck (Computation vs Communication)
+    Computation (kernel): 0.0380217% (0.0712819 ms avg)
+    Communication H2D:    0.116492% (0.218395 ms avg)
+    Communication D2H:    0.282182% (0.529026 ms avg)
+    I/O (load/save):      88.8656% (166.602 ms avg)
+    → BOTTLENECK: Communication-bound (transfers are 10.49x slower than kernel)
+
+[C] System-Level Bottlenecks
+    I/O percentage:       88.87%
+    ⚠ WARNING: Disk I/O may be a significant bottleneck!
+
+Metrics exported to: performance_metrics.csv
+
+============================================================
+All 5000 images processed successfully!
+============================================================
