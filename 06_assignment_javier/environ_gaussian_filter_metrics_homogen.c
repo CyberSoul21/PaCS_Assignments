@@ -653,7 +653,7 @@ int main(int argc, const char *argv[]){
     std::cout << "Starting concurrent processing \n" << std::endl;
     
     // 6. Process images 
-    std::vector<std::thread> threads;
+    // std::vector<std::thread> threads;
     
     for (size_t i = 0; i < image_paths.size(); i++) {
         // Alternate between GPU 0 and GPU 1
