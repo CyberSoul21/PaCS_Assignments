@@ -438,7 +438,9 @@ int main(int argc, const char *argv[]) {
         outImg(x,y,2) = out_gpu[0][i+2];
     }
 
-    outImg.save("results/final_result.jpg");
+    std::string result = "final_result.jpg";
+    outImg.save(result.c_str());
+    std::cout << "Gaussian filter saved\n"<<std::endl;
 
     // 12. Cleanup
     clReleaseMemObject(img0_in);
