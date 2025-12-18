@@ -130,8 +130,8 @@ int main(int argc, const char *argv[]) {
     }
     
     // Verify we have at least 2 GPUs
-    if (n_devices[0] < 2) {
-        std::cerr << "Error: Need at least 2 GPU devices. Found only " << n_devices[0] << std::endl;
+    if (n_devices[0] < 1) {
+        std::cerr << "Error: Need at least 1 GPU devices. Found only " << n_devices[0] << std::endl;
         exit(-1);
     }
     
@@ -153,20 +153,33 @@ int main(int argc, const char *argv[]) {
     // 4. Create contexts for both GPUs
     GPUContext gpu0_ctx;
     gpu0_ctx.gpu_id = 0;
+    // gpu1_ctx.gpu_id = 1;
     
     gpu0_ctx.device_id = devices_ids[0][0];
+    // gpu1_ctx.device_id = devices_ids[0][1];
     
     // Create context for GPU 0
     cl_context_properties properties0[] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms_ids[0], 0};
     gpu0_ctx.context = clCreateContext(properties0, 1, &gpu0_ctx.device_id, NULL, NULL, &err);
     cl_error(err, "Failed to create context for GPU 0");
+    
+    // // Create context for GPU 1
+    // cl_context_properties properties1[] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms_ids[0], 0};
+    // gpu1_ctx.context = clCreateContext(properties1, 1, &gpu1_ctx.device_id, NULL, NULL, &err);
+    // cl_error(err, "Failed to create context for GPU 1");
+    
     // Create command queues with profiling
     cl_command_queue_properties proprt[] = {CL_QUEUE_PROPERTIES, CL_QUEUE_PROFILING_ENABLE, 0};
     gpu0_ctx.command_queue = clCreateCommandQueueWithProperties(gpu0_ctx.context, gpu0_ctx.device_id, proprt, &err);
     cl_error(err, "Failed to create command queue for GPU 0");
+    
+    // gpu1_ctx.command_queue = clCreateCommandQueueWithProperties(gpu1_ctx.context, gpu1_ctx.device_id, proprt, &err);
+    // cl_error(err, "Failed to create command queue for GPU 1");
+    
     // Build program for GPU 0
     gpu0_ctx.program = clCreateProgramWithSource(gpu0_ctx.context, 1, (const char**)&sourceCode, &fileSize, &err);
     cl_error(err, "Failed to create program for GPU 0");
+    
     err = clBuildProgram(gpu0_ctx.program, 0, NULL, NULL, NULL, NULL);
     if (err != CL_SUCCESS){
         size_t len;
@@ -177,16 +190,33 @@ int main(int argc, const char *argv[]) {
         exit(-1);
     }
     
+    // // Build program for GPU 1
+    // gpu1_ctx.program = clCreateProgramWithSource(gpu1_ctx.context, 1, (const char**)&sourceCode, &fileSize, &err);
+    // cl_error(err, "Failed to create program for GPU 1");
+    
+    // err = clBuildProgram(gpu1_ctx.program, 0, NULL, NULL, NULL, NULL);
+    // if (err != CL_SUCCESS){
+    //     size_t len;
+    //     char buffer[2048];
+    //     std::cout << "Error: Building program for GPU 1" << std::endl;
+    //     clGetProgramBuildInfo(gpu1_ctx.program, gpu1_ctx.device_id, CL_PROGRAM_BUILD_LOG, sizeof(buffer), buffer, &len);
+    //     std::cout << buffer << std::endl;
+    //     exit(-1);
+    // }
+    
     free(sourceCode);
     
     // Create kernels
     gpu0_ctx.kernel = clCreateKernel(gpu0_ctx.program, "gaussian_filter", &err);
     cl_error(err, "Failed to create kernel for GPU 0");
     
+    // gpu1_ctx.kernel = clCreateKernel(gpu1_ctx.program, "gaussian_filter", &err);
+    // cl_error(err, "Failed to create kernel for GPU 1");
+    
     std::cout << "\n=== GPU Contexts Initialized on Berlin Server ===\n" << std::endl;
 
     // 5. Load image ONCE
-    cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
+    cimg_library::CImg<unsigned char> img("dataset/cat_1000x600.jpg");
 
     int width  = img.width();
     int height = img.height();
@@ -220,105 +250,142 @@ int main(int argc, const char *argv[]) {
     size_t origin[3] = {0,0,0};
     size_t region[3] = {(size_t)width, (size_t)height, 1};
 
+    // 8. Create buffers ONCE per GPU
+    auto setupGPU = [&](GPUContext& ctx,
+                        cl_mem& img_in,
+                        cl_mem& img_out,
+                        cl_mem& mask_buf) {
+
+        int err;
+        img_in = clCreateImage(ctx.context, CL_MEM_READ_ONLY,
+                               &img_format, &img_desc, nullptr, &err);
+        cl_error(err, "clCreateImage input");
+
+        img_out = clCreateImage(ctx.context, CL_MEM_WRITE_ONLY,
+                                &img_format, &img_desc, nullptr, &err);
+        cl_error(err, "clCreateImage output");
+
+        mask_buf = clCreateBuffer(ctx.context,
+                                  CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+                                  sizeof(float) * side * side,
+                                  mask, &err);
+        cl_error(err, "clCreateBuffer mask");
+
+        clSetKernelArg(ctx.kernel, 0, sizeof(cl_mem), &img_in);
+        clSetKernelArg(ctx.kernel, 1, sizeof(cl_mem), &img_out);
+        clSetKernelArg(ctx.kernel, 2, sizeof(cl_mem), &mask_buf);
+        clSetKernelArg(ctx.kernel, 3, sizeof(int), &maskSize);
+        clSetKernelArg(ctx.kernel, 4, sizeof(int), &width);
+        clSetKernelArg(ctx.kernel, 5, sizeof(int), &height);
+    };
+
+    cl_mem img0_in, img0_out, mask0;
+    // cl_mem img1_in, img1_out, mask1;
+
+    setupGPU(gpu0_ctx, img0_in, img0_out, mask0);
+    // setupGPU(gpu1_ctx, img1_in, img1_out, mask1);
+
     // 9. Execute FULL PIPELINE 5000 times
     const int N = 5000;
-    size_t bytes_per_image = (size_t)width * height * 4;
-    std::vector<unsigned char> images(N * bytes_per_image);
-    for (int i = 0; i < N; ++i) {
-        std::memcpy(
-            images.data() + i * bytes_per_image,
-            rgba_in.data(),
-            bytes_per_image
-        );
-    }
-    int N0 = N ;
-
-    unsigned char* images0 = images.data();
-
-    // GPU 0
-    cl_mem input_buf0 = clCreateBuffer(gpu0_ctx.context,CL_MEM_READ_ONLY,bytes_per_image * N0,nullptr, &err);
-    cl_error(err, "Failed to create input image buffer for GPU0 at device\n");
-    cl_mem output_buf0 = clCreateBuffer(gpu0_ctx.context,CL_MEM_WRITE_ONLY,bytes_per_image * N0,nullptr, &err);
-    cl_error(err, "Failed to create output image buffer for GPU0 at device\n");
-    cl_mem mask_0 = clCreateBuffer(gpu0_ctx.context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float)*side*side, mask, &err);
-	cl_error(err, "Failed to create mask buffer for GPU0 at device\n");
-
-    err = clSetKernelArg(gpu0_ctx.kernel, 0, sizeof(cl_mem), &input_buf0);
-    cl_error(err, "set arg 0 GPU0");
-    err = clSetKernelArg(gpu0_ctx.kernel, 1, sizeof(cl_mem), &output_buf0);
-    cl_error(err, "set arg 1 GPU0");
-    err = clSetKernelArg(gpu0_ctx.kernel, 2, sizeof(cl_mem), &mask_0);
-    cl_error(err, "set arg 2 GPU0");
-    err = clSetKernelArg(gpu0_ctx.kernel, 3, sizeof(int), &maskSize);
-    cl_error(err, "set arg 3 GPU0");
-    err = clSetKernelArg(gpu0_ctx.kernel, 4, sizeof(int), &width);
-    cl_error(err, "set arg 4 GPU0");
-    err = clSetKernelArg(gpu0_ctx.kernel, 5, sizeof(int), &height);
-    cl_error(err, "set arg 5 GPU0");
-
+    size_t global_size[2] = {(size_t)width, (size_t)height};
     Metrics m;
-    std::vector<unsigned char> out_gpu(bytes_per_image * N0);
+    std::vector<cl_event> h2d_ev, ker_ev, d2h_ev;
+    size_t bytes_per_image = (size_t)width * height * 4;
+    std::vector<unsigned char> out_gpu(bytes_per_image);
 
     auto t_start = high_resolution_clock::now();
 
-    cl_event h2d_evt;
-    clEnqueueWriteBuffer(gpu0_ctx.command_queue,input_buf0,CL_FALSE,0,bytes_per_image * N0,images0,0, nullptr,&h2d_evt);
-    cl_error(err, "EnqueueWriteBuffer GPU0 failed");
+    for (int i = 0; i < N; ++i) {
+        // int g = (i % 2);
+        // GPUContext& ctx = (g == 0) ? gpu0_ctx : gpu1_ctx;
+        // cl_mem& img_in  = (g == 0) ? img0_in  : img1_in;
+        // cl_mem& img_out = (g == 0) ? img0_out : img1_out;
+        GPUContext& ctx = gpu0_ctx;
+        cl_mem& img_in  = img0_in;
+        cl_mem& img_out = img0_out;
 
-    size_t global0[3] = {(size_t)width,(size_t)height,(size_t)N0};
+        cl_event evt_h2d, evt_kernel, evt_d2h;
 
-    cl_event kernel_evt;
-    clEnqueueNDRangeKernel(gpu0_ctx.command_queue,gpu0_ctx.kernel,3, nullptr,global0, nullptr,1, &h2d_evt,&kernel_evt);
-    cl_error(err, "EnqueueNDRangeKernel GPU0 failed");
+        clEnqueueWriteImage(ctx.command_queue,
+                            img_in, CL_FALSE,
+                            origin, region,
+                            0, 0, rgba_in.data(),
+                            0, nullptr, &evt_h2d);
 
-    cl_event d2h_evt;
-    clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu[0].data(),1, &kernel_evt,&d2h_evt);
-    cl_error(err, "EnqueueReadBuffer GPU0 failed");
+        clEnqueueNDRangeKernel(ctx.command_queue,
+                               ctx.kernel,
+                               2, nullptr,
+                               global_size, nullptr,
+                               1, &evt_h2d, &evt_kernel);
+
+        // std::vector<unsigned char> tmp(width * height * 4);
+        clEnqueueReadImage(ctx.command_queue,
+                           img_out, CL_FALSE,
+                           origin, region,
+                           0, 0, out_gpu.data(),
+                           1, &evt_kernel, &evt_d2h);
+        
+        h2d_ev.push_back(evt_h2d);
+        ker_ev.push_back(evt_kernel);
+        d2h_ev.push_back(evt_d2h);
+        
+        m.iters++;
+    }
 
     clFlush(gpu0_ctx.command_queue);
+    // clFlush(gpu1_ctx.command_queue);
 
     clFinish(gpu0_ctx.command_queue);
+    // clFinish(gpu1_ctx.command_queue);
 
     auto t_end = high_resolution_clock::now();
     double total_ms = duration<double, std::milli>(t_end - t_start).count();
 
 
-    m.iters = N;
-    m.h2d_ms    = eventDurationMs(h2d_evt);
-    m.kernel_ms = eventDurationMs(kernel_evt);
-    m.d2h_ms    = eventDurationMs(d2h_evt);
-    clReleaseEvent(h2d_evt);
-    clReleaseEvent(kernel_evt);
-    clReleaseEvent(d2h_evt);
+    // for (int g = 0; g < 2; ++g) {
+        for (auto e : h2d_ev) m.h2d_ms += eventDurationMs(e);
+        for (auto e : ker_ev) m.kernel_ms += eventDurationMs(e);
+        for (auto e : d2h_ev) m.d2h_ms += eventDurationMs(e);
+
+        for (auto e : h2d_ev) clReleaseEvent(e);
+        for (auto e : ker_ev) clReleaseEvent(e);
+        for (auto e : d2h_ev) clReleaseEvent(e);
+    // }
 
     // 10. Print meaningful metrics
     std::cout << "\n==============================\n";
     std::cout << "Total iterations:     " << N << "\n";
     std::cout << "Total time:           " << total_ms << " ms\n";
 
-    std::cout << "\n=== Average times per iteration ===\n";
-    std::cout << "GPU 0:" 
-            << " ms | H2D total = " << m[0].h2d_ms << " ms\n"
-            << " ms | H2D per image = " << (m[0].h2d_ms / m[0].iters) << " ms\n"
-            << " ms | Kernel = " << m[0].kernel_ms << " ms\n"
-            << " ms | D2H total = " << m[0].d2h_ms << " ms\n"
-            << " ms | D2H per image = " << (m[0].d2h_ms / m[0].iters) << " ms\n"
-            << "iters = " << m[0].iters << std::endl;
+    double avg_h2d_ms;
+    double avg_kernel_ms;
+    double avg_d2h_ms;
 
-    double h2d_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].h2d_ms / 1000.0);
-    double d2h_bw0 = (bytes_per_image * N0 / (1024.0*1024.0)) / (m[0].d2h_ms / 1000.0);
+    // for (int g = 0; g < 2; ++g) {
+        avg_h2d_ms    = m.h2d_ms    / m.iters;
+        avg_kernel_ms = m.kernel_ms / m.iters;
+        avg_d2h_ms    = m.d2h_ms    / m.iters;
+    // }
+
+    std::cout << "\n=== Average times per iteration ===\n";
+    std::cout << "GPU 0: H2D = " << avg_h2d_ms
+            << " ms | Kernel = " << avg_kernel_ms
+            << " ms | D2H = " << avg_d2h_ms << " ms\n";
+
+    double h2d_bw_avg0 = (bytes_per_image / (1024.0*1024.0)) / (avg_h2d_ms / 1000.0);
+    double d2h_bw_avg0 = (bytes_per_image / (1024.0*1024.0)) / (avg_d2h_ms / 1000.0);
 
     std::cout << "\n=== Average Bandwidth per GPU ===\n";
-    std::cout << "GPU 0: H2D = " << h2d_bw0
-            << " MB/s | D2H = " << d2h_bw0 << " MB/s\n";
+    std::cout << "GPU 0: H2D = " << h2d_bw_avg0
+            << " MB/s | D2H = " << d2h_bw_avg0 << " MB/s\n";
 
     // 11. Read FINAL result and save
     cimg_library::CImg<unsigned char> outImg(width, height, 1, 3);
     cimg_forXY(outImg, x, y) {
         int i = 4*(y*width + x);
-        outImg(x,y,0) = out_gpu[0][i];
-        outImg(x,y,1) = out_gpu[0][i+1];
-        outImg(x,y,2) = out_gpu[0][i+2];
+        outImg(x,y,0) = out_gpu[i];
+        outImg(x,y,1) = out_gpu[i+1];
+        outImg(x,y,2) = out_gpu[i+2];
     }
 
     std::string result = "final_result.jpg";
@@ -326,14 +393,13 @@ int main(int argc, const char *argv[]) {
     std::cout << "Gaussian filter saved\n"<<std::endl;
 
     // 12. Cleanup
+    clReleaseMemObject(img0_in);
+    clReleaseMemObject(img0_out);
+    clReleaseMemObject(mask0);
     clReleaseKernel(gpu0_ctx.kernel);
     clReleaseProgram(gpu0_ctx.program);
     clReleaseCommandQueue(gpu0_ctx.command_queue);
     clReleaseContext(gpu0_ctx.context);
-    clReleaseMemObject(input_buf0);
-    clReleaseMemObject(output_buf0);
-    clReleaseMemObject(mask_0);
-    
     delete[] mask;
 
     return 0;
