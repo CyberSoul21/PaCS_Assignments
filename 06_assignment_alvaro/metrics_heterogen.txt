@@ -1,0 +1,47 @@
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           246.269 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 66.2882 ms
+ ms | H2D per image = 0.0265153 ms
+ ms | Kernel = 19.5297 ms
+ ms | D2H total = 69.0854 ms
+ ms | D2H per image = 0.0276342 ms
+iters = 2500
+GPU 1: ms | H2D total = 45.529 ms
+ ms | H2D per image = 0.0182116 ms
+ ms | Kernel = 55.851 ms
+ ms | D2H total = 57.5991 ms
+ ms | D2H per image = 0.0230397 ms
+iters = 2500
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 12013 MB/s | D2H = 11526.6 MB/s
+GPU 1: H2D = 17490.4 MB/s | D2H = 13825.2 MB/s
+
+Workload imbalance (iterations): 0 %
+Kernel time imbalance ratio (max/min): 2.85979
+
+=== Bottleneck analysis ===
+GPU 0: Computation = 12.6077% | Communication = 87.3923%
+GPU 1: Computation = 35.131% | Communication = 64.869%
+
+Global bottleneck:
+Computation = 24.0156% | Communication = 75.9844%
+Gaussian filter saved

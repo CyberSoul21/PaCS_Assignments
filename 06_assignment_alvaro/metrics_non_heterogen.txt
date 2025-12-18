@@ -1,0 +1,30 @@
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           307.062 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 132.154 ms
+ ms | H2D per image = 0.0264307 ms
+ ms | Kernel = 40.3149 ms
+ ms | D2H total = 133.974 ms
+ ms | D2H per image = 0.0267949 ms
+iters = 5000
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 12051.4 MB/s | D2H = 11887.6 MB/s
+Gaussian filter saved
