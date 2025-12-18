@@ -185,7 +185,7 @@ int main(int argc, const char *argv[]) {
     cl_error(err, "Failed to create context for GPU 1");
     // Create command queues with profiling
     gpu1_ctx.command_queue = clCreateCommandQueueWithProperties(gpu1_ctx.context, gpu1_ctx.device_id, proprt, &err);
-    cl_error(err, "Failed to create command queue for GPU 1");ç
+    cl_error(err, "Failed to create command queue for GPU 1");
     // Build program for GPU 1
     gpu1_ctx.program = clCreateProgramWithSource(gpu1_ctx.context, 1, (const char**)&sourceCode, &fileSize, &err);
     cl_error(err, "Failed to create program for GPU 1");
