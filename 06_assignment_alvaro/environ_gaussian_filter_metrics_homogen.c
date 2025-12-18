@@ -272,7 +272,7 @@ int main(int argc, const char *argv[]) {
     cl_error(err, "EnqueueNDRangeKernel GPU0 failed");
 
     cl_event d2h_evt;
-    clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu[0].data(),1, &kernel_evt,&d2h_evt);
+    clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu.data(),1, &kernel_evt,&d2h_evt);
     cl_error(err, "EnqueueReadBuffer GPU0 failed");
 
     clFlush(gpu0_ctx.command_queue);
