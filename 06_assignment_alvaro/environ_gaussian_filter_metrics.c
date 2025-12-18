@@ -210,7 +210,7 @@ int main(int argc, const char *argv[]) {
     std::cout << "\n=== GPU Contexts Initialized on Berlin Server ===\n" << std::endl;
 
     // 5. Load image ONCE
-    cimg_library::CImg<unsigned char> img("dataset/cat_1000x600.jpg");
+    cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
 
     int width  = img.width();
     int height = img.height();
