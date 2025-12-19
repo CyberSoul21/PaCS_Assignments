@@ -1,4 +1,3 @@
-berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
 Number of available platforms: 1
 
         [0]-Platform Name: NVIDIA CUDA
@@ -16,35 +15,37 @@ Number of available platforms: 1
 
 ==============================
 Total iterations:     5000
-Total time:           303.615 ms
+Total time:           306.426 ms
 
 === Average times per iteration ===
-GPU 0: ms | H2D total = 72.7977 ms
- ms | H2D per image = 0.0291191 ms
- ms | Kernel = 66.3347 ms
- ms | D2H total = 73.9553 ms
- ms | D2H per image = 0.0295821 ms
+GPU 0: ms | H2D total = 72.2663 ms
+ ms | H2D per image = 0.0289065 ms
+ ms | Kernel = 63.6242 ms
+ ms | D2H total = 68.8656 ms
+ ms | D2H per image = 0.0275463 ms
 iters = 2500
-GPU 1: ms | H2D total = 45.277 ms
- ms | H2D per image = 0.0181108 ms
- ms | Kernel = 33.9231 ms
- ms | D2H total = 55.2469 ms
- ms | D2H per image = 0.0220988 ms
+GPU 1: ms | H2D total = 44.1718 ms
+ ms | H2D per image = 0.0176687 ms
+ ms | Kernel = 55.6298 ms
+ ms | D2H total = 67.0294 ms
+ ms | D2H per image = 0.0268118 ms
 iters = 2500
 
 === Average Bandwidth per GPU ===
-GPU 0: H2D = 10938.8 MB/s | D2H = 10767.6 MB/s
-GPU 1: H2D = 17587.7 MB/s | D2H = 14413.8 MB/s
+GPU 0: H2D = 11019.2 MB/s | D2H = 11563.4 MB/s
+GPU 1: H2D = 18027.7 MB/s | D2H = 11880.1 MB/s
 
 Workload imbalance (iterations): 0 %
-Kernel time imbalance ratio (max/min): 1.95545
+Kernel time imbalance ratio (max/min): 1.14371
+
+Workload unbalance (time, H2D+kernel+D2H): 18.5221 %
 
 === Bottleneck analysis ===
-GPU 0: Computation = 31.1302% | Communication = 68.8698%
-GPU 1: Computation = 25.2315% | Communication = 74.7685%
+GPU 0: Computation = 31.0732% | Communication = 68.9268%
+GPU 1: Computation = 33.345% | Communication = 66.655%
 
 Global bottleneck:
-Computation = 28.8483% | Communication = 71.1517%
+Computation = 32.0931% | Communication = 67.9069%
 Gaussian filter saved
 
 berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
@@ -65,35 +66,37 @@ Number of available platforms: 1
 
 ==============================
 Total iterations:     5000
-Total time:           287.585 ms
+Total time:           298.295 ms
 
 === Average times per iteration ===
-GPU 0: ms | H2D total = 69.6036 ms
- ms | H2D per image = 0.0278414 ms
- ms | Kernel = 66.1258 ms
- ms | D2H total = 69.6516 ms
- ms | D2H per image = 0.0278606 ms
+GPU 0: ms | H2D total = 68.3874 ms
+ ms | H2D per image = 0.027355 ms
+ ms | Kernel = 61.6612 ms
+ ms | D2H total = 76.7646 ms
+ ms | D2H per image = 0.0307058 ms
 iters = 2500
-GPU 1: ms | H2D total = 44.2068 ms
- ms | H2D per image = 0.0176827 ms
- ms | Kernel = 52.1103 ms
- ms | D2H total = 49.4241 ms
- ms | D2H per image = 0.0197697 ms
+GPU 1: ms | H2D total = 45.6987 ms
+ ms | H2D per image = 0.0182795 ms
+ ms | Kernel = 51.5297 ms
+ ms | D2H total = 56.3759 ms
+ ms | D2H per image = 0.0225504 ms
 iters = 2500
 
 === Average Bandwidth per GPU ===
-GPU 0: H2D = 11440.8 MB/s | D2H = 11432.9 MB/s
-GPU 1: H2D = 18013.5 MB/s | D2H = 16111.9 MB/s
+GPU 0: H2D = 11644.2 MB/s | D2H = 10373.5 MB/s
+GPU 1: H2D = 17425.4 MB/s | D2H = 14125.1 MB/s
 
 Workload imbalance (iterations): 0 %
-Kernel time imbalance ratio (max/min): 1.26896
+Kernel time imbalance ratio (max/min): 1.19661
+
+Workload unbalance (time, H2D+kernel+D2H): 25.728 %
 
 === Bottleneck analysis ===
-GPU 0: Computation = 32.1967% | Communication = 67.8033%
-GPU 1: Computation = 35.7554% | Communication = 64.2446%
+GPU 0: Computation = 29.8149% | Communication = 70.1851%
+GPU 1: Computation = 33.5471% | Communication = 66.4529%
 
 Global bottleneck:
-Computation = 33.6738% | Communication = 66.3262%
+Computation = 31.4055% | Communication = 68.5945%
 Gaussian filter saved
 
 berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
@@ -114,35 +117,37 @@ Number of available platforms: 1
 
 ==============================
 Total iterations:     5000
-Total time:           289.272 ms
+Total time:           291.768 ms
 
 === Average times per iteration ===
-GPU 0: ms | H2D total = 70.352 ms
- ms | H2D per image = 0.0281408 ms
- ms | Kernel = 55.8674 ms
- ms | D2H total = 68.8761 ms
- ms | D2H per image = 0.0275505 ms
+GPU 0: ms | H2D total = 68.1416 ms
+ ms | H2D per image = 0.0272566 ms
+ ms | Kernel = 61.5506 ms
+ ms | D2H total = 75.7106 ms
+ ms | D2H per image = 0.0302842 ms
 iters = 2500
-GPU 1: ms | H2D total = 45.0694 ms
- ms | H2D per image = 0.0180278 ms
- ms | Kernel = 55.4762 ms
- ms | D2H total = 60.4272 ms
- ms | D2H per image = 0.0241709 ms
+GPU 1: ms | H2D total = 44.9956 ms
+ ms | H2D per image = 0.0179982 ms
+ ms | Kernel = 54.2126 ms
+ ms | D2H total = 51.1244 ms
+ ms | D2H per image = 0.0204498 ms
 iters = 2500
 
 === Average Bandwidth per GPU ===
-GPU 0: H2D = 11319 MB/s | D2H = 11561.6 MB/s
-GPU 1: H2D = 17668.7 MB/s | D2H = 13178.1 MB/s
+GPU 0: H2D = 11686.2 MB/s | D2H = 10517.9 MB/s
+GPU 1: H2D = 17697.7 MB/s | D2H = 15576.1 MB/s
 
 Workload imbalance (iterations): 0 %
-Kernel time imbalance ratio (max/min): 1.00705
+Kernel time imbalance ratio (max/min): 1.13536
+
+Workload unbalance (time, H2D+kernel+D2H): 26.8108 %
 
 === Bottleneck analysis ===
-GPU 0: Computation = 28.6359% | Communication = 71.3641%
-GPU 1: Computation = 34.4631% | Communication = 65.5369%
+GPU 0: Computation = 29.9658% | Communication = 70.0342%
+GPU 1: Computation = 36.0618% | Communication = 63.9382%
 
 Global bottleneck:
-Computation = 31.2703% | Communication = 68.7297%
+Computation = 32.5419% | Communication = 67.4581%
 Gaussian filter saved
 
 berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics 1
@@ -163,33 +168,35 @@ Number of available platforms: 1
 
 ==============================
 Total iterations:     5000
-Total time:           308.026 ms
+Total time:           291.937 ms
 
 === Average times per iteration ===
-GPU 0: ms | H2D total = 70.8178 ms
- ms | H2D per image = 0.0283271 ms
- ms | Kernel = 65.8319 ms
- ms | D2H total = 71.6943 ms
- ms | D2H per image = 0.0286777 ms
+GPU 0: ms | H2D total = 73.5362 ms
+ ms | H2D per image = 0.0294145 ms
+ ms | Kernel = 65.5606 ms
+ ms | D2H total = 68.9046 ms
+ ms | D2H per image = 0.0275618 ms
 iters = 2500
-GPU 1: ms | H2D total = 45.7866 ms
- ms | H2D per image = 0.0183146 ms
- ms | Kernel = 52.4216 ms
- ms | D2H total = 65.3533 ms
- ms | D2H per image = 0.0261413 ms
+GPU 1: ms | H2D total = 44.89 ms
+ ms | H2D per image = 0.017956 ms
+ ms | Kernel = 53.2881 ms
+ ms | D2H total = 50.2888 ms
+ ms | D2H per image = 0.0201155 ms
 iters = 2500
 
 === Average Bandwidth per GPU ===
-GPU 0: H2D = 11244.6 MB/s | D2H = 11107.1 MB/s
-GPU 1: H2D = 17391.9 MB/s | D2H = 12184.8 MB/s
+GPU 0: H2D = 10828.9 MB/s | D2H = 11556.8 MB/s
+GPU 1: H2D = 17739.3 MB/s | D2H = 15834.9 MB/s
 
 Workload imbalance (iterations): 0 %
-Kernel time imbalance ratio (max/min): 1.25582
+Kernel time imbalance ratio (max/min): 1.2303
+
+Workload unbalance (time, H2D+kernel+D2H): 28.6221 %
 
 === Bottleneck analysis ===
-GPU 0: Computation = 31.5977% | Communication = 68.4023%
-GPU 1: Computation = 32.0501% | Communication = 67.9499%
+GPU 0: Computation = 31.5193% | Communication = 68.4807%
+GPU 1: Computation = 35.8923% | Communication = 64.1077%
 
 Global bottleneck:
-Computation = 31.7967% | Communication = 68.2033%
+Computation = 33.3406% | Communication = 66.6594%
 Gaussian filter saved
