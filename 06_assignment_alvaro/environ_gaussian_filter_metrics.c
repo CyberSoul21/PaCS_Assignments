@@ -210,8 +210,8 @@ int main(int argc, const char *argv[]) {
     std::cout << "\n=== GPU Contexts Initialized on Berlin Server ===\n" << std::endl;
 
     // 5. Load image ONCE
-    //cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
-    cimg_library::CImg<unsigned char> img("dataset/galaxia_irregular.jpg");
+    cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
+    //cimg_library::CImg<unsigned char> img("dataset/galaxia_irregular.jpg");
 
     int width  = img.width();
     int height = img.height();
@@ -401,6 +401,18 @@ int main(int argc, const char *argv[]) {
 
     double comm_ms_gpu0 = m[0].h2d_ms + m[0].d2h_ms;
     double comm_ms_gpu1 = m[1].h2d_ms + m[1].d2h_ms;
+
+
+    double total_ms_gpu0 = comm_ms_gpu0 + m[0].kernel_ms;
+    double total_ms_gpu1 = comm_ms_gpu1 + m[1].kernel_ms;
+
+    double time_unbalance_pct =
+        (std::abs(total_ms_gpu0 - total_ms_gpu1) /
+        std::max(total_ms_gpu0, total_ms_gpu1)) * 100.0;
+
+    std::cout << "\nWorkload unbalance (time, H2D+kernel+D2H): "
+            << time_unbalance_pct << " %\n";
+
 
     double comp_frac_gpu0 = m[0].kernel_ms / (m[0].kernel_ms + comm_ms_gpu0);
     double comm_frac_gpu0 = comm_ms_gpu0     / (m[0].kernel_ms + comm_ms_gpu0);
