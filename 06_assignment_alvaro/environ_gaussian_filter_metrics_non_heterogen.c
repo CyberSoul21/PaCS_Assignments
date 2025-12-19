@@ -175,8 +175,8 @@ int main(int argc, const char *argv[]) {
     GPUContext gpu0_ctx;
     gpu0_ctx.gpu_id = 0;
     
-    // gpu0_ctx.device_id = devices_ids[0][0];
-    gpu0_ctx.device_id = devices_ids[0][1];
+    gpu0_ctx.device_id = devices_ids[0][0];
+    // gpu0_ctx.device_id = devices_ids[0][1];
     
     // Create context for GPU 0
     cl_context_properties properties0[] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms_ids[0], 0};

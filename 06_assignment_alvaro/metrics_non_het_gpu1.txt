@@ -1,0 +1,159 @@
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics_non_heterogen 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [0]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [0]-Device PCI info: domain=0, bus=1, device=0, function=0
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [1]-Device PCI info: domain=0, bus=193, device=0, function=0
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           274.531 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 86.5323 ms
+ ms | H2D per image = 0.0173065 ms
+ ms | Kernel = 73.1965 ms
+ ms | D2H total = 110.577 ms
+ ms | D2H per image = 0.0221153 ms
+iters = 5000
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 18405.1 MB/s | D2H = 14403 MB/s
+Gaussian filter saved
+
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics_non_heterogen 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [0]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [0]-Device PCI info: domain=0, bus=1, device=0, function=0
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [1]-Device PCI info: domain=0, bus=193, device=0, function=0
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           279.437 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 85.5688 ms
+ ms | H2D per image = 0.0171138 ms
+ ms | Kernel = 85.1763 ms
+ ms | D2H total = 106.859 ms
+ ms | D2H per image = 0.0213719 ms
+iters = 5000
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 18612.3 MB/s | D2H = 14904 MB/s
+Gaussian filter saved
+
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics_non_heterogen 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [0]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [0]-Device PCI info: domain=0, bus=1, device=0, function=0
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [1]-Device PCI info: domain=0, bus=193, device=0, function=0
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           317.875 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 87.3749 ms
+ ms | H2D per image = 0.017475 ms
+ ms | Kernel = 93.9745 ms
+ ms | D2H total = 134.677 ms
+ ms | D2H per image = 0.0269353 ms
+iters = 5000
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 18227.6 MB/s | D2H = 11825.6 MB/s
+Gaussian filter saved
+
+berlin:~/Desktop/pacs/PaCS_Assignments/06_assignment_alvaro/ ./build/gaussian_filter_metrics_non_heterogen 1
+Number of available platforms: 1
+
+        [0]-Platform Name: NVIDIA CUDA
+
+        [0]-Platform. Number of available devices: 2
+                [0]-Platform [0]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [0]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [0]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [0]-Device PCI info: domain=0, bus=1, device=0, function=0
+
+                [0]-Platform [1]-Device CL_DEVICE_NAME: NVIDIA A10
+                [0]-Platform [1]-Device CL_DEVICE_MAX_COMPUTE_UNITS: 72
+
+                [0]-Platform [1]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1629126656
+
+                [0]-Platform [1]-Device PCI info: domain=0, bus=193, device=0, function=0
+
+
+=== GPU Contexts Initialized on Berlin Server ===
+
+
+==============================
+Total iterations:     5000
+Total time:           289.802 ms
+
+=== Average times per iteration ===
+GPU 0: ms | H2D total = 85.0624 ms
+ ms | H2D per image = 0.0170125 ms
+ ms | Kernel = 99.5594 ms
+ ms | D2H total = 103.336 ms
+ ms | D2H per image = 0.0206673 ms
+iters = 5000
+
+=== Average Bandwidth per GPU ===
+GPU 0: H2D = 18723.2 MB/s | D2H = 15412.2 MB/s
+Gaussian filter saved
