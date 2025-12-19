@@ -138,13 +138,12 @@ int main(int argc, const char *argv[]) {
             cl_error(err, "clGetDeviceInfo: Getting device max compute units available");
             printf("\t\t[%d]-Platform [%d]-Device CL_DEVICE_MAX_COMPUTE_UNITS: %d\n\n", i, j, max_compute_units_available);
 
-            cl_uint max_mem_alloc;
+            cl_ulong  max_mem_alloc;
             err = clGetDeviceInfo(devices_ids[i][j], CL_DEVICE_MAX_MEM_ALLOC_SIZE, sizeof(max_mem_alloc), &max_mem_alloc, NULL);
             cl_error(err, "clGetDeviceInfo: Getting device max mem alloc");
             printf("\t\t[%d]-Platform [%d]-Device CL_DEVICE_MAX_MEM_ALLOC_SIZE: %d\n\n", i, j, max_mem_alloc);
 
             cl_device_pci_bus_info_khr pci_info;
-
             err = clGetDeviceInfo(devices_ids[i][j],CL_DEVICE_PCI_BUS_INFO_KHR,sizeof(pci_info),&pci_info,nullptr);
             cl_error(err, "clGetDeviceInfo: Getting PCI bus info");
             printf("\t\t[%d]-Platform [%d]-Device PCI info: ""domain=%u, bus=%u, device=%u, function=%u\n\n",i, j,pci_info.pci_domain,pci_info.pci_bus,pci_info.pci_device,pci_info.pci_function);
