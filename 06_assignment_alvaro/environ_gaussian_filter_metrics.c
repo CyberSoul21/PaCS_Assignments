@@ -211,7 +211,7 @@ int main(int argc, const char *argv[]) {
 
     // 5. Load image ONCE
     //cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
-    cimg_library::CImg<unsigned char> img("dataset/cat_250x334.jpg");
+    cimg_library::CImg<unsigned char> img("dataset/galaxia_irregular.jpg");
 
     int width  = img.width();
     int height = img.height();
