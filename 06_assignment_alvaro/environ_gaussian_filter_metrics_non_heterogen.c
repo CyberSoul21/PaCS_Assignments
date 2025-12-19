@@ -22,6 +22,16 @@
     #include <CL/cl_ext.h>
 #endif
 
+#ifndef CL_DEVICE_PCI_BUS_INFO_KHR
+#define CL_DEVICE_PCI_BUS_INFO_KHR 0x410F
+typedef struct _cl_device_pci_bus_info_khr {
+    cl_uint pci_domain;
+    cl_uint pci_bus;
+    cl_uint pci_device;
+    cl_uint pci_function;
+} cl_device_pci_bus_info_khr;
+#endif
+
 using namespace std::chrono;
 namespace fs = std::filesystem;
 
