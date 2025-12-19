@@ -152,11 +152,15 @@ int main(int argc, const char *argv[]) {
     
     // 4. Create contexts for both GPUs
     GPUContext gpu0_ctx, gpu1_ctx;
-    gpu0_ctx.gpu_id = 0;
-    gpu1_ctx.gpu_id = 1;
+    // gpu0_ctx.gpu_id = 0;
+    // gpu1_ctx.gpu_id = 1;
+    gpu0_ctx.gpu_id = 1;
+    gpu1_ctx.gpu_id = 0;
     
-    gpu0_ctx.device_id = devices_ids[0][0];
-    gpu1_ctx.device_id = devices_ids[0][1];
+    // gpu0_ctx.device_id = devices_ids[0][0];
+    // gpu1_ctx.device_id = devices_ids[0][1];
+    gpu0_ctx.device_id = devices_ids[0][1];
+    gpu1_ctx.device_id = devices_ids[0][0];
     
     // Create context for GPU 0
     cl_context_properties properties0[] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms_ids[0], 0};
@@ -258,11 +262,8 @@ int main(int argc, const char *argv[]) {
     int N0 = N / 2;
     int N1 = N - N0;
 
-    // unsigned char* images0 = images.data();
-    // unsigned char* images1 = images.data() + N0 * bytes_per_image;
-
-    unsigned char* images1 = images.data();
-    unsigned char* images0 = images.data() + N0 * bytes_per_image;
+    unsigned char* images0 = images.data();
+    unsigned char* images1 = images.data() + N0 * bytes_per_image;
 
     // GPU 0
     cl_mem input_buf0 = clCreateBuffer(gpu0_ctx.context,CL_MEM_READ_ONLY,bytes_per_image * N0,nullptr, &err);
