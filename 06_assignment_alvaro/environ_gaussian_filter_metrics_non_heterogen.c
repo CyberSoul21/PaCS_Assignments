@@ -262,17 +262,17 @@ int main(int argc, const char *argv[]) {
     auto t_start = high_resolution_clock::now();
 
     cl_event h2d_evt;
-    clEnqueueWriteBuffer(gpu0_ctx.command_queue,input_buf0,CL_FALSE,0,bytes_per_image * N0,images0,0, nullptr,&h2d_evt);
+    err = clEnqueueWriteBuffer(gpu0_ctx.command_queue,input_buf0,CL_FALSE,0,bytes_per_image * N0,images0,0, nullptr,&h2d_evt);
     cl_error(err, "EnqueueWriteBuffer GPU0 failed");
 
     size_t global0[3] = {(size_t)width,(size_t)height,(size_t)N0};
 
     cl_event kernel_evt;
-    clEnqueueNDRangeKernel(gpu0_ctx.command_queue,gpu0_ctx.kernel,3, nullptr,global0, nullptr,1, &h2d_evt,&kernel_evt);
+    err = clEnqueueNDRangeKernel(gpu0_ctx.command_queue,gpu0_ctx.kernel,3, nullptr,global0, nullptr,1, &h2d_evt,&kernel_evt);
     cl_error(err, "EnqueueNDRangeKernel GPU0 failed");
 
     cl_event d2h_evt;
-    clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu.data(),1, &kernel_evt,&d2h_evt);
+    err = clEnqueueReadBuffer(gpu0_ctx.command_queue,output_buf0,CL_FALSE,0,bytes_per_image * N0,out_gpu.data(),1, &kernel_evt,&d2h_evt);
     cl_error(err, "EnqueueReadBuffer GPU0 failed");
 
     clFlush(gpu0_ctx.command_queue);

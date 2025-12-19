@@ -15,23 +15,16 @@ Number of available platforms: 1
 
 ==============================
 Total iterations:     5000
-Total time:           2016.92 ms
+Total time:           307.062 ms
 
 === Average times per iteration ===
-GPU 0: H2D = 0.191957 ms | Kernel = 0.0598495 ms | D2H = 0.434475 ms
-GPU 1: H2D = 0.118265 ms | Kernel = 0.0578089 ms | D2H = 0.364344 ms
+GPU 0: ms | H2D total = 132.154 ms
+ ms | H2D per image = 0.0264307 ms
+ ms | Kernel = 40.3149 ms
+ ms | D2H total = 133.974 ms
+ ms | D2H per image = 0.0267949 ms
+iters = 5000
 
 === Average Bandwidth per GPU ===
-GPU 0: H2D = 11923.6 MB/s | D2H = 5268.01 MB/s
-GPU 1: H2D = 19353.3 MB/s | D2H = 6282.02 MB/s
-
-Workload imbalance (iterations): 0 %
-Kernel time imbalance ratio (max/min): 1.0353
-
-=== Bottleneck analysis ===
-GPU 0: Computation = 8.72085% | Communication = 91.2792%
-GPU 1: Computation = 10.6971% | Communication = 89.3029%
-
-Global bottleneck:
-Computation = 9.59147% | Communication = 90.4085%
+GPU 0: H2D = 12051.4 MB/s | D2H = 11887.6 MB/s
 Gaussian filter saved
