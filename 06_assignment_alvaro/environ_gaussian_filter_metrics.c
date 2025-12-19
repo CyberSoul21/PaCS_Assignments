@@ -258,8 +258,11 @@ int main(int argc, const char *argv[]) {
     int N0 = N / 2;
     int N1 = N - N0;
 
-    unsigned char* images0 = images.data();
-    unsigned char* images1 = images.data() + N0 * bytes_per_image;
+    // unsigned char* images0 = images.data();
+    // unsigned char* images1 = images.data() + N0 * bytes_per_image;
+
+    unsigned char* images1 = images.data();
+    unsigned char* images0 = images.data() + N0 * bytes_per_image;
 
     // GPU 0
     cl_mem input_buf0 = clCreateBuffer(gpu0_ctx.context,CL_MEM_READ_ONLY,bytes_per_image * N0,nullptr, &err);
