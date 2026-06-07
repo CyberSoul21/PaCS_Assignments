@@ -27,15 +27,19 @@ void producer()
 
     for (int i = 0; i < 10; ++i)
     {
-        std::lock_guard<std::mutex> lck(var_mutex);
-        //sharedQueue.push(dist6(gen));
-        sharedQueue.push(i);
-        cv.notify_one();
+        {
+            std::lock_guard<std::mutex> lck(var_mutex);
+            sharedQueue.push(i);
+            cv.notify_one();
+        }
         std::cout<<"Produced: "<<i<<std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
-    finished = true;
-    
+    {
+        std::lock_guard<std::mutex> lck(var_mutex);
+        finished = true;
+    }
+    cv.notify_one();
 }
 
 void consumer()
@@ -43,15 +47,12 @@ void consumer()
     int data = 0;
     while (!finished)
     {
-        std::unique_lock<std::mutex> lk(var_mutex);
-        cv.wait(lk,[]{return !sharedQueue.empty();});
-        data = sharedQueue.front();
-        sharedQueue.pop();
-        lk.unlock();
+        std::unique_lock<std::mutex> lck(var_mutex);
+        cv.wait(lck,[]{return !sharedQueue.empty() || finished;});
+        data = sharedQueue.front(); sharedQueue.pop();
         std::cout<<"Consumed: "<<data<<std::endl;
-    }
-    
-    
+        lck.unlock();        
+    }   
 }
 
 
