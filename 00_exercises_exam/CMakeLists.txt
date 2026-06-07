@@ -15,5 +15,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(dotProduct 01_exercise_dot_product.cpp)
 add_executable(maxMin 02_maxMin.cpp)
+add_executable(prime 05_prime.cpp)
 
 
