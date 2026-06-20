@@ -17,5 +17,8 @@ add_executable(dotProduct 01_exercise_dot_product.cpp)
 add_executable(maxMin 02_maxMin.cpp)
 add_executable(prime 05_prime.cpp)
 add_executable(conditional 00_conditionalVariable.cpp)
+add_executable(sorting 06_sorting.cpp)
+add_executable(histogram 07_histogram.cpp)
+
 
 
